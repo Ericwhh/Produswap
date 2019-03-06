@@ -1,81 +1,110 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Market</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <style>
-        /* Adds underline to current page */
-        #marketButtonText {
-            border-bottom: 1px solid white;
-        }
-        </style>
-    </head>
-    <body>
-        <div id="backgroundImage"></div>
-        <nav id="navBar">
-            <span id="logo">Produswap</span>
-            <span id="navButtons">
-                <a href="trades.html" id="marketButton" class="navButton">
-                    <div class="menuWrapper">
-                        <span id="marketButtonText" class="navButtonText">Market</span>
-                    </div>
-                </a>
-                <a href="trades.html" id="postButton" class="navButton">
-                    <div class="menuWrapper">
-                        <span id="postButtonText" class="navButtonText">Post</span>
-                    </div>
-                </a>
-                <a href="trades.html" id="tradesButton" class="navButton">
-                    <div class="menuWrapper">
-                        <span id="tradesButtonText" class="navButtonText">Trades</span>
-                    </div>
-                </a>
-            </span>
-            <span id="loginOrSignup">
-                <a href="" class="loginOrSignupButton">
-                    <div class="menuWrapper">
-                        <span id="loginButtonText" class="loginOrSignupButtonText">Log In</span>
-                    </div>
-                </a>
-                <a href="" class="loginOrSignupButton">
-                    <div class="menuWrapper">
-                        <span id="tradeButtonText" class="loginOrSignupButtonText">Sign Up</span>
-                    </div>
-                </a>
-            </span>
-            <img id="profile" src="images/profile.png" alt="Profile">
-        </nav>
-        <div id="main">
-            <div id="btnContainer">
-                <button class="btn" onclick="listView()"><i class="listView"></i> List</button> 
-                <button class="btn active" onclick="gridView()"><i class="gridView"></i> Grid</button>
-            </div> 
-            <br>
-            <div id=lContainer>
-                <div class="row">
-                    <div class="column" style="background-color:#aaa;">
-                        <h2>Column 1</h2>
-                        <p>Some text..</p>
-                    </div>
-                    <div class="column" style="background-color:#bbb;">
-                        <h2>Column 2</h2>
-                        <p>Some text..</p>
-                    </div>
+<head>
+    <meta charset="utf-8">
+    <title>Market</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style>
+    /* Adds underline to current page */
+    #marketButtonText {
+        border-bottom: 1px solid white;
+    }
+</style>
+</head>
+<body>
+    <div id="backgroundImage"></div>
+    <nav id="navBar">
+        <span id="logo">Produswap</span>
+        <span id="navButtons">
+            <a href="trades.html" id="marketButton" class="navButton">
+                <div class="menuWrapper">
+                    <span id="marketButtonText" class="navButtonText">Market</span>
                 </div>
-                <div class="row">
-                    <div class="column" style="background-color:#ccc;">
-                        <h2>Column 3</h2>
-                        <p>Some text..</p>
-                    </div>
-                    <div class="column" style="background-color:#ddd;">
-                        <h2>Column 4</h2>
-                        <p>Some text..</p>
-                    </div>
+            </a>
+            <a href="trades.html" id="postButton" class="navButton">
+                <div class="menuWrapper">
+                    <span id="postButtonText" class="navButtonText">Post</span>
+                </div>
+            </a>
+            <a href="trades.html" id="tradesButton" class="navButton">
+                <div class="menuWrapper">
+                    <span id="tradesButtonText" class="navButtonText">Trades</span>
+                </div>
+            </a>
+        </span>
+        <span id="loginOrSignup">
+            <a href="" class="loginOrSignupButton">
+                <div class="menuWrapper">
+                    <span id="loginButtonText" class="loginOrSignupButtonText">Log In</span>
+                </div>
+            </a>
+            <a href="" class="loginOrSignupButton">
+                <div class="menuWrapper">
+                    <span id="tradeButtonText" class="loginOrSignupButtonText">Sign Up</span>
+                </div>
+            </a>
+        </span>
+        <img id="profile" src="images/profile.png" alt="Profile">
+    </nav>
+    <div id="main">
+        <div id="btnContainer">
+            <button class="btn" onclick="listView()"><i class="listView"></i> List</button> 
+            <button class="btn active" onclick="gridView()"><i class="gridView"></i> Grid</button>
+        </div> 
+        <br>
+        <div id=lContainer>
+            <div class="row">
+                <div class="column" style="background-color:#aaa;">
+                    <h2>Column 1</h2>
+                    <p>Some text..</p>
+                </div>
+                <div class="column" style="background-color:#bbb;">
+                    <h2>Column 2</h2>
+                    <p>Some text..</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column" style="background-color:#ccc;">
+                    <h2>Column 3</h2>
+                    <p>Some text..</p>
+                </div>
+                <div class="column" style="background-color:#ddd;">
+                    <h2>Column 4</h2>
+                    <p>Some text..</p>
                 </div>
             </div>
         </div>
+    </div>
+    <script>
 
-        </div>
-    </body>
+        // Get the elements with class="column"
+        var elements = document.getElementsByClassName("column");
+        // Declare a loop variable
+        var i;
+        // List View
+        function listView() {
+              for (i = 0; i < elements.length; i++) {
+                elements[i].style.width = "100%";
+            }
+        }
+
+    // Grid View  
+    function gridView() {
+        for (i = 0; i < elements.length; i++) {
+            elements[i].style.width = "50%";
+        }
+    }
+
+    /* Optional: Add active class to the current button (highlight it) */
+    var container = document.getElementById("btnContainer");
+    var btns = container.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+</script>
+</body>
 </html>
