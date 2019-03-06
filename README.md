@@ -1,2 +1,3 @@
-# Projects-1
-A practice repo to learning version control
+# Produswap
+Swap local. Eat healthy.
+Trade fresh produce and be the difference in your community.
