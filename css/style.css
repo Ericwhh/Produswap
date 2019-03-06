@@ -54,10 +54,12 @@ body {
     width: 100px;
     text-align: center;
 }
+
 /* Highlights menu button when user hovers over it. */
 .navButton:hover, .loginOrSignupButton:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
+
 /* Moves profile icon to the right and changes display to none. */
 #profile {
     float: right;
@@ -68,11 +70,10 @@ body {
 #loginOrSignup {
     float: right;
 }
-/* Vertically aligns nav bar buttons and removes list style. */
-#navBar ul {
-    vertical-align: center;
-    padding: 0;
-    list-style: none;
+/* Wrapper which vertically aligns nav bar buttons. */
+.menuWrapper {
+    height: 70px;
+    margin-top: 20px;
 }
 
 /*--------------------------------------------------------------------------*/
