@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
+/* Remove body margin and make default font color white. */
+body {
+    margin: 0;
+    color: white;
+}
+/* Adds background image and moves to back. */
+#backgroundImage {
+    position: fixed;
+    width: 100%; height: 100%;
+    background-image: url("../images/bg.jpg");
+    background-size: 100%;
+    z-index: -1;
+}
+/* Nav bar with its padding. */
+#navBar {
+    width: calc(100% - 100px);
+    height: 70px;
+    font-size: 18pt;
+    font-family: 'Titillium Web', sans-serif;
+    padding: 0px 50px;
+    background-image: url("../images/woodenboard.png");
+    background-size: 100% 100%;
+}
+/* Content area. */
+#main {
+    width: calc(100% - 100px);
+    height: calc(100vh - 70px);
+    background-color: #EFEFEF;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+/* Logo in text format. */
+#logo {
+    font-size: 24pt;
+    float: left;
+    margin: calc(24px - 6pt) 34px auto 0px;
+    padding: 0px;
+    font-weight: bold;
+    pointer-events: none;
+}
+/* Removes hyperlink color for menu buttons and turns to white. */
+.navButtonText, .loginOrSignupButtonText{
+    color: white;
+}
+
+/* Centers text and floats left menu buttons. */
+.navButton, .loginOrSignupButton {
+    text-decoration: none;
+    float: left;
+    height: 70px;
+    width: 100px;
+    text-align: center;
+}
+/* Highlights menu button when user hovers over it. */
+.navButton:hover, .loginOrSignupButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+/* Moves profile icon to the right and changes display to none. */
+#profile {
+    float: right;
+    margin: 0;
+    display: none;
+}
+/* Moves login and signup button to the right. */
+#loginOrSignup {
+    float: right;
+}
+/* Vertically aligns nav bar buttons and removes list style. */
+#navBar ul {
+    vertical-align: center;
+    padding: 0;
+    list-style: none;
+}
