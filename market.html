@@ -47,9 +47,10 @@
         <img id="profile" src="images/profile.png" alt="Profile">
     </nav>
     <div id="main">
+        <div id="transparentBackground"></div>
         <div id="btnContainer">
-            <button class="btn" onclick="listView()"><i class="listView"></i> List</button> 
-            <button class="btn active" onclick="gridView()"><i class="gridView"></i> Grid</button>
+            <button class="btn active" onclick="listView()"><i class="listView"></i> List</button> 
+            <button class="btn" onclick="gridView()"><i class="gridView"></i> Grid</button>
         </div> 
         <br>
         <div id=lContainer>
@@ -94,7 +95,6 @@
             elements[i].style.width = "calc(50% - 20px)";
         }
     }
-
     /* Optional: Add active class to the current button (highlight it) */
     var container = document.getElementById("btnContainer");
     var btns = container.getElementsByClassName("btn");
