@@ -6,6 +6,7 @@
 body {
     margin: 0;
     color: white;
+    font-family: 'Titillium Web', sans-serif;
 }
 /* Adds background image and moves to back. */
 #backgroundImage {
@@ -20,9 +21,8 @@ body {
     width: calc(100% - 100px);
     height: 70px;
     font-size: 18pt;
-    font-family: 'Titillium Web', sans-serif;
     padding: 0px 50px;
-    background-image: url("../images/woodenboard.png");
+    background-image: url("../images/woodenboard.jpg");
     background-size: 100% 100%;
 }
 /* Content area. */
@@ -72,12 +72,15 @@ body {
 }
 /* Wrapper which vertically aligns nav bar buttons. */
 .menuWrapper {
+    display: inline-block;
     height: 70px;
+    width: 100%;
     margin-top: 20px;
 }
 
 /*--------------------------------------------------------------------------*/
 
+<<<<<<< HEAD
 * {
   box-sizing: border-box;
 }
@@ -130,6 +133,36 @@ body {
 }
 .buttons .grid span.active {
   background: #666;
+=======
+
+/* Create one column per row. */
+.column {
+  float: left;
+  width: calc(100% - 28px);
+  padding: 10px;
+  margin: 2px 4px;
+  background-color: grey;
+}
+
+/* Clear floats after the columns. */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* Style the buttons. */
+.btn {
+  border: none;
+  outline: none;
+  padding: 6px 6px 2px;
+  background-color: #F1F1F1;
+  cursor: pointer;
+  margin: 4px auto;
+}
+
+#btnContainer {
+    margin: auto 4px;
+>>>>>>> ae4ff48402f979d1cee89751bcfc56a732e31826
 }
 
 .wrapper {
@@ -159,18 +192,29 @@ body {
   width: 48%;
 }
 
+<<<<<<< HEAD
 .list {
   flex-wrap: auto;
   flex-direction: column;
 }
 .list .item {
   width: 98%;
+=======
+#transparentBackground {
+    position: fixed;
+    width: calc(100% - 100px); 
+    height: calc(100% + 70px);
+    z-index: -1;
+    opacity: 0.9;
+    background-color: #F1F1F1;
+    transform: translateY(-70px);
+>>>>>>> ae4ff48402f979d1cee89751bcfc56a732e31826
 }
 
 /*-------------------------------------------------------------*/
 #search_bar {
     position: sticky;
-    top: 70px;
+    top: 0px;
     left: 50px;
     width: calc(100% - 100px);
     height: 80px;
@@ -181,12 +225,12 @@ h1 {
 }
 #vegetable {
     position: absolute;
-    left: 600px;
+    right: 40%;
     top: 30px;
 }
 #fruit {
     position: absolute;
-    right: 300px;
+    right: 25%;
     top: 30px;
 }
 #location {
@@ -198,11 +242,11 @@ h1 {
 #s_container {
     filter: drop-shadow(1px 2px 1px grey);
     position: absolute;
-    width: 500px;
+    width: 42.5%;
     left: 50px;
     bottom: 20px;
 }
-img {
+#magnify {
     position: relative;
     left: -5px;
     height: 20px;
@@ -211,7 +255,7 @@ img {
 #search {
     outline: none;
     height: 30px;
-    width: 500px;
+    width: 100%;
     border: 3px solid #00B4CC;
     border-radius: 5px;
 }
@@ -229,8 +273,9 @@ img {
 }
 
 #toggle {
+    filter: drop-shadow(1px 2px 1px grey);
     position: absolute;
-    left: 720px;
+    right: 32.5%;
     bottom: 20px;
 }
 input[type=checkbox]{
@@ -275,7 +320,7 @@ input:checked + label:after {
 }
 #distance {
   -webkit-appearance: none;
-  width: 200px;
+  width: 40%;
   height: 5px;
   border-radius: 5px;
   background: #d3d3d3;
@@ -285,8 +330,7 @@ input:checked + label:after {
 #distance::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  height: 20px;
   background: #4CAF50;
   cursor: pointer;
 }
