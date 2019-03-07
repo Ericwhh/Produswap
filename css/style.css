@@ -128,6 +128,7 @@ body {
     transform: translateY(-70px);
 }
 /*-------------*/
+
 #search_bar {
     position: sticky;
     top: 70px;
