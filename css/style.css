@@ -133,17 +133,6 @@ body {
 
 /*--------------------------------------------------------------------------*/
 
-/*
-* {
-  box-sizing: border-box;
-}
-*/
-
-body {
-  background: ghostwhite;
-  position: relative;
-}
-
 .buttons {
   display: flex;
   justify-content: space-between;
@@ -228,23 +217,37 @@ body {
 
 #searchBar {
     background-image: url("../images/woodenboard.jpg");
-    float: left;
-    height: 100px;
+    display: inline-block;
+    height: 70px;
     width: 98%;
     margin: 1%;
 }
-#searchContainer type[text] {
+#searchContainer {
     width: calc(50% + 20px);
-    border-radius: 2px;
+    padding: 4px 8px;
+    margin: 0;
 }
-
-#radioContainer {
-    width: 300px;
-    float: left;
+#searchContainer type[text] {
+    border-radius: 2px;
+    margin-right: 0;
+    border: 0;
+}
+#searchButton {
+    border-radius: 0px;
+    box-shadow: none;
+}
+#searchContainer img {
+    margin-left: 0;
+    border: 0;
 }
 
 #locationContainer {
     float: right;
     width: 300px;
 }
+#radioContainer {
+    width: 300px;
+    float: left;
+}
+
 
