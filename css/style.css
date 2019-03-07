@@ -16,7 +16,7 @@ body {
 }
 /* Nav bar with its padding. */
 #navBar {
-    width: calc(100% - 100px);
+    width: 100%;
     height: 70px;
     font-size: 18pt;
     font-family: 'Titillium Web', sans-serif;
@@ -30,7 +30,6 @@ body {
     height: calc(100vh - 70px);
     background-color: #EFEFEF;
     margin: 0 auto;
-    opacity: 0.9;
 }
 /* Logo in text format. */
 #logo {
