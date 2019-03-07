@@ -131,23 +131,24 @@ h1 {
 }
 #vegetable {
     position: absolute;
-    left: 300px;
+    left: 600px;
     top: 30px;
 }
 #fruit {
     position: absolute;
-    right: 600px;
+    right: 300px;
     top: 30px;
 }
-#dist {
+#location {
     position: absolute;
-    right: 275px;
-    font-size: 50px;
+    right: 100px;
+    bottom: 10px;
+    font-size: 20px;
 }
 #s_container {
     filter: drop-shadow(1px 2px 1px grey);
     position: absolute;
-    width: 200px;
+    width: 500px;
     left: 50px;
     bottom: 20px;
 }
@@ -160,7 +161,7 @@ img {
 #search {
     outline: none;
     height: 30px;
-    width: 200px;
+    width: 500px;
     border: 3px solid #00B4CC;
     border-radius: 5px;
 }
@@ -179,7 +180,7 @@ img {
 
 #toggle {
     position: absolute;
-    left: 420px;
+    left: 720px;
     bottom: 20px;
 }
 input[type=checkbox]{
@@ -219,13 +220,13 @@ input:checked + label:after {
     position: absolute;
     width: 40%;
     filter: drop-shadow(1px 2px 1px grey);
-    right: 40px;
-    bottom: 20px;
+    right: -250px;
+    bottom: 40px;
 }
 #distance {
   -webkit-appearance: none;
-  width: 100%;
-  height: 15px;
+  width: 200px;
+  height: 5px;
   border-radius: 5px;
   background: #d3d3d3;
   outline: none;
@@ -233,8 +234,8 @@ input:checked + label:after {
 }
 #distance::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 25px;
-  height: 25px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #4CAF50;
   cursor: pointer;
