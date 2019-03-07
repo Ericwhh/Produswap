@@ -88,26 +88,34 @@
       </div>
 
       <script>
-        $(function() {
-          function list() {
-            $(".grid span").removeClass("active");
-            $(".list span").addClass("active");
-            $(".wrapper")
-            .removeClass("grid")
-            .addClass("list");
-          }
 
-          function grid() {
-            $(".list span").removeClass("active");
-            $(".grid span").addClass("active");
-            $(".wrapper")
-            .removeClass("list")
-            .addClass("grid");
-          }
+       var slider = document.getElementById("distance");
+       var output = document.getElementById("dist");
+       output.innerHTML = slider.value;
+       slider.oninput = function() {
+        output.innerHTML = this.value;
+      }
+      
+      $(function() {
+        function list() {
+          $(".grid span").removeClass("active");
+          $(".list span").addClass("active");
+          $(".wrapper")
+          .removeClass("grid")
+          .addClass("list");
+        }
 
-          $(".list").click(list);
-          $(".grid").click(grid);
-        });
+        function grid() {
+          $(".list span").removeClass("active");
+          $(".grid span").addClass("active");
+          $(".wrapper")
+          .removeClass("list")
+          .addClass("grid");
+        }
+
+        $(".list").click(list);
+        $(".grid").click(grid);
+      });
     </script>
   </body>
-</html>
+  </html>
