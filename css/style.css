@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 @import url('https://fonts.googleapis.com/css?family=Dosis');
-@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 /* Remove body margin and make default font color white. */
 body {
@@ -132,6 +131,7 @@ body {
 }
 .buttons .grid span.active {
   background: #666;
+}
 
 .wrapper {
   background: white;
@@ -168,10 +168,11 @@ body {
   width: 98%;
 }
 
-/*-------------------------------------------------------------*/
+/*-------------*/
+
 #search_bar {
     position: sticky;
-    top: 0px;
+    top: 70px;
     left: 50px;
     width: calc(100% - 100px);
     height: 80px;
@@ -182,12 +183,12 @@ h1 {
 }
 #vegetable {
     position: absolute;
-    right: 40%;
+    left: 600px;
     top: 30px;
 }
 #fruit {
     position: absolute;
-    right: 25%;
+    right: 300px;
     top: 30px;
 }
 #location {
@@ -199,11 +200,11 @@ h1 {
 #s_container {
     filter: drop-shadow(1px 2px 1px grey);
     position: absolute;
-    width: 42.5%;
+    width: 500px;
     left: 50px;
     bottom: 20px;
 }
-#magnify {
+img {
     position: relative;
     left: -5px;
     height: 20px;
@@ -212,7 +213,7 @@ h1 {
 #search {
     outline: none;
     height: 30px;
-    width: 100%;
+    width: 500px;
     border: 3px solid #00B4CC;
     border-radius: 5px;
 }
@@ -230,9 +231,8 @@ h1 {
 }
 
 #toggle {
-    filter: drop-shadow(1px 2px 1px grey);
     position: absolute;
-    right: 32.5%;
+    left: 720px;
     bottom: 20px;
 }
 input[type=checkbox]{
@@ -277,7 +277,7 @@ input:checked + label:after {
 }
 #distance {
   -webkit-appearance: none;
-  width: 40%;
+  width: 200px;
   height: 5px;
   border-radius: 5px;
   background: #d3d3d3;
@@ -287,7 +287,8 @@ input:checked + label:after {
 #distance::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 10px;
-  height: 20px;
+  height: 10px;
+  border-radius: 50%;
   background: #4CAF50;
   cursor: pointer;
 }
