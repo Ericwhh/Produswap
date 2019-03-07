@@ -46,6 +46,27 @@
         </span>
         <img id="profile" src="images/profile.png" alt="Profile">
     </nav>
+    <div id="search_bar">
+        <div id="s_container">
+            <input type="text" placeholder="Search... " id="search">
+            <button type="submit" id="s_button"><img src="images/search.png"></button>
+        </div>
+        <div id="fruit">
+            <h1>Fruits</h1>
+        </div>
+        <div id="toggle">
+                    <input type="checkbox" id="switch"><label for="switch"></label> 
+        </div>
+        <div id="vegetable">
+            <h1>Vegetable</h1>
+        </div>
+        <div id="location">
+            <span id="dist">50</span>km
+        </div>
+        <div id="slider">
+                    <input type="range" min="1" max="100" value="50" id="distance">
+        </div>
+    </div>
     <div id="main">
         <div id="transparentBackground"></div>
         <div id="btnContainer">
@@ -76,7 +97,13 @@
         </div>
     </div>
     <script>
+        var slider = document.getElementById("distance");
+        var output = document.getElementById("dist");
+        output.innerHTML = slider.value;
 
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+        }
         // Get the elements with class="column"
         var elements = document.getElementsByClassName("column");
         // Declare a loop variable
