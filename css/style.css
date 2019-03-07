@@ -16,7 +16,7 @@ body {
 }
 /* Nav bar with its padding. */
 #navBar {
-    width: 100%;
+    width: calc(100% - 100px);
     height: 70px;
     font-size: 18pt;
     font-family: 'Titillium Web', sans-serif;
@@ -77,18 +77,10 @@ body {
 
 /*--------------------------------------------------------------------------*/
 
-* {
-  box-sizing: border-box;
-}
-
-.lContainer {
-  
-}
-
 /* Create two equal columns that floats next to each other */
 .column {
   float: left;
-  width: 50%;
+  width: calc(50% - 20px);
   padding: 10px;
 }
 
