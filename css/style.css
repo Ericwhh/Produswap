@@ -17,14 +17,15 @@ body {
 }
 /* Nav bar with its padding. */
 #navBar {
+    position: sticky;
+    top: 0px;
+    bottom: 0px;
     width: calc(100% - 100px);
     height: 70px;
     font-size: 18pt;
     padding: 0px 50px;
     background-image: url("../images/woodenboard.jpg");
     background-size: 100% 100%;
-    position: sticky;
-    top: 0px;
 }
 /* Content area. */
 #main {
@@ -33,7 +34,6 @@ body {
     margin: 0 auto;
     padding: auto 4px;
 }
-
 /* Logo in text format. */
 #logo {
     font-size: 24pt;
@@ -126,133 +126,125 @@ body {
     width: calc(100% - 100px); 
     height: calc(100% + 70px);
     z-index: -1;
-    opacity: 0.9;
-    background-color: #F1F1F1;
+    opacity: 1;
+    background-image: url("../images/woodenboard.png");
     transform: translateY(-70px);
 }
-/*-------------*/
+
+/*--------------------------------------------------------------------------*/
 
 /*
-#search_bar {
-    position: sticky;
-    top: 70px;
-    left: 50px;
-    width: calc(100% - 100px);
-    height: 80px;
-    background-color: brown;
-}
-h1 {
-    margin: 0px;
-}
-#vegetable {
-    position: absolute;
-    left: 600px;
-    top: 30px;
-}
-#fruit {
-    position: absolute;
-    right: 300px;
-    top: 30px;
-}
-#location {
-    position: absolute;
-    right: 100px;
-    bottom: 10px;
-    font-size: 20px;
-}
-#s_container {
-    filter: drop-shadow(1px 2px 1px grey);
-    position: absolute;
-    width: 500px;
-    left: 50px;
-    bottom: 20px;
-}
-img {
-    position: relative;
-    left: -5px;
-    height: 20px;
-    width: 20px;
-}
-#search {
-    outline: none;
-    height: 30px;
-    width: 500px;
-    border: 3px solid #00B4CC;
-    border-radius: 5px;
-}
-#s_button {
-    position: absolute;
-    border-radius: 5px;
-    border: 9px solid #00B4CC;
-    background: #00B4CC;
-    outline: none;
-    right: -10px;
-    top: 0px;
-    height: 37.5px;
-    width: 37.5px;
-    cursor: pointer;
-}
-
-#toggle {
-    position: absolute;
-    left: 720px;
-    bottom: 20px;
-}
-input[type=checkbox]{
-	height: 0;
-	width: 0;
-	visibility: hidden;
-}
-label {
-	cursor: pointer;
-	width: 80px;
-	height: 40px;
-	background: red;
-	display: block;
-	border-radius: 100px;
-	position: relative;
-}
-label:after {
-	content: '';
-	position: absolute;
-	top: 4px;
-	left: 4px;
-	width: 32px;
-	height: 32px;
-	background: #fff;
-	border-radius: 90px;
-	transition: 0.3s;
-}
-input:checked + label {
-	background: #bada55;
-}
-input:checked + label:after {
-	left: calc(100% - 4px);
-	transform: translateX(-100%);
-}
-
-#slider {
-    position: absolute;
-    width: 40%;
-    filter: drop-shadow(1px 2px 1px grey);
-    right: -250px;
-    bottom: 40px;
-}
-#distance {
-  -webkit-appearance: none;
-  width: 200px;
-  height: 5px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  transition: opacity .2s;
-}
-#distance::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #4CAF50;
-  cursor: pointer;
+* {
+  box-sizing: border-box;
 }
 */
+
+body {
+  background: ghostwhite;
+  position: relative;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  top: 175px;
+  left: 470px;
+  padding: 1rem;
+  float: left;
+}
+.buttons .list {
+  width: 25px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.buttons .list span {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+  transition: all 0.3s ease;
+}
+.buttons .list span.active {
+  background: #666;
+}
+.buttons .grid {
+  width: 25px;
+  height: 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.buttons .grid span {
+  width: 42%;
+  height: 8px;
+  background: #ccc;
+  transition: all 0.3s ease;
+}
+.buttons .grid span.active {
+  background: #666;
+}
+
+.wrapper {
+  background-image: url("../images/woodenboard.jpg");
+  width: calc(100% - 100px);
+  padding: 2rem;
+  margin: 2% auto;
+  box-shadow: 0px 20px 40px -20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: space-between;
+}
+.wrapper .item {
+  width: 48%;
+  height: 150px;
+  margin: 1%;
+  background: #ddd;
+  transition: width 1s ease;
+}
+
+.grid {
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.grid .item {
+  width: 48%;
+}
+
+.list {
+  flex-wrap: auto;
+  flex-direction: column;
+}
+.list .item {
+  width: 98%;
+}
+
+/*-------------*/
+
+#searchBar {
+    background-image: url("../images/woodenboard.jpg");
+    float: left;
+    height: 100px;
+    width: 98%;
+    margin: 1%;
+}
+#searchContainer type[text] {
+    width: calc(50% + 20px);
+    border-radius: 2px;
+}
+
+#radioContainer {
+    width: 300px;
+    float: left;
+}
+
+#locationContainer {
+    float: right;
+    width: 300px;
+}
+
