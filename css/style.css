@@ -29,6 +29,7 @@ body {
     width: calc(100% - 100px);
     height: calc(100vh - 70px);
     margin: 0 auto;
+    padding: auto 4px;
 }
 /* Logo in text format. */
 #logo {
@@ -79,9 +80,9 @@ body {
 /* Create one column per row. */
 .column {
   float: left;
-  width: calc(100% - 20px);
+  width: calc(100% - 28px);
   padding: 10px;
-  margin: 4px auto;
+  margin: 2px 4px;
 }
 
 /* Clear floats after the columns. */
