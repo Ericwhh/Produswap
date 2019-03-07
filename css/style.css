@@ -81,6 +81,7 @@ body {
   float: left;
   width: calc(100% - 20px);
   padding: 10px;
+  margin: 4px auto;
 }
 
 /* Clear floats after the columns. */
