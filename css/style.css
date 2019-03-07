@@ -80,7 +80,6 @@ body {
 
 /*--------------------------------------------------------------------------*/
 
-<<<<<<< HEAD
 * {
   box-sizing: border-box;
 }
@@ -133,37 +132,6 @@ body {
 }
 .buttons .grid span.active {
   background: #666;
-=======
-
-/* Create one column per row. */
-.column {
-  float: left;
-  width: calc(100% - 28px);
-  padding: 10px;
-  margin: 2px 4px;
-  background-color: grey;
-}
-
-/* Clear floats after the columns. */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-/* Style the buttons. */
-.btn {
-  border: none;
-  outline: none;
-  padding: 6px 6px 2px;
-  background-color: #F1F1F1;
-  cursor: pointer;
-  margin: 4px auto;
-}
-
-#btnContainer {
-    margin: auto 4px;
->>>>>>> ae4ff48402f979d1cee89751bcfc56a732e31826
-}
 
 .wrapper {
   background: white;
@@ -192,23 +160,12 @@ body {
   width: 48%;
 }
 
-<<<<<<< HEAD
 .list {
   flex-wrap: auto;
   flex-direction: column;
 }
 .list .item {
   width: 98%;
-=======
-#transparentBackground {
-    position: fixed;
-    width: calc(100% - 100px); 
-    height: calc(100% + 70px);
-    z-index: -1;
-    opacity: 0.9;
-    background-color: #F1F1F1;
-    transform: translateY(-70px);
->>>>>>> ae4ff48402f979d1cee89751bcfc56a732e31826
 }
 
 /*-------------------------------------------------------------*/
