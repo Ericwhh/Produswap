@@ -18,6 +18,7 @@ body {
 /* Nav bar with its padding. */
 #navBar {
     position: sticky;
+    z-index: 2;
     top: 0px;
     bottom: 0px;
     width: calc(100% - 100px);
@@ -100,7 +101,7 @@ body {
 #container {
   overflow-x: hidden; 
   overflow-y: scroll;
-  height: 75%;
+  height: calc(100% - 20px - 16px - 100px - 70px);
   width: 100%;
 }
 
@@ -198,7 +199,6 @@ body {
 /*--------------------------------------------------------------------------*/
 
 #searchBar {
-    z-index: -1;
     position: relative;
     background-image: url("../images/woodenboard.jpg");
     float: left;
