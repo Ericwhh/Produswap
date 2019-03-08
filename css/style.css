@@ -235,6 +235,11 @@ body {
     height: 33.5px;
     outline: none;
 }
+#searchIcon {
+    filter: grayscale(0%);
+    width: 25px;
+    height: 25px;
+}
 #search[type=text]{
 }
 
@@ -247,7 +252,7 @@ body {
 
 #locationContainer {
     position: relative;
-    top: 0;
+    top: 15px;
     margin-right: 5%;
     width: 210px;
     float: right;
@@ -256,6 +261,7 @@ body {
 
 #sliderBody {
     width: 200px;
+    height: 20%;
 }
 #sliderBody::-webkit-slider-thumb {
   -webkit-appearance: none;
