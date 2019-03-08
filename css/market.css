@@ -297,11 +297,15 @@ body {
 }
 
 .itemHeader {
-    display: inline;
-    font-size: 14pt;
+    display: block;
+    font-size: 18pt;
+    margin: 0;
+    width: 100%;
 }
 .itemDescription {
-    display: inline;
+    display: block;
+    float: left;
+    width: 100%;
 }
 
 .item {
@@ -311,11 +315,22 @@ body {
 .itemText {
     float: right;
     width: calc(100% - 150px + 24px - 12px);
+    font-size: 16pt;
 }
 
 .itemPadding {
     height: calc(150px - 24px);
     width: calc(100% - 24px);  
     margin: 12px;
+}
+
+.itemByUser {
+    float: left;
+    font-size: 14pt;
+}
+
+.itemPostedOn {
+    float: right;
+    font-size: 14pt;
 }
 
