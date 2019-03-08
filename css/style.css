@@ -156,7 +156,7 @@ body {
 
 .wrapper {
   background-image: url("../images/woodenboard.jpg");
-  background-size: auto 1%;
+  background-size: auto 3%;
   width: calc(100% - 100px);
   padding: 2rem;
   margin: 2% auto;
