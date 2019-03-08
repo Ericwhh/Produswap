@@ -50,20 +50,25 @@
       <div id="transparentBackground"></div>    
     <div id="searchBar">
       <div id="searchContainer">
+            <select id="selectMenu">
+                <option value="0">All</option>
+                <option value="1">Fruit</option>
+                <option value="2">Vegetable</option>
+            </select>
           <input type="text" size="50%" placeholder="Search... " id="search">
-          <button type="submit" id="s_button"><img src="images/search.png" width="20"></button>
+          <button type="submit" id="searchButton"><img src="images/search.png" width="20"></button>
+          
       </div>
-      <div id="radioContainer">
-        <input type="radio" name="foodType" value="Any" checked> Any<br>
-        <input type="radio" name="foodType" value="Fruit" checked> Fruit<br>
-        <input type="radio" name="foodType" value="Vegetable" checked> Vegetable<br>
-      </div>
+      
       <div id="locationContainer">
-        <div id="location">
-          <span id="dist">50</span>km
-        </div>
+        <span id="locationText">Max distance (km)</span>
         <div id="slider">
-            <input type="range" min="1" max="100" value="50" id="distance">
+            <input type="range" min="1" max="100" value="50" id="sliderBody">
+        </div>
+        <span id="minKilo">0</span>
+        <span id="maxKilo">100</span>
+        <div id="currentDistance">
+          <span id="dist">50</span>
         </div>
       </div>
     </div>
@@ -94,7 +99,7 @@
       </div>
 
       <script>
-        var slider = document.getElementById("distance");
+        var slider = document.getElementById("sliderBody");
         var output = document.getElementById("dist");
         output.innerHTML = slider.value;
         slider.oninput = function() {
