@@ -236,7 +236,7 @@ body {
     outline: none;
 }
 #searchIcon {
-    filter: grayscale(0%);
+    filter: contrast(1000%);
     width: 25px;
     height: 25px;
 }
