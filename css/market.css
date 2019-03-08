@@ -171,7 +171,7 @@ body {
   height: 150px;
   margin: 1%;
   background: #ddd;
-  transition: width 1s ease;
+  transition: width 0.2s ease;
   box-shadow: inset 0px 0px 0px 5px #608C28;
 }
 
