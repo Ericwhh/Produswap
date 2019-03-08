@@ -246,6 +246,7 @@ body {
     height: 25px;
 }
 #search[type=text]{
+    padding-left: 10px;
 }
 
 
@@ -284,7 +285,6 @@ body {
     float: right;
 }
 #locationText {
-    float: right;
 }
 
 

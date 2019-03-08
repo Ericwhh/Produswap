@@ -51,15 +51,12 @@
     <div id="innerBackground"></div>    
     <div id="searchBar">
     <div id="locationContainer">
-        <span id="locationText">Max distance (km)</span>
+        <span id="locationText">Max distance: <span id="dist">50</span>km</span>
         <div id="slider">
             <input type="range" min="1" max="100" value="50" id="sliderBody">
         </div>
         <span id="minKilo">0</span>
         <span id="maxKilo">100</span>
-        <div id="currentDistance">
-          <span id="dist">50</span>
-        </div>
       </div>
       <div id="searchContainer">
             <select id="selectMenu">
@@ -97,6 +94,7 @@
         <div class="item"></div>
         <div class="item"></div>
         <div class="item"></div>
+      </div>
       </div>
 
       <script src="script/script.js"></script>
