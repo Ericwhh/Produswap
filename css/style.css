@@ -100,7 +100,7 @@ body {
 #container {
   overflow-x: hidden; 
   overflow-y: scroll;
-  height: 80%;
+  height: 75%;
   width: 100%;
 }
 
@@ -166,6 +166,7 @@ body {
   margin: 1%;
   background: #ddd;
   transition: width 1s ease;
+  box-shadow: inset 0px 0px 0px 5px #608C28;
 }
 
 .grid {
@@ -197,38 +198,84 @@ body {
 /*--------------------------------------------------------------------------*/
 
 #searchBar {
+    z-index: -1;
+    position: relative;
     background-image: url("../images/woodenboard.jpg");
-    display: inline-block;
-    height: 70px;
+    float: left;
+    height: 100px;
     width: 98%;
     margin: 1%;
 }
+
 #searchContainer {
-    width: calc(50% + 20px);
-    padding: 4px 8px;
-    margin: 0;
+    position: relative;
+    width: 50%;
+    top: 30%;
+    margin-left: 5%;
 }
-#searchContainer type[text] {
-    border-radius: 2px;
-    margin-right: 0;
-    border: 0;
+#search {
+    position: absolute;
+    left: 15%;
+    width: 85%;
+    height: 25px;
+    outline: none;
+    border: 3px solid #79A83C;
+    border-right: 5px solid #79A83C;
+    border-radius: 5px;
 }
 #searchButton {
-    border-radius: 0px;
-    box-shadow: none;
+    right: -5%;
+    top: 0px;
+    position: absolute;
+    cursor: pointer;
+    background-color: #79A83C;
+    border: 3px solid #79A83C;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 33.5px;
+    outline: none;
 }
-#searchContainer img {
-    margin-left: 0;
-    border: 0;
+#search[type=text]{
+}
+
+
+#selectMenu {
+    position: relative;
+    border: 3px solid #79A83C;
+    height: 33.5px;
 }
 
 #locationContainer {
+    position: relative;
+    top: 0;
+    margin-right: 5%;
+    width: 210px;
     float: right;
-    width: 300px;
+    text-align: center;
 }
-#radioContainer {
-    width: 300px;
+
+#sliderBody {
+    width: 200px;
+}
+#sliderBody::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+#minKilo {
     float: left;
 }
+#maxKilo {
+    float: right;
+}
+#locationText {
+    float: right;
+}
+
+
 
 
