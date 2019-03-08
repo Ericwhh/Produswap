@@ -190,12 +190,11 @@ body {
   width: 98%;
 }
 
-#transparentBackground {
+#innerBackground {
     position: fixed;
     width: calc(100% - 100px); 
     height: calc(100% + 70px);
     z-index: -1;
-    opacity: 1;
     background-image: url("../images/woodenboard.png");
     transform: translateY(-70px);
 }
