@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Market</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/market.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
@@ -99,33 +99,7 @@
         <div class="item"></div>
       </div>
 
-      <script>
-        var slider = document.getElementById("sliderBody");
-        var output = document.getElementById("dist");
-        output.innerHTML = slider.value;
-        slider.oninput = function() {
-            output.innerHTML = this.value;
-        }
-        $(function() {
-          function list() {
-            $(".grid span").removeClass("active");
-            $(".list span").addClass("active");
-            $(".wrapper")
-            .removeClass("grid")
-            .addClass("list");
-          }
+      <script src="script/script.js"></script>
 
-          function grid() {
-            $(".list span").removeClass("active");
-            $(".grid span").addClass("active");
-            $(".wrapper")
-            .removeClass("list")
-            .addClass("grid");
-          }
-
-          $(".list").click(list);
-          $(".grid").click(grid);
-        });
-    </script>
   </body>
 </html>
