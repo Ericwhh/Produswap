@@ -30,7 +30,7 @@ body {
 }
 /* Content area. */
 #main {
-    width: calc(100% - 180px);
+    width: calc(100vw - 180px);
     height: calc(100vh - 70px);
     margin: 0 auto;
     padding: auto 4px;
@@ -287,10 +287,8 @@ body {
     height: calc(150px - 24px);
     width: calc(150px - 24px);
     display: inline-block;
-    background-color: grey;
+    background-color: white;
     text-align: center;
-
-    
 } 
 .itemImage {
     height: calc(150px - 24px);
