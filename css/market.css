@@ -348,4 +348,40 @@ body {
     color: rgb(112, 112, 112);
     font-style: italic;
 }
+/*-Pop-Up Form (Post)------------------------------------------------------------------*/
+#postForm {
+    display: none;
+    position: fixed;
+    width: 400px;
+    background-color: aqua;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    padding: 20px;
+}
+#produceTitle {
+    border-radius: 10px;
+    width: 70%;
+    height: 20px;
+    display: block;
+    margin-bottom: 10px;
+}
+#produceRequest {
+    border-radius: 10px;
+    width: 70%;
+    height: 20px;
+    display: block;
+    margin-bottom: 10px;
+}
+#produceDescrip {
+    border-radius: 10px;
+    width: 100%;
+    height: 100px;
+    display: block;
+}
+#PostFormTitle {
+    margin-top: 10px;
+}
+
 

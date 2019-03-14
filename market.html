@@ -24,12 +24,25 @@
           <span id="dashboardButtonText" class="navButtonText">Dashboard</span>
         </span>
       </a>
-      <a href="post.html" id="postButton" class="navButton">
+      <a id="postButton" class="navButton">
         <span class="menuWrapper">
           <span id="postButtonText" class="navButtonText">Post</span>
         </span>
       </a>
-    </span>
+        <div id="postForm">
+            <h1 id="postFormTitle">Post</h1>
+            <form>
+                <input placeholder="Produce Name" type="text" id="produceTitle" required/>
+                <input placeholder="What would you prefer in return for this, if anything?" type="text" id="produceRequest" required />
+                <input placeholder="Produce Description" type="text" id="produceDescrip" required >
+                <input type="radio" required>Vegetable
+                <input type="radio" required>Fruit
+                <input type="submit" class="formButton">
+                <input type="reset" class="formButton">
+            </form>
+        </div>
+        
+      
     <span id="loginOrSignup">
       <a href="" class="loginOrSignupButton">
         <span class="menuWrapper">
@@ -63,7 +76,7 @@
                 <option value="1">Fruit</option>
                 <option value="2">Vegetable</option>
             </select>
-          <input type="text" size="50%" placeholder="Search... " id="searchBar">
+          <input type="text" placeholder="Search... " id="searchBar">
           <button type="submit" id="searchButton"><img src="images/search.png" id="searchIcon"></button>
       </div>
       
@@ -130,6 +143,7 @@
       </div>
 
       <script src="script/script.js"></script>
+      </div>
 
   </body>
 </html>
