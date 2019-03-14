@@ -350,38 +350,93 @@ body {
 }
 /*-Pop-Up Form (Post)------------------------------------------------------------------*/
 #postForm {
+    font-size: 13pt;
     display: none;
     position: fixed;
-    width: 400px;
-    background-color: aqua;
+    width: 60%;
+    height: 80%;
+    background-image: url("../images/woodenboard.jpg");
+    background-size: 20% auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: center;
     padding: 20px;
+    overflow-y: scroll;
 }
-#produceTitle {
-    border-radius: 10px;
-    width: 70%;
+#produceName {
+    padding: 4px 8px;
+    font-size: 13pt;
+    border-radius: 4px;
+    width: 100%;
     height: 20px;
     display: block;
-    margin-bottom: 10px;
+    float: left;
 }
 #produceRequest {
-    border-radius: 10px;
-    width: 70%;
-    height: 20px;
-    display: block;
-    margin-bottom: 10px;
-}
-#produceDescrip {
-    border-radius: 10px;
+    font-size: 13pt;
+    padding: 4px 8px;
+    border-radius: 4px;
     width: 100%;
-    height: 100px;
+    height: 6em;
     display: block;
+    transform: translateY(64px);
 }
-#PostFormTitle {
-    margin-top: 10px;
+#produceDescription {
+    padding: 4px 8px;
+    font-size: 13pt;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    height: 8em;
+    display: block;
+    margin-bottom: 8px;
+}
+#postFormTitle {
+    font-size: 24pt;
 }
 
+.radioPostForm {
+    height: 13px;
+    width: 13px;
+}
 
+#radioPostFormWrapper {
+    float: right;
+}
+
+.formButton {
+    border: 2px solid rgb(168, 168, 168);
+    box-shadow: 0px;
+    padding: 14px 24px;
+    margin: auto 2%;
+    font-size: 13pt;
+    width: 30%;
+    border-radius: 4px;
+}
+
+.formButton:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+#uploadWrapper {
+    float: right;
+    width: 20%;
+    height: 240px;
+    border: 4px solid black;
+    background-color: white;
+    border-radius: 4px;
+    
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+#postFormInnerWrapper {
+    width: calc(80% - 48px);
+    float: left;
+    height: 260px;
+}
+
+#formReset {
+    background-color: rgb(255, 255, 255);
+}

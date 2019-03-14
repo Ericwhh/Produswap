@@ -29,16 +29,35 @@
           <span id="postButtonText" class="navButtonText">Post</span>
         </span>
       </a>
+
+
         <div id="postForm">
-            <h1 id="postFormTitle">Post</h1>
+            <h1 id="postFormTitle">Listing Details</h1>
             <form>
-                <input placeholder="Produce Name" type="text" id="produceTitle" required/>
-                <input placeholder="What would you prefer in return for this, if anything?" type="text" id="produceRequest" required />
-                <input placeholder="Produce Description" type="text" id="produceDescrip" required >
-                <input type="radio" required>Vegetable
-                <input type="radio" required>Fruit
-                <input type="submit" class="formButton">
-                <input type="reset" class="formButton">
+                <div id="postFormInnerWrapper">
+                <input placeholder="Produce Name" type="text" id="produceName" required>
+                <div id="radioPostFormWrapper">
+                  <input type="radio" class="radioPostForm" name="radioPostForm" required>Vegetable
+                  <input type="radio" class="radioPostForm" name="radioPostForm" required>Fruit
+                </div>
+                <input placeholder="What would you prefer in return for this, if anything?" type="text" id="produceRequest" required>
+                </div>
+                <div id="uploadWrapper"></div>
+
+                <input placeholder="Produce Description" type="textarea" id="produceDescription" required >
+                <input type="reset" id="formReset" class="formButton">
+                <input type="submit" id="formSubmit" class="formButton">
+
+                
+                <!--
+                <span id="resetOrSubmit">
+                    <a href="" class="resetOrSubmitButton">
+                      <span class="menuWrapper">
+                        <input id="submitButtonText" class="resetOrSubmitButtonText">Submit</span>
+                      </span>
+                    </a>
+                </span>
+              -->
             </form>
         </div>
         
@@ -143,6 +162,5 @@
       </div>
       <script src="script/script.js"></script>
       </div>
-
   </body>
 </html>
