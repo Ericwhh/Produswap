@@ -74,7 +74,15 @@ $(function() {
     if (!container.is(e.target) && container.has(e.target).length === 0)
     {
         container.fadeOut();
+        underline("marketButton");
     }
   });
   
 });
+
+  function underline(clickedId){
+    document.getElementById("marketButton").style.boxShadow = "none";
+    document.getElementById("dashboardButton").style.boxShadow = "none";
+    document.getElementById("postButton").style.boxShadow = "none";
+    document.getElementById(clickedId).style.boxShadow = "inset 0 -5px 0 white";
+  }

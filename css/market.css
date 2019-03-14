@@ -354,7 +354,7 @@ body {
     display: none;
     position: fixed;
     width: 60%;
-    height: 80%;
+    height: 70%;
     background-image: url("../images/woodenboard.jpg");
     background-size: 20% auto;
     top: 50%;
@@ -439,4 +439,8 @@ body {
 
 #formReset {
     background-color: rgb(255, 255, 255);
+}
+
+#postButton {
+    cursor: pointer;    
 }
