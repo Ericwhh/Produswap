@@ -61,3 +61,20 @@ $(function() {
   $(".listView").click(list);
   $(".gridView").click(grid);
 });
+
+$(function() {
+  
+  // contact form animations
+  $('#postButton').click(function() {
+    $('#postForm').fadeToggle();
+  })
+  $(document).mouseup(function (e) {
+    var container = $("#postForm");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0)
+    {
+        container.fadeOut();
+    }
+  });
+  
+});
