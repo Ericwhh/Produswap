@@ -422,13 +422,10 @@ body {
 #uploadWrapper {
     float: right;
     width: 20%;
-    height: 240px;
-    border: 4px solid black;
+    height: calc(240px - 8px);
+    border: 4px solid rgb(168, 168, 168);
     background-color: white;
     border-radius: 4px;
-    
-    margin-top: 5px;
-    margin-bottom: 15px;
 }
 
 #postFormInnerWrapper {
