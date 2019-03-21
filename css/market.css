@@ -349,6 +349,17 @@ body {
     font-style: italic;
 }
 /*-Pop-Up Form (Post)------------------------------------------------------------------*/
+
+.alert{
+  text-align: center;
+  padding:10px;
+  background: green;
+  color: #fff;
+  margin-bottom: 10px;
+  display: none;
+
+}
+
 #postForm {
     font-size: 13pt;
     display: none;
@@ -364,7 +375,8 @@ body {
     padding: 20px 20px 60px 20px;
     overflow-y: scroll;
 }
-#produceName {
+
+//#produceName {
     padding: 4px 8px;
     font-size: 13pt;
     border-radius: 4px;

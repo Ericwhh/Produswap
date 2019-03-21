@@ -1,5 +1,83 @@
 //JS functions 
 
+var config = {
+  apiKey: "AIzaSyAGVERfhd2wvN9zZPGRALe_hVLT3W_P0mg",
+  authDomain: "produswap.firebaseapp.com",
+  databaseURL: "https://produswap.firebaseio.com",
+  projectId: "produswap",
+  storageBucket: "produswap.appspot.com",
+  messagingSenderId: "645477140066"
+};
+firebase.initializeApp(config);
+
+// References posts collection
+var postsRef = firebase.database().ref('posts');
+
+//Listen for post submit
+
+document.getElementById('postForm').addEventListener('submit', submitPost);
+
+function submitPost(e){
+  e.preventDefault();
+
+  //Get values
+  var name = getInputVal('name');
+  var date = getInputVal('date');
+  var category = getInputVal('category');
+  var description = getInputVal('description');
+
+  //Save post
+  savePost(name, date, category, description);
+
+  // Show alert 
+  document.querySelector('.alert').style.display = 'block';
+
+  // Hide alert after 3 sec
+  setTimeout(function(){
+    document.querySelector('.alert').style.display = 'none'; 
+  },3000);
+
+
+  //Clear form  
+  document.getElementById('newPost').reset();
+}
+
+//Function to get form values
+function getInputVal(id){
+  return document.getElementById(id).value;
+
+}
+
+//Save posts to firebase
+
+function savePost(name, date, category, description) {
+  var newPostRef = postsRef.push();
+  newPostRef.set({
+    itemName: name,
+    date: date,
+    category: category,
+    description: description
+  });
+};
+
+// Still being tested
+
+var db = firebase.database();
+var query = db.ref();
+
+console.log(query);
+
+query.on('value', snapshot => {
+  console.log(snapshot.val())
+});  
+
+
+  
+
+
+
+
+//////////////////////////////////////////////////
 //Marketplace.html 
 //Distance Slider
 
@@ -63,7 +141,7 @@ $(function() {
 });
 
 $(function() {
-  
+
   // contact form animations
   $('#postButton').click(function() {
     $('#postForm').fadeToggle();
@@ -73,16 +151,19 @@ $(function() {
 
     if (!container.is(e.target) && container.has(e.target).length === 0)
     {
-        container.fadeOut();
-        underline("marketButton");
+      container.fadeOut();
+      underline("marketButton");
     }
   });
   
 });
 
-  function underline(clickedId){
-    document.getElementById("marketButton").style.boxShadow = "none";
-    document.getElementById("dashboardButton").style.boxShadow = "none";
-    document.getElementById("postButton").style.boxShadow = "none";
-    document.getElementById(clickedId).style.boxShadow = "inset 0 -5px 0 white";
-  }
+function underline(clickedId){
+  document.getElementById("marketButton").style.boxShadow = "none";
+  document.getElementById("dashboardButton").style.boxShadow = "none";
+  document.getElementById("postButton").style.boxShadow = "none";
+  document.getElementById(clickedId).style.boxShadow = "inset 0 -5px 0 white";
+}
+
+
+

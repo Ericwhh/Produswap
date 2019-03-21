@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Market</title>
   <link rel="stylesheet" type="text/css" href="css/market.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
       
 </head>
 <body>
@@ -33,20 +33,28 @@
 
         <div id="postForm">
             <h1 id="postFormTitle">Listing Details</h1>
-            <form>
-                <div id="postFormInnerWrapper">
-                <input placeholder="Produce Name" type="text" id="produceName" required>
-                <div id="radioPostFormWrapper">
-                  <input type="radio" class="radioPostForm" name="radioPostForm" required>Vegetable
-                  <input type="radio" class="radioPostForm" name="radioPostForm" required>Fruit
-                </div>
-                <input placeholder="What would you prefer in return for this, if anything?" type="text" id="produceRequest" required>
-                </div>
-                <div id="uploadWrapper"></div>
-
-                <input placeholder="Produce Description" type="textarea" id="produceDescription" required >
-                <input type="reset" id="formReset" class="formButton">
-                <input type="submit" id="formSubmit" class="formButton">
+            <div class="alert">Your post has been submitted</div>
+            <form id= newPost>
+            	<p>
+            		<label>Item Name:</label>
+            		<input type="text" name="name" id="name" required="required">
+            	</p>
+            	<p>
+            		<label>Date:</label>
+            		<input type="date" name="date" id="date" required="required">
+            	</p>
+            	<p>
+            		<label>Type of Produce:</label>
+            		<input type="text" name="category" id="category">
+            	</p>
+            	<p>
+            		<label>Item Description:</label>
+            		<textarea name="description" rows="5" id="description" required="required"></textarea>
+            	</p>
+            	<p>
+            		<button type="submit">Submit</button>
+            	</p>
+                
             </form>
         </div>
         
@@ -96,24 +104,21 @@
     </div>
 
     <div id="container">  
-      <div class="wrapper list">
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
+      <div class="wrapper list" id="postList">
+      	<div class="item" id=item1>
+      		name : <name></name><br>
+          date : <date></date><br>
+          category: <category><category><br>
+          description : <description><description><br>
+
       </div>
     </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
       <script src="script/script.js"></script>
+      <script type="text/javascript">
+      </script>
       </div>
   </body>
 </html>
