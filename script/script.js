@@ -10,6 +10,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+
 // References posts collection
 var postsRef = firebase.database().ref('posts');
 
@@ -209,14 +210,36 @@ $(function() {
   // contact form animations
   $('#postButton').click(function() {
     $('#postForm').fadeToggle();
+    $('#cover').fadeToggle(); 
   })
   $(document).mouseup(function (e) {
     var container = $("#postForm");
+    var container2 = $("#cover");
 
     if (!container.is(e.target) && container.has(e.target).length === 0)
     {
       container.fadeOut();
       underline("marketButton");
+      container2.fadeOut();
+    }
+  });
+  
+});
+$(function() {
+
+  // contact form animations
+  $('#loginButtonText').click(function() {
+    $('#firebasetest').fadeToggle();
+    $('#cover').fadeToggle(); 
+  })
+  $(document).mouseup(function (e) {
+    var container = $("#firebasetest");
+    var container2 = $("#cover");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0)
+    {
+      container.fadeOut();
+      container2.fadeOut();
     }
   });
   
@@ -228,6 +251,22 @@ function underline(clickedId){
   document.getElementById("postButton").style.boxShadow = "none";
   document.getElementById(clickedId).style.boxShadow = "inset 0 -5px 0 white";
 }
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+var uiConfig = {
+    callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl){
+            return true;
+        },
+    },
 
-
+signInFlow: 'popup',
+signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    firebase.auth.PhoneAuthProvider.PROVIDER_ID
+],
+tosUrl: 'main.html',
+privacyPolicyUrl: 'main.html'
+};
+ui.start('#firebasetest', uiConfig);
 
