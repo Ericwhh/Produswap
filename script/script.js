@@ -47,9 +47,7 @@ function getInputVal(id){
   return document.getElementById(id).value;
 
 }
-
 //Save posts to firebase
-
 function savePost(name, date, category, description) {
   var newPostRef = postsRef.push();
   newPostRef.set({
@@ -60,19 +58,85 @@ function savePost(name, date, category, description) {
   });
 };
 
-// Still being tested
-
-var db = firebase.database();
-var query = db.ref();
-
-console.log(query);
-
-query.on('value', snapshot => {
-  console.log(snapshot.val())
-});  
-
 
   
+
+
+
+display();
+
+function display(){
+    var postsRef = firebase.database().ref("posts");
+    postsRef.once("value", function(snapshot){
+      list=snapshot.val();
+      
+    for (k in list){
+      var categoryRef = firebase.database().ref("posts/"+k+"/category");
+      var dateRef = firebase.database().ref("posts/"+k+"/date");
+      var descriptionRef = firebase.database().ref("posts/"+k+"/description");
+      var itemNameRef = firebase.database().ref("posts/"+k+"/itemName");
+      console.log(k);
+
+      var promiseOne = categoryRef.once("value", function(snapshot){
+        category=snapshot.val();
+      });
+      var promiseTwo = dateRef.once("value", function(snapshot){
+        date=snapshot.val();
+      });
+      var promiseThree = descriptionRef.once("value", function(snapshot){
+        description=snapshot.val();
+      });
+      var promiseFour = itemNameRef.once("value", function(snapshot){
+        itemName=snapshot.val();
+      });
+      Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour]).then(function(){
+        addPostToPageListing(category, date, description, itemName);
+      });
+    }
+  });    
+}
+
+
+function addPostToPageListing(category, date, description, itemName){
+  var topLevel = document.getElementsByClassName("wrapper list")[0];        
+  var item = document.createElement('div');
+  item.className = "item";
+  topLevel.appendChild(item);
+  var itemPadding = document.createElement('div');
+  itemPadding.className = "itemPadding";
+  item.appendChild(itemPadding);
+  var itemImageWrapper = document.createElement('div');
+  itemImageWrapper.className = "itemImageWrapper";
+  itemPadding.appendChild(itemImageWrapper);
+  var itemText = document.createElement('div');
+  itemText.className = "itemText";
+  itemPadding.appendChild(itemText);   
+  var itemImage = document.createElement('img');
+  itemImage.className = "itemImage";
+  // IMAGE
+  itemImage.src = "images/apple.jpg";
+  
+  itemImageWrapper.appendChild(itemImage);
+  var itemHeader = document.createElement('h6');
+  itemHeader.className = "itemHeader";
+  var itemDescription = document.createElement('p');
+  itemDescription.className = "itemDescription";
+  var itemByUser = document.createElement('div');
+  itemByUser.className = "itemByUser";
+  var itemPostedOn = document.createElement('div');
+  itemPostedOn.className = "itemPostedOn";
+  itemText.appendChild(itemHeader);
+  itemText.appendChild(itemDescription);
+  itemText.appendChild(itemByUser);
+  itemText.appendChild(itemPostedOn);
+  // TEXT
+  itemHeader.innerHTML = itemName;
+  itemDescription.innerHTML = description;
+  itemByUser.innerHTML = "Username";
+  itemPostedOn.innerHTML = date;
+
+}
+
 
 
 

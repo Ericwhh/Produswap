@@ -376,7 +376,7 @@ body {
     overflow-y: scroll;
 }
 
-//#produceName {
+#produceName {
     padding: 4px 8px;
     font-size: 13pt;
     border-radius: 4px;
