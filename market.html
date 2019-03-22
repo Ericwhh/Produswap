@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Market</title>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
   <link rel="stylesheet" type="text/css" href="css/market.css">
   
       
@@ -59,11 +60,11 @@
         </div>
         
     <span id="loginOrSignup">
-      <a href="" class="loginOrSignupButton">
+      <div  class="loginOrSignupButton">
         <span class="menuWrapper">
           <span id="loginButtonText" class="loginOrSignupButtonText">Log In</span>
         </span>
-      </a>
+      </div>
       <a href="" class="loginOrSignupButton">
         <span class="menuWrapper">
           <span id="tradeButtonText" class="loginOrSignupButtonText">Sign Up</span>
@@ -106,19 +107,23 @@
     <div id="container">  
       <div class="wrapper list" id="postList">
       	<div class="item" id=item1>
-      		name : <name></name><br>
+            name : <name></name><br>
           date : <date></date><br>
           category: <category><category><br>
           description : <description><description><br>
 
       </div>
     </div>
+            <div id="firebasetest"></div>
+            <div id="cover"></div>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
       <script src="script/script.js"></script>
       <script type="text/javascript">
       </script>
       </div>
+            
   </body>
 </html>
