@@ -60,9 +60,6 @@ function savePost(name, date, category, description) {
 };
 
 
-  
-
-
 
 display();
 
