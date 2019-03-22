@@ -12,7 +12,7 @@ body {
     position: fixed;
     width: 100%; height: 100%;
     background-image: url("../images/bg.jpg");
-    background-size: 100%;
+    background-size: cover;
     z-index: -1;
 }
 /* Nav bar with its padding. */
@@ -182,10 +182,10 @@ body {
   flex-direction: row;
 }
 .grid .item {
-  width: 24%;
+  width: 48%;
   height: 340px;
-}
 
+}
 .listView {
   flex-wrap: auto;
   flex-direction: column;

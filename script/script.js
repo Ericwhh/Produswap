@@ -162,8 +162,15 @@ $(function() {
     $(".itemImageWrapper").innerWidth("calc(150px - 28px)");
     $(".itemImageWrapper").innerHeight("calc(150px - 28px)");
     $(".itemText").innerWidth("calc(100% - 150px + 24px - 12px");
-
-    for (i = 0; i < 2; i++){
+    var postsRef = firebase.database().ref("posts");
+    postsRef.once("value", function(snapshot){
+      list=snapshot.val();
+    
+    var x = 0;
+    for (k in list){
+      x = x + 1;
+    }
+    for (i = 0; i < x; i++){
       document.getElementsByClassName("itemImageWrapper")[i].style.display = "inline-block";
       document.getElementsByClassName("itemImageWrapper")[i].style.margin = "0";
       document.getElementsByClassName("itemText")[i].style.float = "right";
@@ -172,7 +179,9 @@ $(function() {
       document.getElementsByClassName("itemHeader")[i].style.marginTop = "0px";
       document.getElementsByClassName("itemDescription")[i].style.marginBottom = "0px";
     }
-  }
+  })
+}
+
 
   function grid() {
     $(".listView span").removeClass("active");
