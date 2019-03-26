@@ -350,6 +350,12 @@ body {
 }
 /*-Pop-Up Form (Post)------------------------------------------------------------------*/
 
+#postForm input[type=text], #postForm textarea {
+    font-family: 'Titillium Web', sans-serif;
+}
+#postForm textarea {
+    resize: none;
+}
 .alert{
   text-align: center;
   padding:10px;
@@ -364,7 +370,7 @@ body {
     font-size: 13pt;
     display: none;
     position: fixed;
-    width: 60%;
+    width: 800px;
     height: 70%;
     background-image: url("../images/woodenboard.jpg");
     background-size: 20% auto;
@@ -373,41 +379,9 @@ body {
     transform: translate(-50%,-50%);
     text-align: center;
     padding: 20px 20px 60px 20px;
-    overflow-y: scroll;
-    z-index: 7;
+    overflow: auto;
+    z-index: 0;
 }
-
-#produceName {
-    padding: 4px 8px;
-    font-size: 13pt;
-    border-radius: 4px;
-    width: 100%;
-    height: 20px;
-    display: block;
-    float: left;
-}
-#produceRequest {
-    font-size: 13pt;
-    padding: 4px 8px;
-    border-radius: 4px;
-    width: 100%;
-    height: 6em;
-    display: block;
-    transform: translateY(64px);
-}
-#produceDescription {
-    padding: 4px 8px;
-    font-size: 13pt;
-    border-radius: 4px;
-    width: calc(100% - 22px);
-    height: 8em;
-    display: block;
-    margin-bottom: 24px;
-}
-#postFormTitle {
-    font-size: 24pt;
-}
-
 .radioPostForm {
     height: 13px;
     width: 13px;
@@ -417,7 +391,42 @@ body {
     float: right;
 }
 
-.formButton {
+#postForm label {
+    float: left;
+}
+#postForm {
+    font-size: 12pt;
+}
+#produceName {
+    padding: 4px 8px;
+    font-size: 12pt;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    height: 20px;
+    display: block;
+    float: left;
+    margin-bottom: 12px;
+}
+#produceDescription {
+    font-size: 12pt;
+    padding: 4px 8px;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    display: block;
+}
+#produceAdditionalInfo {
+    padding: 4px 8px;
+    font-size: 12pt;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    display: block;
+}
+
+#postFormTitle {
+    font-size: 24pt;
+}
+
+#formSubmit {
     border: 2px solid rgb(168, 168, 168);
     box-shadow: 0px;
     padding: 14px 24px;
@@ -425,17 +434,18 @@ body {
     font-size: 13pt;
     width: 30%;
     border-radius: 4px;
+    margin-top: 24px;
 }
 
-.formButton:hover {
+#formSubmit:hover {
     opacity: 0.9;
     cursor: pointer;
 }
 
 #uploadWrapper {
     float: right;
-    width: 20%;
-    height: calc(240px - 8px);
+    width: 180px;
+    height: calc(220px - 8px);
     border: 4px solid rgb(168, 168, 168);
     background-color: white;
     border-radius: 4px;
@@ -447,12 +457,9 @@ body {
     height: 260px;
 }
 
-#formReset {
-    background-color: rgb(255, 255, 255);
-}
-
-#postButton {
-    cursor: pointer;    
+#additionalInfoWrapper {
+    float: left;
+    width: 100%;
 }
 
 #firebasetest {

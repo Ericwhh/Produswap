@@ -22,10 +22,10 @@ function submitPost(e){
   e.preventDefault();
 
   //Get values
-  var name = getInputVal('name');
+  var name = getInputVal('produceName');
   var date = getInputVal('date');
-  var category = getInputVal('category');
-  var description = getInputVal('description');
+  var category = $('input[name=radioPostForm]:checked', '#postForm').val();
+  var description = getInputVal('produceDescription');
 
   //Save post
   savePost(name, date, category, description);
@@ -73,7 +73,6 @@ function display(){
       var dateRef = firebase.database().ref("posts/"+k+"/date");
       var descriptionRef = firebase.database().ref("posts/"+k+"/description");
       var itemNameRef = firebase.database().ref("posts/"+k+"/itemName");
-      console.log(k);
 
       var promiseOne = categoryRef.once("value", function(snapshot){
         category=snapshot.val();
@@ -193,8 +192,15 @@ $(function() {
     $(".itemImageWrapper").innerWidth("140px");
     $(".itemImageWrapper").innerHeight("140px");
     $(".itemText").innerWidth("100%");
-
-    for (i = 0; i < 2; i++){
+    var postsRef = firebase.database().ref("posts");
+    postsRef.once("value", function(snapshot){
+      list=snapshot.val();
+    
+    var x = 0;
+    for (k in list){
+      x = x + 1;
+    }
+    for (i = 0; i < x; i++){
       document.getElementsByClassName("itemImageWrapper")[i].style.display = "block";
       document.getElementsByClassName("itemImageWrapper")[i].style.margin = "0 auto";
       document.getElementsByClassName("itemText")[i].style.float = "none";
@@ -205,7 +211,8 @@ $(function() {
       document.getElementsByClassName("itemByUser")[i].style.innerHTML = "10px";
       document.getElementsByClassName("itemPostedOn")[i].style.innerHTML = "10px";
     }
-  }
+  })
+}
 
   $(".listView").click(list);
   $(".gridView").click(grid);

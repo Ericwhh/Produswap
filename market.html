@@ -6,8 +6,7 @@
   <title>Market</title>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
   <link rel="stylesheet" type="text/css" href="css/market.css">
-  
-      
+     
 </head>
 <body>
   <div id="backgroundImage"></div>
@@ -30,30 +29,39 @@
         </span>
       </a>
 
-
         <div id="postForm">
             <h1 id="postFormTitle">Listing Details</h1>
             <div class="alert">Your post has been submitted</div>
             <form id= newPost>
-            	<p>
-            		<label>Item Name:</label>
-            		<input type="text" name="name" id="name" required="required">
-            	</p>
-            	<p>
-            		<label>Date:</label>
-            		<input type="date" name="date" id="date" required="required">
-            	</p>
-            	<p>
-            		<label>Type of Produce:</label>
-            		<input type="text" name="category" id="category">
-            	</p>
-            	<p>
-            		<label>Item Description:</label>
-            		<textarea name="description" rows="5" id="description" required="required"></textarea>
-            	</p>
-            	<p>
-            		<button type="submit">Submit</button>
-            	</p>
+            <div id="postFormInnerWrapper">
+            	<div id="produceNameWrapper">
+            		<label>Produce Name:</label>
+            		<input type="text" name="name" id="produceName" required="required" placeholder="Choose a descriptive name for your produce.">
+              </div>
+            	
+                <div id="radioPostFormWrapper">
+                  <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
+                  <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
+                </div>
+                <div>
+                  <label>Produce Description:</label>
+                  <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
+                </div>
+              </div>
+
+              <div id="uploadWrapper"></div>
+            	<div id="additionalInfoWrapper">
+            		<label>Additional Info:</label>
+            		<textarea name="additionalInfo" rows="5" maxlength="250" placeholder="Any additional information you would like others to know?" id="produceAdditionalInfo"></textarea>
+              </div>
+            	<div>
+            		<button type="submit" id="formSubmit">Submit</button>
+              </div>
+
+              
+              <div id="dateWrapper">
+                  <input type="date" name="date" id="date" required="required">
+                </div>
                 
             </form>
         </div>
