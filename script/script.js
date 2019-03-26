@@ -57,6 +57,7 @@ function savePost(name, date, category, description) {
     category: category,
     description: description
   });
+  addPostToPageListing(name, category, description, date);
 };
 
 
@@ -87,14 +88,14 @@ function display(){
         itemName=snapshot.val();
       });
       Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour]).then(function(){
-        addPostToPageListing(category, date, description, itemName);
+        addPostToPageListing(itemName, category, description, date);
       });
     }
   });    
 }
 
 
-function addPostToPageListing(category, date, description, itemName){
+function addPostToPageListing(itemName, category, description, date){
   var topLevel = document.getElementsByClassName("wrapper list")[0];        
   var item = document.createElement('div');
   item.className = "item";
