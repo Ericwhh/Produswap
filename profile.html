@@ -84,39 +84,13 @@
 
 
   <div id="main">
-    <div id="searchAndFilterContainer">
-    <div id="locationContainer">
-        <span id="locationText">Max distance: <span id="dist">50</span>km</span>
-        <div id="slider">
-            <input type="range" min="1" max="100" value="50" id="sliderBody">
-        </div>
-        <span id="minKilo">1</span>
-        <span id="maxKilo">100</span>
-      </div>
-      <div id="searchContainer">
-            <select id="selectMenu">
-                <option value="0" id="allSelect">All</option>
-                <option value="1" id="fruitSelect">Fruit</option>
-                <option value="2" id="vegetableSelect">Vegetable</option>
-            </select>
-          <input type="text" placeholder="Search... " id="searchBar">
-          <button type="submit" id="searchButton"><img src="images/search.png" id="searchIcon"></button>
-      </div>
-      
-      
+    <div id="profileTopContainer">      
+    </div>
+
+    <div id="profileBotContainer"> 
+      <div class="tradeList" id="tradeList"></div>
     </div>
     
-    <div class="buttons">
-        <div class="listView"><span class="active"></span><span class="active"></span></div>
-        <div class="gridView"><span class=""></span><span class=""></span><span class=""></span><span class=""></span></div>
-    </div>
-
-    <div id="container">  
-
-      <div class="wrapper list" id="postList">
-    </div>
-            <div id="firebasetest"></div>
-            <div id="cover"></div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>

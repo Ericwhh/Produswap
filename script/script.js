@@ -272,15 +272,15 @@ var uiConfig = {
             return true;
         },
     },
-
+signInSuccessUrl: 'market.html',
 signInFlow: 'popup',
 signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
     firebase.auth.PhoneAuthProvider.PROVIDER_ID
 ],
-tosUrl: 'main.html',
-privacyPolicyUrl: 'main.html'
+tosUrl: 'market.html',
+privacyPolicyUrl: 'market.html'
 };
 ui.start('#firebasetest', uiConfig);
 

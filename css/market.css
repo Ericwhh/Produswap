@@ -69,7 +69,7 @@ body {
 #profile {
     float: right;
     margin: 0;
-    display: none;
+    /* display: none; */
 }
 /* Moves login and signup button to the right. */
 #loginOrSignup {
