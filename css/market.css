@@ -18,7 +18,7 @@ body {
 /* Nav bar with its padding. */
 #navBar {
     position: sticky;
-    z-index: 2;
+    z-index: 1;
     top: 0px;
     bottom: 0px;
     width: calc(100% - 100px);
@@ -393,7 +393,7 @@ body {
     text-align: center;
     padding: 20px 20px 60px 20px;
     overflow: auto;
-    z-index: 0;
+    z-index: 2;
 }
 .radioPostForm {
     height: 13px;
@@ -488,7 +488,7 @@ body {
     border-radius: 10px;
     border: 10px solid green;
     box-shadow: 0px 1px 5000px black;
-    z-index: 6;
+    z-index: 3;
 }
 #cover {
     position:fixed;
