@@ -62,7 +62,6 @@ function savePost(name, date, category, description) {
 
 
 
-display();
 
 function display(){
     var postsRef = firebase.database().ref("posts");
@@ -142,12 +141,15 @@ function addPostToPageListing(itemName, category, description, date){
 //////////////////////////////////////////////////
 //Marketplace.html 
 //Distance Slider
-
-var slider = document.getElementById("sliderBody");
-var output = document.getElementById("dist");
-output.innerHTML = slider.value;
-slider.oninput = function() {
-  output.innerHTML = this.value;
+try {
+  var slider = document.getElementById("sliderBody");
+  var output = document.getElementById("dist");
+  output.innerHTML = slider.value;
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+  }  
+} catch (error) {
+  console.log("Not in market page!");
 }
 
 //Results list to Grid sort view 
@@ -275,12 +277,30 @@ var uiConfig = {
 signInSuccessUrl: 'market.html',
 signInFlow: 'popup',
 signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.PhoneAuthProvider.PROVIDER_ID
+    //firebase.auth.PhoneAuthProvider.PROVIDER_ID
 ],
 tosUrl: 'market.html',
 privacyPolicyUrl: 'market.html'
 };
 ui.start('#firebasetest', uiConfig);
 
+
+
+
+// Gets currently signed in user
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    $("#navProfile").css({
+      "display" : "initial"
+    });
+    $("#loginButton").css({
+      "display" : "none"
+    }); 
+    $("#signupButtonText").text("Sign Out");
+  } else {
+
+    
+  }
+});

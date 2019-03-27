@@ -60,21 +60,37 @@ body {
     text-align: center;
 }
 
+#profileButton {
+    float: right;
+    width: auto;
+    height: 70px;
+}
+
 /* Highlights menu button when user hovers over it. */
 .navButton:hover, .loginOrSignupButton:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Moves profile icon to the right and changes display to none. */
-#profile {
-    float: right;
+#navProfilePicture {
     margin: 0;
-    /* display: none; */
+/*
+    border: 2px solid white;
+    background-color: rgb(187, 187, 187);*/
+}
+#navProfilePicture:hover {
+ /* background-color: rgba(187, 187, 187, 0.8);*/
+    opacity: 0.8;
+}
+#navProfile {
+    float: right;
+    display: none;
 }
 /* Moves login and signup button to the right. */
 #loginOrSignup {
     float: right;
 }
+
 /* Wrapper which vertically aligns nav bar buttons. */
 .menuWrapper {
     display: inline-block;
@@ -83,9 +99,6 @@ body {
     margin-top: 20px;
 }
 
-#marketButton {
-    box-shadow: inset 0 -5px 0 white;
-}
 
 /*--------------------------------------------------------------------------*/
 

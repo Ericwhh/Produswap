@@ -9,79 +9,82 @@
      
 </head>
 <body>
-  <div id="backgroundImage"></div>
-  <nav id="navBar">
-    <span id="logo">Produswap</span>
-    <span id="navButtons">
-      <a href="market.html" id="marketButton" class="navButton">
-        <span class="menuWrapper">
-          <span id="marketButtonText" class="navButtonText">Market</span>
-        </span>
-      </a>
-      <a href="dashboard.html" id="dashboardButton" class="navButton">
-        <span class="menuWrapper">
-          <span id="dashboardButtonText" class="navButtonText">Dashboard</span>
-        </span>
-      </a>
-      <a id="postButton" class="navButton" onclick="underline(this.id)">
-        <span class="menuWrapper">
-          <span id="postButtonText" class="navButtonText">Post</span>
-        </span>
-      </a>
+        <div id="backgroundImage"></div>
+        <nav id="navBar">
+          <span id="logo">Produswap</span>
+          <span id="navButtons">
+            <a href="market.html" id="marketButton" class="navButton">
+              <span class="menuWrapper">
+                <span id="marketButtonText" class="navButtonText">Market</span>
+              </span>
+            </a>
+            <a href="dashboard.html" id="dashboardButton" class="navButton">
+              <span class="menuWrapper">
+                <span id="dashboardButtonText" class="navButtonText">Dashboard</span>
+              </span>
+            </a>
+            <a id="postButton" class="navButton" onclick="underline(this.id)">
+              <span class="menuWrapper">
+                <span id="postButtonText" class="navButtonText">Post</span>
+              </span>
+            </a>
+             
+          <span id="loginOrSignup">
+            <div class="navButton" id="loginButton">
+              <span class="menuWrapper">
+                <span id="loginButtonText" class="navButtonText">Log In</span>
+              </span>
+            </div>
+            <a href="" class="navButton" id="signupButton">
+              <span class="menuWrapper">
+                <span id="signupButtonText" class="navButtonText">Sign Up</span>
+              </span>
+            </a>
+            
+          </span>
+          <div class="navButton" id="profileButton">
+            <a href="profile.html" id="navProfile">
+              <img id="navProfilePicture" src="images/profile.png" alt="Profile" width="68">
+            </a>
+          </div>
+        </nav>
 
-        <div id="postForm">
-            <h1 id="postFormTitle">Listing Details</h1>
-            <div class="alert">Your post has been submitted</div>
-            <form id= newPost>
-            <div id="postFormInnerWrapper">
-            	<div id="produceNameWrapper">
-            		<label>Produce Name:</label>
-            		<input type="text" name="name" id="produceName" required="required" placeholder="Choose a descriptive name for your produce.">
-              </div>
-            	
-                <div id="radioPostFormWrapper">
-                  <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
-                  <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
-                </div>
-                <div>
-                  <label>Produce Description:</label>
-                  <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
-                </div>
-              </div>
+  <div id="postForm">
+        <h1 id="postFormTitle">Listing Details</h1>
+        <div class="alert">Your post has been submitted</div>
+        <form id= newPost>
+        <div id="postFormInnerWrapper">
+          <div id="produceNameWrapper">
+            <label>Produce Name:</label>
+            <input type="text" name="name" id="produceName" required="required" placeholder="Choose a descriptive name for your produce.">
+          </div>
+          
+            <div id="radioPostFormWrapper">
+              <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
+              <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
+            </div>
+            <div>
+              <label>Produce Description:</label>
+              <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
+            </div>
+          </div>
 
-              <div id="uploadWrapper"></div>
-            	<div id="additionalInfoWrapper">
-            		<label>Additional Info:</label>
-            		<textarea name="additionalInfo" rows="5" maxlength="250" placeholder="Any additional information you would like others to know?" id="produceAdditionalInfo"></textarea>
-              </div>
-            	<div>
-            		<button type="submit" id="formSubmit">Submit</button>
-              </div>
-
-
-              <div id="dateWrapper">
-                  <input type="date" name="date" id="date" required="required">
-                </div>
-                
-            </form>
-        </div>
-        
-    <span id="loginOrSignup">
-      <div  class="loginOrSignupButton">
-        <span class="menuWrapper">
-          <span id="loginButtonText" class="loginOrSignupButtonText">Log In</span>
-        </span>
-      </div>
-      <a href="" class="loginOrSignupButton">
-        <span class="menuWrapper">
-          <span id="tradeButtonText" class="loginOrSignupButtonText">Sign Up</span>
-        </span>
-      </a>
-    </span>
-    <a href="profile.html" ><img id="profile" src="images/profile.png" alt="Profile"></a>
-  </nav>
+          <div id="uploadWrapper"></div>
+          <div id="additionalInfoWrapper">
+            <label>Additional Info:</label>
+            <textarea name="additionalInfo" rows="5" maxlength="250" placeholder="Any additional information you would like others to know?" id="produceAdditionalInfo"></textarea>
+          </div>
+          <div>
+            <button type="submit" id="formSubmit">Submit</button>
+          </div>
 
 
+          <div id="dateWrapper">
+              <input type="date" name="date" id="date" required="required">
+            </div>
+            
+        </form>
+    </div>
 
   <div id="main">
     <div id="profileTopContainer">      
@@ -90,7 +93,8 @@
     <div id="profileBotContainer"> 
       <div class="tradeList" id="tradeList"></div>
     </div>
-    
+    <div id="firebasetest"></div>
+    <div id="cover"></div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
