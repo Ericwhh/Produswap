@@ -60,14 +60,36 @@ function savePost(name, date, category, description) {
   addPostToPageListing(name, category, description, date);
 };
 
+determineFilter();
 
+// Obtains URL, searches for the filters. If they do not exist, do not use as param forbb display().
+function determineFilter(){
+  var URL = window.location.href;
+  var indexType = URL.indexOf("type=");
+  var indexSearch = URL.indexOf("search=");
+  var indexTypeURL;
+  var indexSearchURL;
+  if (indexType != -1 && indexSearch != -1){
+    indexTypeURL = URL.substring(indexType + 5, indexSearch - 1);
+    indexSearchURL = URL.substring(indexSearch + 7);
+    display(indexTypeURL, indexSearchURL);
+  }
+  else if (indexType != -1){
+    indexTypeURL = URL.substring(indexType + 5, indexSearch - 1);
+    display(indexTypeURL);
+  }
+  else if (indexSearch != -1){
+    indexSearchURL = URL.substring(indexSearch + 7);
+    display(indexSearchURL);
+  }
+}
 
-
-function display(){
+// Displays the item listing. Will ignore item if it does not match with param filters.
+function display(type, name){
     var postsRef = firebase.database().ref("posts");
     postsRef.once("value", function(snapshot){
       list=snapshot.val();
-      
+
     for (k in list){
       var categoryRef = firebase.database().ref("posts/"+k+"/category");
       var dateRef = firebase.database().ref("posts/"+k+"/date");
@@ -87,13 +109,18 @@ function display(){
         itemName=snapshot.val();
       });
       Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour]).then(function(){
-        addPostToPageListing(itemName, category, description, date);
+        let itemNameLower = itemName.toLowerCase();  
+        let nameLower = name.toLowerCase();  
+        if ((type == 0 || type == 1 && category == "Fruit" || type == 2 && category == "Vegetable") &&  
+        (itemNameLower.indexOf(nameLower) >= 0)){
+          addPostToPageListing(itemName, category, description, date);
+        }
       });
     }
   });    
 }
 
-
+// Creates DOM elements for a listing with the parameters as the content
 function addPostToPageListing(itemName, category, description, date){
   var topLevel = document.getElementsByClassName("wrapper list")[0];        
   var item = document.createElement('div');
@@ -141,6 +168,7 @@ function addPostToPageListing(itemName, category, description, date){
 //////////////////////////////////////////////////
 //Marketplace.html 
 //Distance Slider
+
 try {
   var slider = document.getElementById("sliderBody");
   var output = document.getElementById("dist");
@@ -284,9 +312,14 @@ signInOptions: [
 tosUrl: 'market.html',
 privacyPolicyUrl: 'market.html'
 };
-ui.start('#firebasetest', uiConfig);
+ui.start('#firebasetest', uiConfig);  
 
 
+var searchText = document.getElementById("searchBar");
+$('#searchButton').on('click', function(){
+
+  console.log(text);
+});
 
 
 // Gets currently signed in user
@@ -299,6 +332,13 @@ firebase.auth().onAuthStateChanged(function(user) {
       "display" : "none"
     }); 
     $("#signupButtonText").text("Sign Out");
+
+
+    firebase.database().ref('users/' + user.uid).update({
+      "email":user.email
+    });
+
+
   } else {
 
     
