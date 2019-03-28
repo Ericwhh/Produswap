@@ -360,13 +360,11 @@ ui.start('#firebasetest', uiConfig);
 // Gets currently signed in user
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    $("#navProfile").css({
+    $("#marketButton, #dashboardButton, #postButton, #profileButton, #signupButton").css({
       "display" : "initial"
     });
-    $("#loginButton").css({
-      "display" : "none"
-    }); 
     $("#signupButtonText").text("Sign Out");
+
 
 
     firebase.database().ref('users/' + user.uid).update({
@@ -374,6 +372,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     });
   } 
   else { 
-  
+    $("#marketButton, #dashboardButton, #postButton, #loginButton, #signupButton").css({
+      "display" : "initial"
+    });
   }
 });

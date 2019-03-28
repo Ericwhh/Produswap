@@ -51,6 +51,10 @@ body {
     color: white;
 }
 
+.navButton {
+    display: none;
+}
+
 /* Centers text and floats left menu buttons. */
 .navButton, .loginOrSignupButton {
     text-decoration: none;
@@ -82,7 +86,6 @@ body {
 }
 #navProfile {
     float: right;
-    display: none;
 }
 /* Moves login and signup button to the right. */
 #loginOrSignup {
