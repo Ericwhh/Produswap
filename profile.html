@@ -6,14 +6,18 @@
   <title>Market</title>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
   <link rel="stylesheet" type="text/css" href="css/market.css">
-     
+  <style>
+    #profileButton {
+        box-shadow: inset 0 -5px 0 white;
+    }
+    </style>
 </head>
 <body>
         <div id="backgroundImage"></div>
         <nav id="navBar">
           <span id="logo">Produswap</span>
           <span id="navButtons">
-            <a href="market.html" id="marketButton" class="navButton">
+            <a href="market.html" id="marketButton" class="navButton" onclick="underline(this.id)">
               <span class="menuWrapper">
                 <span id="marketButtonText" class="navButtonText">Market</span>
               </span>
@@ -42,7 +46,7 @@
             </a>
             
           </span>
-          <div class="navButton" id="profileButton">
+          <div class="navButton" id="profileButton" onclick="underline(this.id)">
             <a href="profile.html" id="navProfile">
               <img id="navProfilePicture" src="images/profile.png" alt="Profile" width="68">
             </a>

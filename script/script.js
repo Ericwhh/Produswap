@@ -18,6 +18,10 @@ var postsRef = firebase.database().ref('posts');
 
 document.getElementById('postForm').addEventListener('submit', submitPost);
 
+// Current URL
+var URL = window.location.href;
+
+
 function submitPost(e){
   e.preventDefault();
 
@@ -60,7 +64,6 @@ function savePost(name, date, category, description, additional) {
     additional: additional
   });
   
-  var URL = window.location.href;
   var indexType = URL.indexOf("type=");
   var indexSearch = URL.indexOf("search=");
   var indexTypeURL = "";
@@ -82,8 +85,7 @@ function savePost(name, date, category, description, additional) {
 };
 
 // Functions to run if current page is market.html
-var currentURL = window.location.href;
-if (currentURL.indexOf("market.html") >= 0){
+if (URL.indexOf("market.html") >= 0){
   determineFilter();
   var slider = document.getElementById("sliderBody");
   var output = document.getElementById("dist");
@@ -95,7 +97,6 @@ if (currentURL.indexOf("market.html") >= 0){
 
 // Obtains URL, searches for the filters. Uses filters for display function.
 function determineFilter(){
-  var URL = window.location.href;
   var indexType = URL.indexOf("type=");
   var indexSearch = URL.indexOf("search=");
   var indexTypeURL = "";
@@ -292,7 +293,15 @@ $(function() {
     if (!container.is(e.target) && container.has(e.target).length === 0)
     {
       container.fadeOut();
-      underline("marketButton");
+      var htmlName = window.location.href.substring(
+        window.location.href.lastIndexOf("/") + 1, 
+        window.location.href.lastIndexOf("."));
+      var indexType = URL.indexOf(".html");
+      var indexSearch = URL.indexOf("search=");
+      var indexTypeURL = "";
+      var indexSearchURL = "";
+
+      underline(htmlName + "Button");
       container2.fadeOut();
     }
   });
@@ -323,6 +332,7 @@ function underline(clickedId){
   document.getElementById("marketButton").style.boxShadow = "none";
   document.getElementById("dashboardButton").style.boxShadow = "none";
   document.getElementById("postButton").style.boxShadow = "none";
+  document.getElementById("profileButton").style.boxShadow = "none";
   document.getElementById(clickedId).style.boxShadow = "inset 0 -5px 0 white";
 }
 
