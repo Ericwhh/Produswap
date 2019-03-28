@@ -111,7 +111,10 @@ function display(type, name){
       Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour]).then(function(){
         let itemNameLower = itemName.toLowerCase();  
         let nameLower = name.toLowerCase();  
-        if ((type == 0 || type == 1 && category == "Fruit" || type == 2 && category == "Vegetable") &&  
+        let categoryLower = category.toLowerCase();
+        if ((type == 0 || 
+          type == 1 && categoryLower == "fruit" || 
+          type == 2 && categoryLower == "vegetable") &&  
         (itemNameLower.indexOf(nameLower) >= 0)){
           addPostToPageListing(itemName, category, description, date);
         }
