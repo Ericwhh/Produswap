@@ -26,9 +26,10 @@ function submitPost(e){
   var date = getInputVal('date');
   var category = $('input[name=radioPostForm]:checked', '#postForm').val();
   var description = getInputVal('produceDescription');
+  var additional = getInputVal('produceAdditionalInfo');
 
   //Save post
-  savePost(name, date, category, description);
+  savePost(name, date, category, description, additional);
 
   // Show alert 
   document.querySelector('.alert').style.display = 'block';
@@ -49,13 +50,14 @@ function getInputVal(id){
 
 }
 //Save posts to firebase
-function savePost(name, date, category, description) {
+function savePost(name, date, category, description, additional) {
   var newPostRef = postsRef.push();
   newPostRef.set({
     itemName: name,
     date: date,
     category: category,
-    description: description
+    description: description,
+    additional: additional
   });
   
   var URL = window.location.href;
@@ -125,6 +127,7 @@ function display(type, name){
       var dateRef = firebase.database().ref("posts/"+k+"/date");
       var descriptionRef = firebase.database().ref("posts/"+k+"/description");
       var itemNameRef = firebase.database().ref("posts/"+k+"/itemName");
+      var additionalRef = firebase.database().ref("posts/"+k+"/additional");
 
       var promiseOne = categoryRef.once("value", function(snapshot){
         category=snapshot.val();
@@ -138,10 +141,14 @@ function display(type, name){
       var promiseFour = itemNameRef.once("value", function(snapshot){
         itemName=snapshot.val();
       });
-      Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour]).then(function(){
+      var promiseFive = itemNameRef.once("value", function(snapshot){
+        additionalInfo=snapshot.val();
+      });
+      Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour, promiseFive]).then(function(){
         let itemNameLower = itemName.toLowerCase();  
         let nameLower = name.toLowerCase();  
         let categoryLower = category.toLowerCase();
+        console.log(itemNameLower.indexOf(nameLower) >= 0);
         if ((type == 0 || 
           type == 1 && categoryLower == "fruit" || 
           type == 2 && categoryLower == "vegetable") &&  
