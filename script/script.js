@@ -148,7 +148,6 @@ function display(type, name){
         let itemNameLower = itemName.toLowerCase();  
         let nameLower = name.toLowerCase();  
         let categoryLower = category.toLowerCase();
-        console.log(itemNameLower.indexOf(nameLower) >= 0);
         if ((type == 0 || 
           type == 1 && categoryLower == "fruit" || 
           type == 2 && categoryLower == "vegetable") &&  
