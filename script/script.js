@@ -89,7 +89,7 @@ if (currentURL.indexOf("market.html") >= 0){
   var output = document.getElementById("dist");
   output.innerHTML = slider.value;
   slider.oninput = function() {
-    output.innerHTML = this.value;
+  output.innerHTML = this.value;
   }  
 }
 
@@ -102,9 +102,11 @@ function determineFilter(){
   var indexSearchURL = "";
   if (indexType != -1){
     indexTypeURL = URL.substring(indexType + 5, indexSearch - 1);
+    rememberFilter("#selectMenu", indexTypeURL);
   }
   if (indexSearch != -1){
     indexSearchURL = URL.substring(indexSearch + 7);
+    rememberFilter("#searchBar", indexSearchURL);
   }
   display(indexTypeURL, indexSearchURL);
 }

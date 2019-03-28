@@ -58,6 +58,7 @@ body {
     height: 70px;
     width: 120px;
     text-align: center;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
 #profileButton {
@@ -69,17 +70,14 @@ body {
 /* Highlights menu button when user hovers over it. */
 .navButton:hover, .loginOrSignupButton:hover {
     background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 /* Moves profile icon to the right and changes display to none. */
 #navProfilePicture {
     margin: 0;
-/*
-    border: 2px solid white;
-    background-color: rgb(187, 187, 187);*/
 }
 #navProfilePicture:hover {
- /* background-color: rgba(187, 187, 187, 0.8);*/
     opacity: 0.8;
 }
 #navProfile {
