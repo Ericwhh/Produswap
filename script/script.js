@@ -60,27 +60,40 @@ function savePost(name, date, category, description) {
   addPostToPageListing(name, category, description, date);
 };
 
-determineFilter();
+// Functions to run if current page is market.html
+var currentURL = window.location.href;
+if (currentURL.indexOf("market.html") >= 0){
+  determineFilter();
+  var slider = document.getElementById("sliderBody");
+  var output = document.getElementById("dist");
+  output.innerHTML = slider.value;
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+  }  
+}
 
-// Obtains URL, searches for the filters. If they do not exist, do not use as param forbb display().
+// Obtains URL, searches for the filters. Uses filters for display function.
 function determineFilter(){
   var URL = window.location.href;
   var indexType = URL.indexOf("type=");
   var indexSearch = URL.indexOf("search=");
-  var indexTypeURL;
-  var indexSearchURL;
-  if (indexType != -1 && indexSearch != -1){
+  var indexTypeURL = "";
+  var indexSearchURL = "";
+  if (indexType != -1){
     indexTypeURL = URL.substring(indexType + 5, indexSearch - 1);
-    indexSearchURL = URL.substring(indexSearch + 7);
-    display(indexTypeURL, indexSearchURL);
+    rememberFilter("#selectMenu", indexTypeURL);
   }
-  else if (indexType != -1){
-    indexTypeURL = URL.substring(indexType + 5, indexSearch - 1);
-    display(indexTypeURL);
-  }
-  else if (indexSearch != -1){
+  if (indexSearch != -1){
     indexSearchURL = URL.substring(indexSearch + 7);
-    display(indexSearchURL);
+    rememberFilter("#searchBar", indexSearchURL);
+  }
+  display(indexTypeURL, indexSearchURL);
+}
+
+// Remembers the filter upon refresh.
+function rememberFilter(tagID, toRemember){
+  if (tagID == "#searchBar" || tagID == "#selectMenu"){
+    $(tagID).val(toRemember);
   }
 }
 
@@ -112,6 +125,7 @@ function display(type, name){
         let itemNameLower = itemName.toLowerCase();  
         let nameLower = name.toLowerCase();  
         let categoryLower = category.toLowerCase();
+        console.log(nameLower);
         if ((type == 0 || 
           type == 1 && categoryLower == "fruit" || 
           type == 2 && categoryLower == "vegetable") &&  
@@ -170,18 +184,6 @@ function addPostToPageListing(itemName, category, description, date){
 
 //////////////////////////////////////////////////
 //Marketplace.html 
-//Distance Slider
-
-try {
-  var slider = document.getElementById("sliderBody");
-  var output = document.getElementById("dist");
-  output.innerHTML = slider.value;
-  slider.oninput = function() {
-    output.innerHTML = this.value;
-  }  
-} catch (error) {
-  console.log("Not in market page!");
-}
 
 //Results list to Grid sort view 
 $(function() {
@@ -292,12 +294,15 @@ $(function() {
   
 });
 
+// Underlines the nav bar button
 function underline(clickedId){
   document.getElementById("marketButton").style.boxShadow = "none";
   document.getElementById("dashboardButton").style.boxShadow = "none";
   document.getElementById("postButton").style.boxShadow = "none";
   document.getElementById(clickedId).style.boxShadow = "inset 0 -5px 0 white";
 }
+
+// Login functionality
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var uiConfig = {
     callbacks: {
@@ -318,13 +323,6 @@ privacyPolicyUrl: 'market.html'
 ui.start('#firebasetest', uiConfig);  
 
 
-var searchText = document.getElementById("searchBar");
-$('#searchButton').on('click', function(){
-
-  console.log(text);
-});
-
-
 // Gets currently signed in user
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -340,10 +338,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     firebase.database().ref('users/' + user.uid).update({
       "email":user.email
     });
-
-
-  } else {
-
-    
+  } 
+  else { 
+  
   }
 });
