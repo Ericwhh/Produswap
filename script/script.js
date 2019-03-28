@@ -57,7 +57,26 @@ function savePost(name, date, category, description) {
     category: category,
     description: description
   });
-  addPostToPageListing(name, category, description, date);
+  
+  var URL = window.location.href;
+  var indexType = URL.indexOf("type=");
+  var indexSearch = URL.indexOf("search=");
+  var indexTypeURL = "";
+  var indexSearchURL = "";
+
+  if (indexType != -1){
+    indexTypeURL = URL.substring(indexType + 5, indexSearch - 1);
+  }
+  if (indexSearch != -1){
+    indexSearchURL = URL.substring(indexSearch + 7);
+  }
+
+  if ((indexTypeURL == 0 || 
+    indexTypeURL == 1 && category.toLowerCase() == "fruit" || 
+    indexTypeURL == 2 && category.toLowerCase() == "vegetable") &&  
+  (name.toLowerCase().indexOf(indexSearchURL.toLowerCase()) >= 0)){
+    addPostToPageListing(name, category, description, date);
+  }
 };
 
 // Functions to run if current page is market.html
@@ -81,11 +100,9 @@ function determineFilter(){
   var indexSearchURL = "";
   if (indexType != -1){
     indexTypeURL = URL.substring(indexType + 5, indexSearch - 1);
-    rememberFilter("#selectMenu", indexTypeURL);
   }
   if (indexSearch != -1){
     indexSearchURL = URL.substring(indexSearch + 7);
-    rememberFilter("#searchBar", indexSearchURL);
   }
   display(indexTypeURL, indexSearchURL);
 }
@@ -125,7 +142,6 @@ function display(type, name){
         let itemNameLower = itemName.toLowerCase();  
         let nameLower = name.toLowerCase();  
         let categoryLower = category.toLowerCase();
-        console.log(nameLower);
         if ((type == 0 || 
           type == 1 && categoryLower == "fruit" || 
           type == 2 && categoryLower == "vegetable") &&  
