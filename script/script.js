@@ -309,7 +309,7 @@ $(function() {
 });
 $(function() {
 
-  // contact form animations
+  // login form animations
   $('#loginButtonText').click(function() {
     $('#firebasetest').fadeToggle();
     $('#cover').fadeToggle(); 
@@ -369,7 +369,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     firebase.database().ref('users/' + user.uid).update({
       "email":user.email,
-      "name":user.displayName,
+      "name":user.displayName
     });
   } 
   else { 
