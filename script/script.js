@@ -34,7 +34,6 @@ function submitPost(e){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       var emailName = user.email;
-      console.log(emailName);
       savePost(name, date, category, description, additional, emailName);
     }
     else {
