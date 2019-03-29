@@ -370,7 +370,7 @@ body {
 #postForm textarea {
     resize: none;
 }
-.alert{
+.alert {
   text-align: center;
   padding:10px;
   background: green;
@@ -378,6 +378,9 @@ body {
   margin-bottom: 10px;
   display: none;
 
+}
+.warning {
+    background: red;
 }
 
 #postForm {
