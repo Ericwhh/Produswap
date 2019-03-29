@@ -368,7 +368,8 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
     firebase.database().ref('users/' + user.uid).update({
-      "email":user.email
+      "email":user.email,
+      "name":user.displayName,
     });
   } 
   else { 
