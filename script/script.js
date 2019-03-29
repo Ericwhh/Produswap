@@ -20,13 +20,25 @@ document.getElementById('postForm').addEventListener('submit', submitPost);
 // Current URL
 var URL = window.location.href;
 
+//formatting the date
+function dateF(num, size){
+    var s = num.toString().length;
+    var store = "";
+    while(s < size){
+         s++;
+        store += "0";
+    }
+    var proper = store + num.toString();
+    return proper;
+}
 
 function submitPost(e){
   e.preventDefault();
 
   //Get values
+  var currentDate = new Date();
   var name = getInputVal('produceName');
-  var date = getInputVal('date');
+  var date = currentDate.getFullYear() + "-" + dateF(currentDate.getMonth() + 1, 2) + "-" + dateF(currentDate.getDate(), 2);
   var category = $('input[name=radioPostForm]:checked', '#postForm').val();
   var description = getInputVal('produceDescription');
   var additional = getInputVal('produceAdditionalInfo');
