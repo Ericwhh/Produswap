@@ -299,6 +299,10 @@ body {
 
 /* Layout for a listing */
 
+.itemImage {
+    height: 100%;
+    width: 100%;
+}
 .itemImageWrapper {
     height: calc(150px - 28px);
     width: calc(150px - 28px);
@@ -306,18 +310,15 @@ body {
     background-color: white;
     text-align: center;
     clip-path: inset(0 0 0 0);
-    border: 2px solid #4CAF50;
-} 
-.itemImage {
-    height: 100%;
-    width: 100%;
+    border: 2px solid #4CAF50; 
 }
 
 .itemHeader {
     display: block;
     font-size: 18pt;
     margin: 0;
-    width: 100%;
+    float: left;
+    width: calc(100% - 100px);
     overflow: hidden;
     line-height: 1.35em;
     height: 1.35em;
@@ -331,6 +332,21 @@ body {
     text-overflow: ellipsis;
     line-height: 1.15em;
     margin: 0;
+}
+.sendOfferButton {
+    float: right;
+    width: 76px;
+    padding: 0px 12px;
+    height: 1.35em;
+    background-color: #4CAF50;
+    line-height: 1.35em;
+    border-radius: 5px;
+    box-shadow: 5px 2px #608C28;  
+    cursor: pointer;
+    color: white;
+}
+.sendOfferButton:hover {
+    opacity: 0.9;
 }
 
 .item {

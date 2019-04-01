@@ -12,6 +12,7 @@ firebase.initializeApp(config);
 
 // References posts collection
 var postsRef = firebase.database().ref('posts');
+var usersRef = firebase.database().ref('users');
 
 //Listen for post submit
 
@@ -46,7 +47,8 @@ function submitPost(e){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       var emailName = user.email;
-      savePost(name, date, category, description, additional, emailName);
+      var userID = user.uid;
+      savePost(name, date, category, description, additional, emailName, userID);
     }
     else {
 
@@ -72,7 +74,7 @@ function getInputVal(id){
 
 }
 //Save posts to firebase
-function savePost(name, date, category, description, additional, email) {
+function savePost(name, date, category, description, additional, email, userID) {
   var newPostRef = postsRef.push();
   newPostRef.set({
     itemName: name,
@@ -80,7 +82,9 @@ function savePost(name, date, category, description, additional, email) {
     category: category,
     description: description,
     additional: additional,
-    email: email
+    email: email,
+    status: "available",
+    user: userID
   });
   
   var indexType = URL.indexOf("type=");
@@ -137,14 +141,17 @@ function rememberFilter(tagID, toRemember){
     $(tagID).val(toRemember);
   }
 }
+var list;
+postsRef.once("value", function(snapshot){
+  list=snapshot.val();
+});
 
 // Displays the item listing. Will ignore item if it does not match with param filters.
 function display(type, name){
-    var postsRef = firebase.database().ref("posts");
-    var usersRef = firebase.database().ref("users");
 
     postsRef.once("value", function(snapshot){
       list=snapshot.val();
+
 
     for (k in list){
       var categoryRef = firebase.database().ref("posts/"+k+"/category");
@@ -153,7 +160,8 @@ function display(type, name){
       var itemNameRef = firebase.database().ref("posts/"+k+"/itemName");
       var additionalRef = firebase.database().ref("posts/"+k+"/additional");
       var emailRef = firebase.database().ref("posts/"+k+"/email");
-
+      var userRef = firebase.database().ref("posts/"+k+"/user");
+      var statusRef = firebase.database().ref("posts/"+k+"/status");
       var promiseOne = categoryRef.once("value", function(snapshot){
         category=snapshot.val();
       });
@@ -172,7 +180,14 @@ function display(type, name){
       var promiseSix = emailRef.once("value", function(snapshot){
         email=snapshot.val();
       });
-      Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour, promiseFive, promiseSix]).then(function(){
+      var promiseSeven = userRef.once("value", function(snapshot){
+        user=snapshot.val();
+      });
+      var promiseEight = statusRef.once("value", function(snapshot){
+        status=snapshot.val();
+      });
+      Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour,
+        promiseFive, promiseSix, promiseSeven, promiseEight]).then(function(){
         let itemNameLower = itemName.toLowerCase();  
         let nameLower = name.toLowerCase();  
         let categoryLower = category.toLowerCase();
@@ -180,17 +195,22 @@ function display(type, name){
           type == 1 && categoryLower == "fruit" || 
           type == 2 && categoryLower == "vegetable") &&  
         (itemNameLower.indexOf(nameLower) >= 0)){
-          addPostToPageListing(itemName, category, description, date, email);
+          addPostToPageListing(itemName, category, description, date, email, user, status);
         }
       });
     }
   });    
 }
 
+
+var i = 0;
 // Creates DOM elements for a listing with the parameters as the content
-function addPostToPageListing(itemName, category, description, date, email){
+function addPostToPageListing(itemName, category, description, date, email, user, status){
   var topLevel = document.getElementsByClassName("wrapper list")[0];        
   var item = document.createElement('div');
+  if (status != "available"){
+    item.style.display = "none";
+  }
   item.className = "item";
   topLevel.appendChild(item);
   var itemPadding = document.createElement('div');
@@ -216,7 +236,45 @@ function addPostToPageListing(itemName, category, description, date, email){
   itemByUser.className = "itemByUser";
   var itemPostedOn = document.createElement('div');
   itemPostedOn.className = "itemPostedOn";
+  var sendOfferButton = document.createElement('div');
+  if (user == currUser){
+    sendOfferButton.style.display = "none";
+  }
+
+  sendOfferButton.innerHTML = "Swap";
+  sendOfferButton.className = "sendOfferButton";
+  i++;
+  let toAppendButtonID = "button" + i;
+  sendOfferButton.id = toAppendButtonID;
+
+  sendOfferButton.onclick = function(e){
+    var currentButtonNum = parseInt((e.target.id.substring(6, 7)), 10);
+    var count = 0;
+    var x = postsRef.once("value", function(snapshot){
+      list=snapshot.val();
+    });
+    x.then(function(){
+      var count = 0;
+      for (k in list){
+        count++;
+        if (count == currentButtonNum){
+          if (currUser != null){
+            firebase.database().ref('posts/' + k).update({
+              "status": "Pending",
+              "offerMadeBy": currUser
+            });
+            alert("A swap request has been sent to the user!");
+          } else {
+            warning();
+          }
+        }
+      }
+    });
+  }
+
+
   itemText.appendChild(itemHeader);
+  itemText.appendChild(sendOfferButton);
   itemText.appendChild(itemDescription);
   itemText.appendChild(itemByUser);
   itemText.appendChild(itemPostedOn);
@@ -261,7 +319,6 @@ $(function() {
       document.getElementsByClassName("itemText")[i].style.float = "right";
       document.getElementsByClassName("itemDescription")[i].style.lineHeight = "1.15em";
       document.getElementsByClassName("itemDescription")[i].style.height = "3.45em";
-      document.getElementsByClassName("itemHeader")[i].style.marginTop = "0px";
       document.getElementsByClassName("itemDescription")[i].style.marginBottom = "0px";
     }
   })
@@ -288,11 +345,10 @@ $(function() {
     }
     for (i = 0; i < x; i++){
       document.getElementsByClassName("itemImageWrapper")[i].style.display = "block";
-      document.getElementsByClassName("itemImageWrapper")[i].style.margin = "0 auto";
+      document.getElementsByClassName("itemImageWrapper")[i].style.margin = "0 auto 10px";
       document.getElementsByClassName("itemText")[i].style.float = "none";
       document.getElementsByClassName("itemDescription")[i].style.lineHeight = "1.15em";
       document.getElementsByClassName("itemDescription")[i].style.height = "4.6em";
-      document.getElementsByClassName("itemHeader")[i].style.marginTop = "10px";
       document.getElementsByClassName("itemDescription")[i].style.marginBottom = "10px";
       document.getElementsByClassName("itemByUser")[i].style.innerHTML = "10px";
       document.getElementsByClassName("itemPostedOn")[i].style.innerHTML = "10px";
@@ -381,8 +437,10 @@ privacyPolicyUrl: 'market.html'
 };
 ui.start('#firebasetest', uiConfig);  
 
+var currUser;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+    currUser = user.uid;
     $("#marketButton, #dashboardButton, #postButton, #profileButton, #signupButton").css({
       "display" : "initial"
     });
@@ -396,17 +454,20 @@ firebase.auth().onAuthStateChanged(function(user) {
     });
   } 
   else { 
+    currUser = null;
     $("#marketButton, #dashboardButton, #postButton, #loginButton, #signupButton").css({
       "display" : "initial"
     });
     $("#postButton").off("click");
     ("#postButton")
     $("#dashboardButton").removeAttr("href");
-    $("#postButton, #dashboardButton").click(function warning(){
-      document.querySelector('.warning').style.display = 'block';
-      setTimeout(function(){
-        document.querySelector('.warning').style.display = 'none'; 
-      },3000);
-    });
+    $("#postButton, #dashboardButton").click(warning);
   }
 });
+
+function warning(){
+  document.querySelector('.warning').style.display = 'block';
+  setTimeout(function(){
+    document.querySelector('.warning').style.display = 'none'; 
+  },3000);
+}
