@@ -237,7 +237,7 @@ function addPostToPageListing(itemName, category, description, date, email, user
   var itemPostedOn = document.createElement('div');
   itemPostedOn.className = "itemPostedOn";
   var sendOfferButton = document.createElement('div');
-  if (user == currUser){
+  if (user == currUser && user != null){
     sendOfferButton.style.display = "none";
   }
 
