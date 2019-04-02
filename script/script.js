@@ -76,6 +76,7 @@ function getInputVal(id){
 //Save posts to firebase
 function savePost(name, date, category, description, additional, email, userID) {
   var newPostRef = postsRef.push();
+  var key = postsRef.push().key;
   newPostRef.set({
     itemName: name,
     date: date,
@@ -86,7 +87,9 @@ function savePost(name, date, category, description, additional, email, userID) 
     status: "available",
     user: userID
   });
-  
+  var newUserRef = firebase.database().ref("users/" + currUser + "/posts/" + key).set({
+    post: key
+  });
   var indexType = URL.indexOf("type=");
   var indexSearch = URL.indexOf("search=");
   var indexTypeURL = "";
@@ -246,7 +249,6 @@ function addPostToPageListing(itemName, category, description, date, email, user
   i++;
   let toAppendButtonID = "button" + i;
   sendOfferButton.id = toAppendButtonID;
-
   sendOfferButton.onclick = function(e){
     var currentButtonNum = parseInt((e.target.id.substring(6, 7)), 10);
     var count = 0;
@@ -263,7 +265,6 @@ function addPostToPageListing(itemName, category, description, date, email, user
               "status": "Pending",
               "offerMadeBy": currUser
             });
-            console.log(user);
             var sent = firebase.database().ref('users/' + currUser + "/offersSent/" + k).set({
               offerSent: true
             });
