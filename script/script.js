@@ -263,6 +263,13 @@ function addPostToPageListing(itemName, category, description, date, email, user
               "status": "Pending",
               "offerMadeBy": currUser
             });
+            console.log(user);
+            var sent = firebase.database().ref('users/' + currUser + "/offersSent/" + k).set({
+              offerSent: true
+            });
+            var received = firebase.database().ref('users/' + user + "/offersReceived/" + k).set({
+              offerRececived: true
+            });
             alert("A swap request has been sent to the user!");
           } else {
             warning();
