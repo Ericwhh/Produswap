@@ -474,7 +474,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 function warning(){
-  document.querySelector('.warning').style.display = 'block';
+  document.querySelector('.warning').style.display = 'absolute';
   setTimeout(function(){
     document.querySelector('.warning').style.display = 'none'; 
   },3000);
