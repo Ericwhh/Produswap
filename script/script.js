@@ -112,13 +112,7 @@ function savePost(name, date, category, description, additional, email, userID) 
 
 // Functions to run if current page is market.html
 if (URL.indexOf("market.html") >= 0){
-  determineFilter();
-  var slider = document.getElementById("sliderBody");
-  var output = document.getElementById("dist");
-  output.innerHTML = slider.value;
-  slider.oninput = function() {
-  output.innerHTML = this.value;
-  }  
+  determineFilter();  
 }
 
 // Obtains URL, searches for the filters. Uses filters for display function.
@@ -368,21 +362,15 @@ $(function() {
   $(".gridView").click(grid);
 });
 
-$(function() {
-
-  // contact form animations
-  $('#postButton').click(function() {
+//pop up post and login
+$('#postButton').click(function() {
     $('#postForm').fadeToggle();
-    $('#cover').fadeToggle(); 
-  })
-  $(document).mouseup(function (e) {
-    var container = $("#postForm");
-    var container2 = $("#cover");
-
-    if (!container.is(e.target) && container.has(e.target).length === 0)
-    {
-      container.fadeOut();
-      var htmlName = window.location.href.substring(
+    $('#cover2').fadeToggle(); 
+  });
+$("#cover2").click(function(){
+    $('#postForm').fadeToggle();
+    $('#cover2').fadeToggle(); 
+    var htmlName = window.location.href.substring(
         window.location.href.lastIndexOf("/") + 1, 
         window.location.href.lastIndexOf("."));
       var indexType = URL.indexOf(".html");
@@ -391,30 +379,16 @@ $(function() {
       var indexSearchURL = "";
 
       underline(htmlName + "Button");
-      container2.fadeOut();
-    }
-  });
-  
-});
-$(function() {
+})
 
-  // login form animations
-  $('#loginButtonText').click(function() {
+$('#loginButtonText').click(function() {
     $('#firebasetest').fadeToggle();
     $('#cover').fadeToggle(); 
-  })
-  $(document).mouseup(function (e) {
-    var container = $("#firebasetest");
-    var container2 = $("#cover");
-
-    if (!container.is(e.target) && container.has(e.target).length === 0)
-    {
-      container.fadeOut();
-      container2.fadeOut();
-    }
   });
-  
-});
+$("#cover").click(function(){
+    $('#firebasetest').fadeToggle();
+    $('#cover').fadeToggle(); 
+})
 
 // Underlines the nav bar button
 function underline(clickedId){
@@ -471,6 +445,15 @@ firebase.auth().onAuthStateChanged(function(user) {
     $("#dashboardButton").removeAttr("href");
     $("#postButton, #dashboardButton").click(warning);
   }
+});
+
+//Sign out
+$("#signupButtonText").click(function(){
+    firebase.auth().signOut().then(function() {
+        console.log('Signed Out');
+    }, function(error) {
+        console.error('Sign Out Error', error);
+    });
 });
 
 function warning(){
