@@ -96,10 +96,6 @@ filesubmit.addEventListener('change', (e)=> {
 })
 
 
-
-
-
-
 //Save posts to firebase
 function savePost(name, date, category, description, additional, email, userID) {
   var newPostRef = postsRef.push();
@@ -248,7 +244,9 @@ function addPostToPageListing(itemName, category, description, date, email, user
   itemPadding.appendChild(itemText);   
   var itemImage = document.createElement('img');
   itemImage.className = "itemImage";
-  // IMAGE
+  
+
+  // Stock IMAGE
   itemImage.src = "images/apple.jpg";
   
   itemImageWrapper.appendChild(itemImage);
@@ -308,10 +306,13 @@ function addPostToPageListing(itemName, category, description, date, email, user
   itemText.appendChild(itemDescription);
   itemText.appendChild(itemByUser);
   itemText.appendChild(itemPostedOn);
+
+  
   // TEXT
   itemHeader.innerHTML = itemName;
   itemDescription.innerHTML = description;
-  itemByUser.innerHTML = email;
+  //Testing to display the name. 
+  itemByUser.innerHTML = name;
   itemPostedOn.innerHTML = date;
 
 }
