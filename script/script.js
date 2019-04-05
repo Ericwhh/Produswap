@@ -21,17 +21,22 @@ firebase.auth().onAuthStateChanged(function(user) {
 if (user) {
     // currUser equals the unique ID for the user
     currUser = user.uid;
+    // Enables signout button
     enableSignout();
-    $("#loginButtonText").text("Sign Out");
+    // Update user tree to have user email and name
     firebase.database().ref('users/' + user.uid).update({
         "email":user.email,
         "name":user.displayName
     });
 } 
-else { 
+else {
+    // Enables login button
     enableLogin();
+    // Disables post functionality
     $("#postButton").off("click");
+    // Dashboard cannot be visited
     $("#dashboardButton").removeAttr("href");
+    // Post button and dashboard button gives a user warning
     $("#postButton, #dashboardButton").click(warning);
 }   
 
@@ -53,6 +58,7 @@ else {
   
   // Enables login functionality (also removes signout functionality)
   function enableLogin(){
+    //Pop up for login
     $('#loginButton').click(function() {
         $('#firebasetest').fadeToggle();
         $('#cover').fadeToggle(); 
