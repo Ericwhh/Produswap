@@ -129,7 +129,7 @@ function savePost(name, date, category, description, additional, email, userID) 
     indexTypeURL == 1 && category.toLowerCase() == "fruit" || 
     indexTypeURL == 2 && category.toLowerCase() == "vegetable") &&  
   (name.toLowerCase().indexOf(indexSearchURL.toLowerCase()) >= 0)){
-    addPostToPageListing(name, category, description, date, email);
+    addPostToPageListing(name, category, description, date, email, userID, "available");
   }
 };
 
@@ -205,8 +205,7 @@ function display(type, name){
       var promiseEight = statusRef.once("value", function(snapshot){
         status=snapshot.val();
       });
-      Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour,
-        promiseFive, promiseSix, promiseSeven, promiseEight]).then(function(){
+      Promise.all([promiseOne, promiseTwo, promiseThree, promiseFour, promiseFive, promiseSix, promiseSeven, promiseEight]).then(function(){
         let itemNameLower = itemName.toLowerCase();  
         let nameLower = name.toLowerCase();  
         let categoryLower = category.toLowerCase();
@@ -244,7 +243,6 @@ function addPostToPageListing(itemName, category, description, date, email, user
   itemPadding.appendChild(itemText);   
   var itemImage = document.createElement('img');
   itemImage.className = "itemImage";
-  
 
   // Stock IMAGE
   itemImage.src = "images/apple.jpg";
@@ -271,7 +269,7 @@ function addPostToPageListing(itemName, category, description, date, email, user
   sendOfferButton.id = toAppendButtonID;
   sendOfferButton.onclick = function(e){
     var currentButtonNum = parseInt((e.target.id.substring(6, 7)), 10);
-    var count = 0;
+    var count =   0;
     var x = postsRef.once("value", function(snapshot){
       list=snapshot.val();
     });
@@ -488,7 +486,7 @@ $("#signupButtonText").click(function(){
 
 
 function warning(){
-  document.querySelector('.warning').style.display = 'block';
+  document.querySelector('.warning').style.display = 'absolute';
   setTimeout(function(){
     document.querySelector('.warning').style.display = 'none'; 
   },3000);
