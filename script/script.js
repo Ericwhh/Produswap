@@ -9,8 +9,10 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//References for Firestorage
+const storage = firebase.storage()
 
-// References posts collection
+//References posts collection
 var postsRef = firebase.database().ref('posts');
 var usersRef = firebase.database().ref('users');
 
@@ -33,6 +35,8 @@ function dateF(num, size){
     return proper;
 }
 
+
+//Submiting the post 
 function submitPost(e){
   e.preventDefault();
 
@@ -69,10 +73,33 @@ function submitPost(e){
   document.getElementById('newPost').reset();
 }
 //Function to get form values
-function getInputVal(id){
+function getInputVal(id) {
   return document.getElementById(id).value;
-
 }
+
+//Firestorage: Send Images 
+filesubmit.addEventListener('change', (e)=> {
+  let file = e.target.files[0];
+  let locationRef = storage.ref('posts/' + file.name)
+  let task = locationRef.put(file)
+  task.on('state_changed',
+      function progress(snapshot){
+        // whilst uploading
+      },
+      function error(error){
+        //error handling
+      },
+      function complete(){
+        // on completion
+      }
+  )
+})
+
+
+
+
+
+
 //Save posts to firebase
 function savePost(name, date, category, description, additional, email, userID) {
   var newPostRef = postsRef.push();
@@ -200,6 +227,7 @@ function display(type, name){
 }
 
 
+
 var i = 0;
 // Creates DOM elements for a listing with the parameters as the content
 function addPostToPageListing(itemName, category, description, date, email, user, status){
@@ -238,6 +266,7 @@ function addPostToPageListing(itemName, category, description, date, email, user
     sendOfferButton.style.display = "none";
   }
 
+  //needs to be commented 
   sendOfferButton.innerHTML = "Swap";
   sendOfferButton.className = "sendOfferButton";
   i++;
@@ -287,7 +316,6 @@ function addPostToPageListing(itemName, category, description, date, email, user
   itemPostedOn.innerHTML = date;
 
 }
-
 
 
 
