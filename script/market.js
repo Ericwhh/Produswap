@@ -1,20 +1,20 @@
-//JS functions 
-
-//References for Firestorage
-const storage = firebase.storage()
-
-//References posts collection
-var postsRef = firebase.database().ref('posts');
-var usersRef = firebase.database().ref('users');
-
 //Listen for post submit
-
 document.getElementById('postForm').addEventListener('submit', submitPost);
 
 // Current URL
 var URL = window.location.href;
+// Index of where the type input (fruit / vegetable) is in the URL
+var indexType = URL.indexOf("type=");
+// Index of where the search input is in the URL
+var indexSearch = URL.indexOf("search=");
+// If index for type was found (exists), gets the input string from URL
+var indexTypeURL = indexType != - 1 ? URL.substring(indexType + 5, indexSearch - 1) : "";
+// If index for search was found (exists), gets the input string from URL
+var indexSearchURL = indexSearch != - 1 ? URL.substring(indexSearch + 7) : "";
 
-//formatting the date
+
+
+// Formats the date
 function dateF(num, size){
     var s = num.toString().length;
     var store = "";
@@ -26,8 +26,7 @@ function dateF(num, size){
     return proper;
 }
 
-
-//Submiting the post 
+// Submits the post 
 function submitPost(e){
   e.preventDefault();
 
@@ -49,8 +48,6 @@ function submitPost(e){
 
     }
   });
-  //Save post
-
   // Show alert 
   document.querySelector('.alert').style.display = 'block';
 
@@ -58,7 +55,6 @@ function submitPost(e){
   setTimeout(function(){
     document.querySelector('.alert').style.display = 'none'; 
   },3000);
-
 
   //Clear form  
   document.getElementById('newPost').reset();
@@ -78,7 +74,7 @@ filesubmit.addEventListener('change', (e)=> {
         // whilst uploading
       },
       function error(error){
-        //error handling
+        // error handling
       },
       function complete(){
         // on completion
@@ -104,17 +100,7 @@ function savePost(name, date, category, description, additional, email, userID) 
   var newUserRef = firebase.database().ref("users/" + currUser + "/posts/" + key).set({
     post: key
   });
-  var indexType = URL.indexOf("type=");
-  var indexSearch = URL.indexOf("search=");
-  var indexTypeURL = "";
-  var indexSearchURL = "";
 
-  if (indexType != -1){
-    indexTypeURL = URL.substring(indexType + 5, indexSearch - 1);
-  }
-  if (indexSearch != -1){
-    indexSearchURL = URL.substring(indexSearch + 7);
-  }
 
   if ((indexTypeURL == 0 || 
     indexTypeURL == 1 && category.toLowerCase() == "fruit" || 
@@ -125,26 +111,16 @@ function savePost(name, date, category, description, additional, email, userID) 
 };
 
 
+// Uses filters for display function.
 
-determineFilter();
-
-
-// Obtains URL, searches for the filters. Uses filters for display function.
-function determineFilter(){
-  var indexType = URL.indexOf("type=");
-  var indexSearch = URL.indexOf("search=");
-  var indexTypeURL = "";
-  var indexSearchURL = "";
   if (indexType != -1){
-    indexTypeURL = URL.substring(indexType + 5, indexSearch - 1);
     rememberFilter("#selectMenu", indexTypeURL);
   }
   if (indexSearch != -1){
-    indexSearchURL = URL.substring(indexSearch + 7);
     rememberFilter("#searchBar", indexSearchURL);
   }
   display(indexTypeURL, indexSearchURL);
-}
+
 
 // Remembers the filter upon refresh.
 function rememberFilter(tagID, toRemember){

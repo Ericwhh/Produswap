@@ -13,6 +13,14 @@ var config = {
     messagingSenderId: "645477140066"
   };
   firebase.initializeApp(config);
+
+  
+//References for Firestorage
+const storage = firebase.storage()
+
+//References posts and users collection
+var postsRef = firebase.database().ref('posts');
+var usersRef = firebase.database().ref('users');
   
 
 // Depends if user is logged in
@@ -80,6 +88,7 @@ else {
     });
     $("#loginButtonText").text("Sign Out");
   }
+
 
 // Underlines the nav bar buttons appropriately
 function underline(clickedId){
