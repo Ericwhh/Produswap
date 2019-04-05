@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyDashboard</title>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+  <link rel="stylesheet" type="text/css" href="css/dashboardStyle.css">
+  <style>
+    #profileButton {
+        box-shadow: inset 0 -5px 0 white;
+    }
+    </style>
+</head>
+<body>
+        <div id="backgroundImage"></div>
+        <nav id="navBar">
+          <span id="logo">Produswap</span>
+          <span id="navButtons">
+            <a href="market.html" id="marketButton" class="navButton" onclick="underline(this.id)">
+              <span class="menuWrapper">
+                <span id="marketButtonText" class="navButtonText">Market</span>
+              </span>
+            </a>
+            <a  id="dashboardButton" class="navButton" onclick="underline(this.id)">
+              <span class="menuWrapper">
+                <span id="dashboardButtonText" class="navButtonText">Dashboard</span>
+              </span>
+            </a>
+              
+             
+          <span id="loginOrSignup"> 
+            <a href="market.html" class="navButton" id="signOutButton" onclick="underline(this.id)">
+              <span class="menuWrapper">
+                <span id="signOutButtonText" class="navButtonText">Sign Out</span>
+              </span>
+            </a>
+            
+            </span>
+          
+            </span>
+        </nav>
+        
+
+  
+
+    <div id="main">
+        <div id="userName">
+            <img id="navProfilePicture" src="images/profile.png" alt="Profile" width="68">
+            <h1 id="name"></h1>
+        </div>
+        <div id="trading">
+            <div id="tradeContainer">
+                <h1>Offers</h1>
+                <div id="tradeBox"></div>
+            </div>
+            <div id="sentContainer">
+                <h1>Requests</h1>
+                <div id="sentBox">
+                </div>
+            </div>
+        </div>
+    </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+      <script src="script/dashboardScript.js"></script>
+      
+            
+  </body>
+</html>
