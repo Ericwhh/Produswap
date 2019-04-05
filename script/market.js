@@ -12,8 +12,6 @@ var indexTypeURL = indexType != - 1 ? URL.substring(indexType + 5, indexSearch -
 // If index for search was found (exists), gets the input string from URL
 var indexSearchURL = indexSearch != - 1 ? URL.substring(indexSearch + 7) : "";
 
-
-
 // Formats the date
 function dateF(num, size){
     var s = num.toString().length;
@@ -30,7 +28,7 @@ function dateF(num, size){
 function submitPost(e){
   e.preventDefault();
 
-  //Get values
+  // Get values
   var currentDate = new Date();
   var name = getInputVal('produceName');
   var date = currentDate.getFullYear() + "-" + dateF(currentDate.getMonth() + 1, 2) + "-" + dateF(currentDate.getDate(), 2);
@@ -64,7 +62,7 @@ function getInputVal(id) {
   return document.getElementById(id).value;
 }
 
-//Firestorage: Send Images 
+// Firestorage: Send Images 
 filesubmit.addEventListener('change', (e)=> {
   let file = e.target.files[0];
   let locationRef = storage.ref('posts/' + file.name)
@@ -112,7 +110,6 @@ function savePost(name, date, category, description, additional, email, userID) 
 
 
 // Uses filters for display function.
-
   if (indexType != -1){
     rememberFilter("#selectMenu", indexTypeURL);
   }
@@ -234,13 +231,15 @@ function addPostToPageListing(itemName, category, description, date, email, user
   i++;
   let toAppendButtonID = "button" + i;
   sendOfferButton.id = toAppendButtonID;
-  sendOfferButton.onclick = function(e){
+  sendOfferButton.onclick(swapButton());
+  }
+
+  function swapButton(){
     var currentButtonNum = parseInt((e.target.id.substring(6, 7)), 10);
-    var count =   0;
-    var x = postsRef.once("value", function(snapshot){
+    var promiseButton = postsRef.once("value", function(snapshot){
       list=snapshot.val();
     });
-    x.then(function(){
+    promiseButton.then(function(){
       var count = 0;
       for (k in list){
         count++;
@@ -263,6 +262,8 @@ function addPostToPageListing(itemName, category, description, date, email, user
         }
       }
     });
+  }
+    
   }
 
 
