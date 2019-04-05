@@ -89,6 +89,11 @@ body {
     float: right;
 }
 
+/* Sets login button to display none. */
+#loginButton { 
+    display: none;
+}
+
 /* Wrapper which vertically aligns nav bar buttons. */
 .menuWrapper {
     display: inline-block;
