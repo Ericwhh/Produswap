@@ -469,7 +469,6 @@ firebase.auth().onAuthStateChanged(function(user) {
       "display" : "initial"
     });
     $("#postButton").off("click");
-    ("#postButton")
     $("#dashboardButton").removeAttr("href");
     $("#postButton, #dashboardButton").click(warning);
   }
@@ -486,8 +485,9 @@ $("#signupButtonText").click(function(){
 
 
 function warning(){
-  document.querySelector('.warning').style.display = 'absolute';
+  document.querySelector('.warning').style.display = 'block';
   setTimeout(function(){
     document.querySelector('.warning').style.display = 'none'; 
   },3000);
+  console.log("warning activated");
 }
