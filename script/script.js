@@ -9,8 +9,10 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//References for Firestorage
+const storage = firebase.storage()
 
-// References posts collection
+//References posts collection
 var postsRef = firebase.database().ref('posts');
 var usersRef = firebase.database().ref('users');
 
@@ -33,6 +35,8 @@ function dateF(num, size){
     return proper;
 }
 
+
+//Submiting the post 
 function submitPost(e){
   e.preventDefault();
 
@@ -69,10 +73,33 @@ function submitPost(e){
   document.getElementById('newPost').reset();
 }
 //Function to get form values
-function getInputVal(id){
+function getInputVal(id) {
   return document.getElementById(id).value;
-
 }
+
+//Firestorage: Send Images 
+filesubmit.addEventListener('change', (e)=> {
+  let file = e.target.files[0];
+  let locationRef = storage.ref('posts/' + file.name)
+  let task = locationRef.put(file)
+  task.on('state_changed',
+      function progress(snapshot){
+        // whilst uploading
+      },
+      function error(error){
+        //error handling
+      },
+      function complete(){
+        // on completion
+      }
+  )
+})
+
+
+
+
+
+
 //Save posts to firebase
 function savePost(name, date, category, description, additional, email, userID) {
   var newPostRef = postsRef.push();
@@ -112,7 +139,7 @@ function savePost(name, date, category, description, additional, email, userID) 
 
 // Functions to run if current page is market.html
 if (URL.indexOf("market.html") >= 0){
-  determineFilter();  
+  determineFilter();
 }
 
 // Obtains URL, searches for the filters. Uses filters for display function.
@@ -148,7 +175,6 @@ function display(type, name){
 
     postsRef.once("value", function(snapshot){
       list=snapshot.val();
-
 
     for (k in list){
       var categoryRef = firebase.database().ref("posts/"+k+"/category");
@@ -199,6 +225,7 @@ function display(type, name){
 }
 
 
+
 var i = 0;
 // Creates DOM elements for a listing with the parameters as the content
 function addPostToPageListing(itemName, category, description, date, email, user, status){
@@ -237,6 +264,7 @@ function addPostToPageListing(itemName, category, description, date, email, user
     sendOfferButton.style.display = "none";
   }
 
+  //needs to be commented 
   sendOfferButton.innerHTML = "Swap";
   sendOfferButton.className = "sendOfferButton";
   i++;
@@ -286,7 +314,6 @@ function addPostToPageListing(itemName, category, description, date, email, user
   itemPostedOn.innerHTML = date;
 
 }
-
 
 
 
@@ -388,6 +415,8 @@ $("#cover").click(function(){
     $('#firebasetest').fadeToggle();
     $('#cover').fadeToggle(); 
 })
+///// 
+
 
 // Underlines the nav bar button
 function underline(clickedId){
@@ -395,7 +424,7 @@ function underline(clickedId){
   document.getElementById("dashboardButton").style.boxShadow = "none";
   document.getElementById("postButton").style.boxShadow = "none";
   document.getElementById("profileButton").style.boxShadow = "none";
-  document.getElementById(clickedId).style.boxShadow = "inset 0 -5px 0 white";
+  document.getElementById(clickedId).style.boxShadow = "0px -5px 0px 0px white inset";
 }
 
 // Login functionality
@@ -406,12 +435,12 @@ var uiConfig = {
             return true;
         },
     },
-signInSuccessUrl: 'market.html',
+signInSuccessUrl: 'dashboard.html',
 signInFlow: 'popup',
 signInOptions: [
-    //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    //firebase.auth.PhoneAuthProvider.PROVIDER_ID
+    firebase.auth.PhoneAuthProvider.PROVIDER_ID
 ],
 tosUrl: 'market.html',
 privacyPolicyUrl: 'market.html'
@@ -454,6 +483,7 @@ $("#signupButtonText").click(function(){
         console.error('Sign Out Error', error);
     });
 });
+
 
 function warning(){
   document.querySelector('.warning').style.display = 'absolute';
