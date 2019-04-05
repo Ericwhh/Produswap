@@ -438,9 +438,7 @@ var uiConfig = {
 signInSuccessUrl: 'dashboard.html',
 signInFlow: 'popup',
 signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.PhoneAuthProvider.PROVIDER_ID
 ],
 tosUrl: 'market.html',
 privacyPolicyUrl: 'market.html'
@@ -451,11 +449,11 @@ var currUser;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     currUser = user.uid;
-    $("#marketButton, #dashboardButton, #postButton, #profileButton, #signupButton").css({
+    $("#marketButton, #dashboardButton, #postButton, #profileButton").css({
       "display" : "initial"
     });
 
-    $("#signupButtonText").text("Sign Out");
+    $("#loginButtonText").text("Sign Out");
 
 
     firebase.database().ref('users/' + user.uid).update({
@@ -465,7 +463,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   } 
   else { 
     currUser = null;
-    $("#marketButton, #dashboardButton, #postButton, #loginButton, #signupButton").css({
+    $("#marketButton, #dashboardButton, #postButton, #loginButton").css({
       "display" : "initial"
     });
     $("#postButton").off("click");
@@ -475,7 +473,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 //Sign out
-$("#signupButtonText").click(function(){
+$("#loginButtonText").click(function(){
     firebase.auth().signOut().then(function() {
         console.log('Signed Out');
     }, function(error) {
