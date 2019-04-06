@@ -11,6 +11,16 @@ var indexSearch = URL.indexOf("search=");
 var indexTypeURL = indexType != - 1 ? URL.substring(indexType + 5, indexSearch - 1) : "";
 // If index for search was found (exists), gets the input string from URL
 var indexSearchURL = indexSearch != - 1 ? URL.substring(indexSearch + 7) : "";
+// Displays filters back into dropdown and input field after a search
+if (indexType != -1){
+  rememberFilter("#selectMenu", indexTypeURL);
+}
+if (indexSearch != -1){
+  rememberFilter("#searchBar", indexSearchURL);
+}
+// Displays all the listings onto the page according to filters
+display(indexTypeURL, indexSearchURL);
+
 
 // Formats the date
 function dateF(num, size){
@@ -38,12 +48,10 @@ function submitPost(e){
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
+      // Calls function to save post to Firebase
       var emailName = user.email;
       var userID = user.uid;
       savePost(name, date, category, description, additional, emailName, userID);
-    }
-    else {
-
     }
   });
   // Show alert 
@@ -54,10 +62,10 @@ function submitPost(e){
     document.querySelector('.alert').style.display = 'none'; 
   },3000);
 
-  //Clear form  
+  // Clear form  
   document.getElementById('newPost').reset();
 }
-//Function to get form values
+// Function to get form values
 function getInputVal(id) {
   return document.getElementById(id).value;
 }
@@ -81,7 +89,7 @@ filesubmit.addEventListener('change', (e)=> {
 })
 
 
-//Save posts to firebase
+// Saves post to firebase
 function savePost(name, date, category, description, additional, email, userID) {
   var newPostRef = postsRef.push();
   var key = postsRef.push().key;
@@ -99,24 +107,17 @@ function savePost(name, date, category, description, additional, email, userID) 
     post: key
   });
 
-
+  // If submitted post and search filter match up with submitted post, display to listing
   if ((indexTypeURL == 0 || 
     indexTypeURL == 1 && category.toLowerCase() == "fruit" || 
     indexTypeURL == 2 && category.toLowerCase() == "vegetable") &&  
-  (name.toLowerCase().indexOf(indexSearchURL.toLowerCase()) >= 0)){
+  (name.toLowerCase().indexOf(indexSearchURL.toLowerCase()) >= 0)) {
     addPostToPageListing(name, category, description, date, email, userID, "available");
   }
 };
 
 
-// Uses filters for display function.
-  if (indexType != -1){
-    rememberFilter("#selectMenu", indexTypeURL);
-  }
-  if (indexSearch != -1){
-    rememberFilter("#searchBar", indexSearchURL);
-  }
-  display(indexTypeURL, indexSearchURL);
+  
 
 
 // Remembers the filter upon refresh.
@@ -125,6 +126,9 @@ function rememberFilter(tagID, toRemember){
     $(tagID).val(toRemember);
   }
 }
+
+
+
 var list;
 postsRef.once("value", function(snapshot){
   list=snapshot.val();
@@ -231,59 +235,64 @@ function addPostToPageListing(itemName, category, description, date, email, user
   i++;
   let toAppendButtonID = "button" + i;
   sendOfferButton.id = toAppendButtonID;
-  sendOfferButton.onclick(swapButton());
-  }
+  sendOfferButton.onclick = function(e){
+    swapButton(e);
+  };
+   
 
-  function swapButton(){
-    var currentButtonNum = parseInt((e.target.id.substring(6, 7)), 10);
-    var promiseButton = postsRef.once("value", function(snapshot){
-      list=snapshot.val();
-    });
-    promiseButton.then(function(){
-      var count = 0;
-      for (k in list){
-        count++;
-        if (count == currentButtonNum){
-          if (currUser != null){
-            firebase.database().ref('posts/' + k).update({
-              "status": "Pending",
-              "offerMadeBy": currUser
-            });
-            var sent = firebase.database().ref('users/' + currUser + "/offersSent/" + k).set({
-              offerSent: true
-            });
-            var received = firebase.database().ref('users/' + user + "/offersReceived/" + k).set({
-              offerRececived: true
-            });
-            alert("A swap request has been sent to the user!");
-          } else {
-            warning();
-          }
-        }
-      }
-    });
-  }
-    
-  }
-
+  // Gets user's name
+  var currentName;
+  var currentNameRef = firebase.database().ref("users/" + user + "/name");
+  var namePromise = currentNameRef.once("value", function(snapshot){
+    currentName = snapshot.val();
+  });
+  namePromise.then(function(){
+    itemByUser.innerHTML = currentName;
+  });
 
   itemText.appendChild(itemHeader);
   itemText.appendChild(sendOfferButton);
   itemText.appendChild(itemDescription);
   itemText.appendChild(itemByUser);
   itemText.appendChild(itemPostedOn);
-
   
   // TEXT
   itemHeader.innerHTML = itemName;
   itemDescription.innerHTML = description;
-  //Testing to display the name. 
-  itemByUser.innerHTML = name;
   itemPostedOn.innerHTML = date;
 
 }
 
 
+function swapButton(e){
+  var currentButtonNum = parseInt((e.target.id.substring(6, 7)), 10);
+  var promiseButton = postsRef.once("value", function(snapshot){
+    list=snapshot.val();
+  });
+  promiseButton.then(function(){
+    var count = 0;
+    for (k in list){
+      count++;
+      if (count == currentButtonNum){
+        if (currUser != null){
+          firebase.database().ref('posts/' + k).update({
+            "status": "Pending",
+            "offerMadeBy": currUser
+          });
+          var sent = firebase.database().ref('users/' + currUser + "/offersSent/" + k).set({
+            offerSent: true
+          });
+          var received = firebase.database().ref('users/' + user + "/offersReceived/" + k).set({
+            offerRececived: true
+          });
+          alert("A swap request has been sent to the user!");
+        } else {
+          warning();
+        }
+      }
+    }
+  });
+}
 
 
 //////////////////////////////////////////////////
@@ -375,7 +384,6 @@ privacyPolicyUrl: 'market.html'
 };
 ui.start('#firebasetest', uiConfig);  
 
-//Sign out
 
 
 function warning(){
@@ -383,5 +391,4 @@ function warning(){
   setTimeout(function(){
     document.querySelector('.warning').style.display = 'none'; 
   },3000);
-  console.log("warning activated");
 }

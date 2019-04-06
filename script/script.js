@@ -89,6 +89,8 @@ else {
     $("#loginButtonText").text("Sign Out");
   }
 
+  
+
 
 // Underlines the nav bar buttons appropriately
 function underline(clickedId){
