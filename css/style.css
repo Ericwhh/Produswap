@@ -118,3 +118,8 @@ background: #AA6A39;
 ::-webkit-scrollbar-thumb:hover {
 background: #804315; 
 }
+
+/* Progress bar hidden*/
+#uploader {
+    display: none;
+}

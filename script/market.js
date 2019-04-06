@@ -70,27 +70,8 @@ function getInputVal(id) {
   return document.getElementById(id).value;
 }
 
-// Firestorage: Send Images 
-filesubmit.addEventListener('change', (e)=> {
-  let file = e.target.files[0];
-  let locationRef = storage.ref('posts/' + file.name)
-  let task = locationRef.put(file)
-  task.on('state_changed',
-      function progress(snapshot){
-        // whilst uploading
-      },
-      function error(error){
-        // error handling
-      },
-      function complete(){
-        // on completion
-      }
-  )
-})
-
-
 // Saves post to firebase
-function savePost(name, date, category, description, additional, email, userID) {
+function savePost(name, date, category, description, additional, email, userID, downloadURL) {
   var newPostRef = postsRef.push();
   var key = postsRef.push().key;
   newPostRef.set({
@@ -102,6 +83,7 @@ function savePost(name, date, category, description, additional, email, userID) 
     email: email,
     status: "available",
     user: userID
+    postImage: 
   });
   var newUserRef = firebase.database().ref("users/" + currUser + "/posts/" + key).set({
     post: key

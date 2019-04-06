@@ -4,54 +4,55 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Market</title>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/market.css">
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/market.css">
   <style>
     #marketButton {
-        box-shadow: inset 0 -5px 0 white;
+      box-shadow: inset 0 -5px 0 white;
     }
   </style>
 </head>
 <body>
-    <div class="warning">Please login to continue!</div>
-    <div id="postForm">
-        <h1 id="postFormTitle">Listing Details</h1>
-        <div class="alert">Your post has been submitted</div>
-        <form id="newPost">
-        <div id="postFormInnerWrapper">
-          <div id="produceNameWrapper">
-            <label>Produce Name:</label>
-            <input type="text" name="name" id="produceName" required="required" placeholder="Choose a descriptive name for your produce.">
-          </div>
-          
-            <div id="radioPostFormWrapper">
-              <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
-              <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
-            </div>
-            <div>
-              <label>Produce Description:</label>
-              <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
-            </div>
-          </div>
-  
-          <div id="uploadWrapper"></div>
-          
-          <div id="filesubmit">
-		    <input type="file" class="fileSelect" accept="image/*"/>
-		  </div> 
+  <div class="warning">Please login to continue!</div>
+  <div id="postForm">
+    <h1 id="postFormTitle">Listing Details</h1>
+    <div class="alert">Your post has been submitted</div>
+    <form id="newPost">
+      <div id="postFormInnerWrapper">
+        <div id="produceNameWrapper">
+          <label>Produce Name:</label>
+          <input type="text" name="name" id="produceName" required="required" placeholder="Choose a descriptive name for your produce.">
+        </div>
 
-          <div id="additionalInfoWrapper">
-            <label>Additional Info:</label>
-            <textarea name="additionalInfo" rows="5" maxlength="250" placeholder="Any additional information you would like others to know?" id="produceAdditionalInfo"></textarea>
-          </div>
-		           
-          <div>
-            <button type="submit" id="formSubmit">Submit</button>
-          </div>
-              
-        </form>
-    </div>
+        <div id="radioPostFormWrapper">
+          <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
+          <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
+        </div>
+        <div>
+          <label>Produce Description:</label>
+          <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
+        </div>
+      </div>
+
+      <div id="uploadWrapper"></div>
+      <div>
+        <progress value="0" id="uploader" max="100">0%</progress>
+        <input id="photo"class="file"type="file" name="mainimage"
+        value="" onchange="getfile()"><br><br> 
+      </div> 
+
+      <div id="additionalInfoWrapper">
+        <label>Additional Info:</label>
+        <textarea name="additionalInfo" rows="5" maxlength="250" placeholder="Any additional information you would like others to know?" id="produceAdditionalInfo"></textarea>
+      </div>
+
+      <div>
+        <button type="submit" id="formSubmit" name="button">Submit</button>
+      </div>
+
+    </form>
+  </div>
 
   <div id="backgroundImage"></div>
   <nav id="navBar">
@@ -72,61 +73,61 @@
           <span id="postButtonText" class="navButtonText">Post</span>
         </span>
       </a>
-       
-    <span id="loginOrSignup">
-      <div class="navButton" id="loginButton" onclick="underline(this.id)">
-        <span class="menuWrapper">
-          <span id="loginButtonText" class="navButtonText">Log In</span>
-        </span>
-      </div>  
-    </span>
 
-  </nav>
+      <span id="loginOrSignup">
+        <div class="navButton" id="loginButton" onclick="underline(this.id)">
+          <span class="menuWrapper">
+            <span id="loginButtonText" class="navButtonText">Log In</span>
+          </span>
+        </div>  
+      </span>
+
+    </nav>
 
 
-  <div id="main">
-    <div id="searchAndFilterContainer">
-    <div id="locationContainer">
-        
-      </div>
-      <form method="get">
-        <div id="searchContainer">
+    <div id="main">
+      <div id="searchAndFilterContainer">
+        <div id="locationContainer">
+
+        </div>
+        <form method="get">
+          <div id="searchContainer">
             <select id="selectMenu" name="type">
               <option value="0" id="allSelect">All</option>
               <option value="1" id="fruitSelect">Fruit</option>
               <option value="2" id="vegetableSelect">Vegetable</option>
             </select>
-          <input type="text" placeholder="Search... " id="searchBar" name="search">
-          <button type="submit" id="searchButton">
-            <img src="images/search.png" id="searchIcon">
-          </button>
-        </div>
-      </form>
-    </div>
-    
-    <div class="buttons">
+            <input type="text" placeholder="Search... " id="searchBar" name="search">
+            <button type="submit" id="searchButton">
+              <img src="images/search.png" id="searchIcon">
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="buttons">
         <div class="listView"><span class="active"></span><span class="active"></span></div>
         <div class="gridView"><span class=""></span><span class=""></span><span class=""></span><span class=""></span></div>
-    </div>
-
-    <div id="container">  
-      <div class="wrapper list" id="postList">
-    </div>
-
-
-      <div id="firebasetest"></div>
-      <div id="cover"></div>
-        <div id="cover2"></div>    
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-      <script src="script/script.js"></script>
-      <script src="script/market.js"></script>
-      <script type="text/javascript">
-      </script>
       </div>
-            
-  </body>
-  <script>
-  </script>
-</html>
+
+      <div id="container">  
+        <div class="wrapper list" id="postList">
+        </div>
+
+
+        <div id="firebasetest"></div>
+        <div id="cover"></div>
+        <div id="cover2"></div>    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+        <script src="script/script.js"></script>
+        <script src="script/market.js"></script>
+        <script type="text/javascript">
+        </script>
+      </div>
+
+    </body>
+    <script>
+    </script>
+    </html>
