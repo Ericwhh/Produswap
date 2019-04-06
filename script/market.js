@@ -83,7 +83,6 @@ function savePost(name, date, category, description, additional, email, userID, 
     email: email,
     status: "available",
     user: userID
-    postImage: 
   });
   var newUserRef = firebase.database().ref("users/" + currUser + "/posts/" + key).set({
     post: key
