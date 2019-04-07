@@ -159,7 +159,7 @@ background: #804315;
     line-height: 1.15em;
     margin: 0;
 }
-.sendOfferButton {
+.sendOfferButton, .sendOfferButton2 {
     float: right;
     width: 76px;
     padding: 0px 12px;
@@ -170,7 +170,7 @@ background: #804315;
     cursor: pointer;
     color: white;
 }
-.sendOfferButton:hover {
+.sendOfferButton:hover, .sendOfferButton2:hover {
     opacity: 0.5;
 }
 

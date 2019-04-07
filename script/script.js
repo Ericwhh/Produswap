@@ -260,8 +260,8 @@ function notCurrUserPost(postedBy, currUser, sendOfferButton){
   }
 }
 
-function setButtonProperty(text, button){
-  button.innerHTML = "Swap";
+function setButtonProperty(text, button, colour){
+  button.innerHTML = text;
 }
 
 var i = 0;
@@ -285,7 +285,7 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
 
   // Stock IMAGE
   itemImage.src = imageURL;
-  uploadedImage = null;
+  uploadedImage = "images/defaultImage.png";
   
   itemImageWrapper.appendChild(itemImage);
   var itemHeader = document.createElement('h6');
@@ -297,16 +297,23 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   var itemPostedOn = document.createElement('div');
   itemPostedOn.className = "itemPostedOn";
   var sendOfferButton = document.createElement('div');
+  var sendOfferButton2 = document.createElement('div');
+  $(sendOfferButton2).css("display", "none");
   // If the post is posted by the current user, do not display swap button
   notCurrUserPost(postedBy, currUser, sendOfferButton);
   sendOfferButton.className = "sendOfferButton";
+  sendOfferButton2.className = "sendOfferButton2";
   i++;
   let toAppendButtonID = "button" + i;
   sendOfferButton.id = toAppendButtonID;
+  console.log(postID, postedBy);
   sendOfferButton.onclick = function(e){
     swapButton(postID, postedBy);
   };
-  setButtonProperty("Swap", sendOfferButton);
+  sendOfferButton2.onclick = function(e){
+    swapButton2(postID, postedBy);
+  };
+  setButtonProperty("Swap", sendOfferButton, "");
    
 
 
@@ -322,6 +329,7 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
 
   itemText.appendChild(itemHeader);
   itemText.appendChild(sendOfferButton);
+  itemText.appendChild(sendOfferButton2);
   itemText.appendChild(itemDescription);
   itemText.appendChild(itemByUser);
   itemText.appendChild(itemPostedOn);

@@ -9,34 +9,52 @@ firebase.auth().onAuthStateChanged(function(user) {
 var usersRef = firebase.database().ref('users');
 var postsRef = firebase.database().ref('posts');
 console.log(postsRef.key);
-
+var currTab = 0;
 $("#tabPosted").click(function(e){
   postedDisplay();
+  currTab = 0;
 });
 
 $("#tabSent").click(function(e){
   sentDisplay();
+  currTab = 1;
 });
 
 $("#tabReceived").click(function(e){
   requestDisplay();
+  currTab = 2;
 });
+
 
 // Sets which tab to display
 function postedDisplay(){
   $("#tradeBox").css("display", "block");
   $("#sentBox").css("display", "none");
   $("#receivedBox").css("display", "none");
+  setButtnProperty("Delete", ".sendOfferButton", "red");
+  var button = document.getElementsByClassName("sendOfferButton");
+  var button2 = document.getElementsByClassName("sendOfferButton2");
+  $(button2).css("display", "none");
 }
 function sentDisplay(){
   $("#tradeBox").css("display", "none");
   $("#sentBox").css("display", "block");
-  $("#receivedBox").css("display", "none");
+  $("#receivedBox").css("display", "none");  
+  setButtnProperty("PENDING", ".sendOfferButton", "rgba(0,0,0,0)");
+  var button = document.getElementsByClassName("sendOfferButton");
+  var button2 = document.getElementsByClassName("sendOfferButton2");
+  $(button2).css("display", "none");  
 }
 function requestDisplay() {
   $("#tradeBox").css("display", "none");
   $("#sentBox").css("display", "none");
   $("#receivedBox").css("display", "block");
+  
+  setButtnProperty("Decline", ".sendOfferButton2", "red");
+  setButtnProperty("Accept", ".sendOfferButton", "green")
+  var button = document.getElementsByClassName("sendOfferButton");
+  var button2 = document.getElementsByClassName("sendOfferButton2");
+  $(button2).css("display", "block");
 }
 
 
@@ -89,19 +107,66 @@ function displayPost(uniquePostID, htmlID){
     parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
   });
 }
-
+function setButtnProperty(text, button, colour){
+  console.log(text + " "  + colour + " " +  button);
+  $(button).html(text);
+  $(button).css("background-color", colour);
+}
+// This is the default settings before clicking any tabs
 /* Overriding */
 function available(){};
 function notCurrUserPost(){};
-function swapButton(key){
+function swapButton(key, postedBy){
+  if (currTab == 0){
   deleteButton(key);
+  } else if (currTab == 1){}
+   else if (currTab == 2){
+    acceptButton(key, postedBy);
+  }
 }
+
+function swapButton2(key, postedBy){
+  declineButton(key, postedBy);
+}
+
+function declineButton(key, postedBy){
+  /*
+  firebase.database().ref('posts/' + key).update({
+    "status": "complete"
+  });
+  firebase.database().ref('users/' + currUser + "/offersReceived" + key).update({
+    "status": "Accepted"
+  });
+  firebase.database().ref('users/' + postedBy + "/offersSent" + key).update({
+    "status": "Accepted"
+  });
+  */
+ console.log("decline!");
+}
+
 function deleteButton(key){
   firebase.database().ref("posts/" + key).remove();
   firebase.database().ref("users/" + currUser + "/posts/" + key).remove();
   alert("Your post has been deleted!");
 }
+
+function acceptButton(key, postedBy){
+  /*
+  firebase.database().ref('posts/' + key).update({
+    "status": "complete"
+  });
+  firebase.database().ref('users/' + currUser + "/offersReceived" + key).update({
+    "status": "Accepted"
+  });
+  firebase.database().ref('users/' + postedBy + "/offersSent" + key).update({
+    "status": "Accepted"
+  });
+  */
+ console.log("accept!");
+}
+
+
 function setButtonProperty(text, button){
   button.innerHTML = "Delete";
   $(button).css("background-color", "red");
-}
+} 

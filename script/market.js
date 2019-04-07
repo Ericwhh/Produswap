@@ -62,21 +62,17 @@ function display(type, name){
   });    
 }
 
-
-
-
-
-
 function swapButton(key, postedBy){
   if (currUser != null){
     firebase.database().ref('posts/' + key).update({
-      "status": "pending"
+      "status": "pending",
+      "offerBy": currUser
     });
     var sent = firebase.database().ref('users/' + currUser + "/offersSent/" + key).set({
-      offerSent: true
+      status: "Pending"
     });
     var received = firebase.database().ref('users/' + postedBy + "/offersReceived/" + key).set({
-      offerRececived: true
+      status: "Pending"
     });
     alert("A swap request has been sent to the user!");
   } else {
