@@ -84,21 +84,31 @@ function displayPost(uniquePostID, htmlID){
     var stringify = JSON.stringify(obj);
     var parse = JSON.parse(stringify);
     if (htmlID == "tradeBox"){
-      addPostToTradeBox(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
-      parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
+      if (parse.status != "complete"){
+        console.log(parse.itemName);
+        addPostWithDelete(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
+        parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
+      }
     }
     else if (htmlID == "sentBox"){
-      addPostToSentBox(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
+      addPostWithStatus(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
       parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
     }
     else if (htmlID == "receivedBox"){
-      addPostToReceivedBox(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
-      parse.date, parse.email, parse.offerBy, parse.postedBy, parse.status, parse.imageLocation);
+      console.log(parse.status);
+      if (parse.status == "declined" || parse.status == "complete"){
+        addPostWithStatus(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
+          parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
+        }
+      else {
+        addPostWithAccDec(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
+        parse.date, parse.email, parse.offerBy, parse.postedBy, parse.status, parse.imageLocation);
+      }
     }
   });
 }
 
-function addPostToTradeBox(idToPlaceIn, postID, itemName, category, description,
+function addPostWithDelete(idToPlaceIn, postID, itemName, category, description,
   date, email, postedBy, status, imageURL){
   var topLevel = document.getElementById(idToPlaceIn);  
   var item = document.createElement('div');
@@ -140,7 +150,7 @@ function addPostToTradeBox(idToPlaceIn, postID, itemName, category, description,
   itemPostedOn.innerHTML = date;
 }
 
-function addPostToSentBox(idToPlaceIn, postID, itemName, category, description,
+function addPostWithStatus(idToPlaceIn, postID, itemName, category, description,
   date, email, postedBy, status, imageURL){
   var topLevel = document.getElementById(idToPlaceIn);  
   var item = document.createElement('div');
@@ -181,7 +191,7 @@ function addPostToSentBox(idToPlaceIn, postID, itemName, category, description,
   itemPostedOn.innerHTML = date;
 }
 
-function addPostToReceivedBox(idToPlaceIn, postID, itemName, category, description,
+function addPostWithAccDec(idToPlaceIn, postID, itemName, category, description,
   date, email, offerBy, postedBy, status, imageURL){
   var topLevel = document.getElementById(idToPlaceIn);  
   var item = document.createElement('div');
@@ -215,7 +225,7 @@ function addPostToReceivedBox(idToPlaceIn, postID, itemName, category, descripti
   declineButton.className = "declineButton";
 
   acceptButton.onclick = function(e){
-    acceptButtonFn(postID, postedBy);
+    acceptButtonFn(postID, offerBy);
   };
   declineButton.onclick = function(e){
     declineButtonFn(postID, offerBy);
@@ -239,8 +249,12 @@ function declineButtonFn(key, offerBy){
   firebase.database().ref('posts/' + key).update({
     "status": "available"
   });
-  firebase.database().ref('users/' + currUser + "/offersReceived/" + key).remove();
-  firebase.database().ref('users/' + offerBy + "/offersSent/" + key).remove();
+  firebase.database().ref('users/' + currUser + "/offersReceived/" + key).update({
+    "status": "declined"
+  });
+  firebase.database().ref('users/' + offerBy + "/offersSent/" + key).update({
+    "status": "declined"
+  });
   alert("Declined!");
 }
 
@@ -256,7 +270,7 @@ function deleteButtonFn(key){
   alert("Your post has been deleted!");
 }
 
-function acceptButtonFn(key, postedBy){
+function acceptButtonFn(key, offerBy){
   
   firebase.database().ref('posts/' + key).update({
     "status": "complete"
@@ -264,7 +278,7 @@ function acceptButtonFn(key, postedBy){
   firebase.database().ref('users/' + currUser + "/offersReceived/" + key).update({
     "status": "complete"
   });
-  firebase.database().ref('users/' + postedBy + "/offersSent/" + key).update({
+  firebase.database().ref('users/' + offerBy + "/offersSent/" + key).update({
     "status": "complete"
   });
   
