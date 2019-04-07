@@ -35,15 +35,19 @@ function postedDisplay(){
   var button = document.getElementsByClassName("sendOfferButton");
   var button2 = document.getElementsByClassName("sendOfferButton2");
   $(button2).css("display", "none");
+  $(".statusLabel").css("display", "none");  
 }
 function sentDisplay(){
   $("#tradeBox").css("display", "none");
   $("#sentBox").css("display", "block");
   $("#receivedBox").css("display", "none");  
-  setButtnProperty("PENDING", ".sendOfferButton", "rgba(0,0,0,0)");
+
   var button = document.getElementsByClassName("sendOfferButton");
   var button2 = document.getElementsByClassName("sendOfferButton2");
+  $(button).css("display", "none"); 
   $(button2).css("display", "none");  
+  $(".statusLabel").css("display", "block");  
+ 
 }
 function requestDisplay() {
   $("#tradeBox").css("display", "none");
@@ -54,9 +58,10 @@ function requestDisplay() {
   setButtnProperty("Accept", ".sendOfferButton", "green")
   var button = document.getElementsByClassName("sendOfferButton");
   var button2 = document.getElementsByClassName("sendOfferButton2");
+  $(button).css("display", "block");
   $(button2).css("display", "block");
+  $(".statusLabel").css("display", "none");  
 }
-
 
 //Sign out
 $("#loginButton").click(function(){
@@ -130,7 +135,7 @@ function swapButton2(key, postedBy){
 }
 
 function declineButton(key, postedBy){
-  /*
+  
   firebase.database().ref('posts/' + key).update({
     "status": "complete"
   });
@@ -140,8 +145,6 @@ function declineButton(key, postedBy){
   firebase.database().ref('users/' + postedBy + "/offersSent" + key).update({
     "status": "Accepted"
   });
-  */
- console.log("decline!");
 }
 
 function deleteButton(key){
@@ -151,7 +154,6 @@ function deleteButton(key){
 }
 
 function acceptButton(key, postedBy){
-  /*
   firebase.database().ref('posts/' + key).update({
     "status": "complete"
   });
@@ -161,8 +163,6 @@ function acceptButton(key, postedBy){
   firebase.database().ref('users/' + postedBy + "/offersSent" + key).update({
     "status": "Accepted"
   });
-  */
- console.log("accept!");
 }
 
 

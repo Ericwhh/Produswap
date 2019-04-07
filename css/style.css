@@ -159,6 +159,14 @@ background: #804315;
     line-height: 1.15em;
     margin: 0;
 }
+.statusLabel {
+    float: right;
+    width: 76px;
+    padding: 0px 12px;
+    height: 1.35em;
+    line-height: 1.35em;
+    color: white;
+}
 .sendOfferButton, .sendOfferButton2 {
     float: right;
     width: 76px;

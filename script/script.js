@@ -298,21 +298,24 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   itemPostedOn.className = "itemPostedOn";
   var sendOfferButton = document.createElement('div');
   var sendOfferButton2 = document.createElement('div');
+  var statusLabel = document.createElement('div');
   $(sendOfferButton2).css("display", "none");
+  $(statusLabel).css("display", "none");
   // If the post is posted by the current user, do not display swap button
   notCurrUserPost(postedBy, currUser, sendOfferButton);
   sendOfferButton.className = "sendOfferButton";
   sendOfferButton2.className = "sendOfferButton2";
+  statusLabel.className = "statusLabel";
   i++;
   let toAppendButtonID = "button" + i;
   sendOfferButton.id = toAppendButtonID;
-  console.log(postID, postedBy);
   sendOfferButton.onclick = function(e){
     swapButton(postID, postedBy);
   };
   sendOfferButton2.onclick = function(e){
     swapButton2(postID, postedBy);
   };
+  statusLabel.innerHTML = status.toUpperCase();
   setButtonProperty("Swap", sendOfferButton, "");
    
 
@@ -330,6 +333,7 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   itemText.appendChild(itemHeader);
   itemText.appendChild(sendOfferButton);
   itemText.appendChild(sendOfferButton2);
+  itemText.appendChild(statusLabel);
   itemText.appendChild(itemDescription);
   itemText.appendChild(itemByUser);
   itemText.appendChild(itemPostedOn);
