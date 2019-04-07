@@ -57,12 +57,13 @@ function displayPost(uniquePostID){
 /* Overriding */
 function available(){};
 function notCurrUserPost(){};
-function swapButton(e, key){
-  deleteButton(e, key);
+function swapButton(key){
+  deleteButton(key);
 }
-function deleteButton(e, key){
+function deleteButton(key){
   firebase.database().ref("posts/" + key).remove();
   firebase.database().ref("users/" + currUser + "/posts/" + key).remove();
+  alert("Your post has been deleted!");
 }
 
 function setButtonProperty(text, button){

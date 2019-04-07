@@ -67,7 +67,7 @@ function display(type, name){
 
 
 
-function swapButton(e, key, postedBy){
+function swapButton(key, postedBy){
   if (currUser != null){
     firebase.database().ref('posts/' + key).update({
       "status": "pending"

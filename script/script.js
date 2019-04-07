@@ -303,8 +303,8 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   i++;
   let toAppendButtonID = "button" + i;
   sendOfferButton.id = toAppendButtonID;
-  sendOfferButton.onclick = function(e, postedBy){
-    swapButton(e, postID, postedBy);
+  sendOfferButton.onclick = function(e){
+    swapButton(postID, postedBy);
   };
   setButtonProperty("Swap", sendOfferButton);
    
