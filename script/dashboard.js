@@ -93,7 +93,7 @@ function displayPost(uniquePostID, htmlID){
     }
     else if (htmlID == "receivedBox"){
       addPostToReceivedBox(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
-      parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
+      parse.date, parse.email, parse.offerBy, parse.postedBy, parse.status, parse.imageLocation);
     }
   });
 }
@@ -182,7 +182,7 @@ function addPostToSentBox(idToPlaceIn, postID, itemName, category, description,
 }
 
 function addPostToReceivedBox(idToPlaceIn, postID, itemName, category, description,
-  date, email, postedBy, status, imageURL){
+  date, email, offerBy, postedBy, status, imageURL){
   var topLevel = document.getElementById(idToPlaceIn);  
   var item = document.createElement('div');
   item.className = "item";
@@ -218,7 +218,7 @@ function addPostToReceivedBox(idToPlaceIn, postID, itemName, category, descripti
     acceptButtonFn(postID, postedBy);
   };
   declineButton.onclick = function(e){
-    declineButtonFn(postID);
+    declineButtonFn(postID, offerBy);
   };
 
   itemText.appendChild(itemHeader);
@@ -235,16 +235,12 @@ function addPostToReceivedBox(idToPlaceIn, postID, itemName, category, descripti
   itemPostedOn.innerHTML = date;
 }
 
-function declineButtonFn(key, postedBy){
+function declineButtonFn(key, offerBy){
   firebase.database().ref('posts/' + key).update({
-    "status": "complete"
+    "status": "available"
   });
-  firebase.database().ref('users/' + currUser + "/offersReceived/" + key).update({
-    "status": "Accepted"
-  });
-  firebase.database().ref('users/' + postedBy + "/offersSent/" + key).update({
-    "status": "Accepted"
-  });
+  firebase.database().ref('users/' + currUser + "/offersReceived/" + key).remove();
+  firebase.database().ref('users/' + offerBy + "/offersSent/" + key).remove();
   alert("Declined!");
 }
 
@@ -266,10 +262,10 @@ function acceptButtonFn(key, postedBy){
     "status": "complete"
   });
   firebase.database().ref('users/' + currUser + "/offersReceived/" + key).update({
-    "status": "Accepted"
+    "status": "complete"
   });
   firebase.database().ref('users/' + postedBy + "/offersSent/" + key).update({
-    "status": "Accepted"
+    "status": "complete"
   });
   
   alert("Accepted!");
