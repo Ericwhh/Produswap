@@ -22,6 +22,8 @@ const storage = firebase.storage()
 var postsRef = firebase.database().ref('posts');
 var usersRef = firebase.database().ref('users');
   
+//Store the upload image URL 
+var uploadedImage;
 
 // Depends if user is logged in
 var currUser;
@@ -149,6 +151,7 @@ function underline(clickedId){
 
       // You get your url from here 
         console.log('File available at', downloadURL); 
+        uploadedImage = downloadURL;
 
       // print the image url 
       console.log(downloadURL); 
@@ -156,3 +159,177 @@ function underline(clickedId){
       }); 
     }); 
   };
+
+
+// Formats the date
+function dateF(num, size){
+  var s = num.toString().length;
+  var store = "";
+  while(s < size){
+       s++;
+      store += "0";
+  }
+  var proper = store + num.toString();
+  return proper;
+}
+
+// Submits the post 
+function submitPost(e){
+  e.preventDefault();
+
+  // Get values
+  var currentDate = new Date();
+  var name = getInputVal('produceName');
+  var date = currentDate.getFullYear() + "-" + dateF(currentDate.getMonth() + 1, 2) + "-" + dateF(currentDate.getDate(), 2);
+  var category = $('input[name=radioPostForm]:checked', '#postForm').val();
+  var description = getInputVal('produceDescription');
+  var additional = getInputVal('produceAdditionalInfo');
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // Calls function to save post to Firebase
+      var emailName = user.email;
+      var userID = user.uid;
+      savePost(name, date, category, description, additional, emailName, userID, uploadedImage);
+    }
+  });
+  // Show alert 
+  document.querySelector('.alert').style.display = 'block';
+
+  // Hide alert after 3 sec
+  setTimeout(function(){
+    document.querySelector('.alert').style.display = 'none'; 
+  },3000);
+
+  // Clear form  
+  document.getElementById('newPost').reset();
+}
+
+// Saves post to firebase
+function savePost(name, date, category, description, additional, email, userID, imageURL) {
+  var newPostRef = postsRef.push();
+  var key = newPostRef.key;
+  newPostRef.set({
+    itemName: name,
+    date: date,
+    category: category,
+    description: description,
+    additional: additional,
+    email: email,
+    status: "available",
+    postedBy: userID,
+    imageLocation: imageURL
+  });
+  var newUserRef = firebase.database().ref("users/" + currUser + "/posts/" + key).set({
+    post: key
+  });
+
+  // If submitted post and search filter match up with submitted post, display to listing
+  if ((indexTypeURL == 0 || 
+    indexTypeURL == 1 && category.toLowerCase() == "fruit" || 
+    indexTypeURL == 2 && category.toLowerCase() == "vegetable") &&  
+  (name.toLowerCase().indexOf(indexSearchURL.toLowerCase()) >= 0)) {
+    addPostToPageListing("postList", key, name, category, description, date, email, userID, "available", imageURL);
+  }
+};
+
+// Helper for submitPost function
+// Function to get form values
+function getInputVal(id) {
+  return document.getElementById(id).value;
+}
+
+
+// Displays warning if user is not logged in 
+function warning(){
+  document.querySelector('.warning').style.display = 'block';
+  setTimeout(function(){
+    document.querySelector('.warning').style.display = 'none'; 
+  },3000);
+}
+
+function available(item, status){
+  if (status != "available"){
+    item.style.display = "none";
+  }
+}
+
+function notCurrUserPost(postedBy, currUser, sendOfferButton){
+  if (postedBy == currUser){
+    sendOfferButton.style.display = "none";
+  }
+}
+
+function setButtonProperty(text, button){
+  button.innerHTML = "Swap";
+}
+
+var i = 0;
+// Creates DOM elements for a listing with the parameters as the content
+function addPostToPageListing(idToPlaceIn, postID, itemName, category, description,
+    date, email, postedBy, status, imageURL){
+  var topLevel = document.getElementById(idToPlaceIn);  
+  var item = document.createElement('div');
+  // If the post is not available to be swapped, do not display post
+  available(item, status);
+  item.className = "item";
+  topLevel.appendChild(item);
+  var itemImageWrapper = document.createElement('div');
+  itemImageWrapper.className = "itemImageWrapper";
+  item.appendChild(itemImageWrapper);
+  var itemText = document.createElement('div');
+  itemText.className = "itemText";
+  item.appendChild(itemText);   
+  var itemImage = document.createElement('img');
+  itemImage.className = "itemImage";
+
+  // Stock IMAGE
+  itemImage.src = imageURL;
+  uploadedImage = null;
+  
+  itemImageWrapper.appendChild(itemImage);
+  var itemHeader = document.createElement('h6');
+  itemHeader.className = "itemHeader";
+  var itemDescription = document.createElement('p');
+  itemDescription.className = "itemDescription";
+  var itemByUser = document.createElement('div');
+  itemByUser.className = "itemByUser";
+  var itemPostedOn = document.createElement('div');
+  itemPostedOn.className = "itemPostedOn";
+  var sendOfferButton = document.createElement('div');
+  // If the post is posted by the current user, do not display swap button
+  notCurrUserPost(postedBy, currUser, sendOfferButton);
+  sendOfferButton.className = "sendOfferButton";
+  i++;
+  let toAppendButtonID = "button" + i;
+  sendOfferButton.id = toAppendButtonID;
+  sendOfferButton.onclick = function(e, postedBy){
+    swapButton(e, postID, postedBy);
+  };
+  setButtonProperty("Swap", sendOfferButton);
+   
+
+
+  // Gets user's name
+  var currentName;
+  var currentNameRef = firebase.database().ref("users/" + postedBy + "/name");
+  var namePromise = currentNameRef.once("value", function(snapshot){
+    currentName = snapshot.val();
+  });
+  namePromise.then(function(){
+    itemByUser.innerHTML = currentName;
+  });
+
+  itemText.appendChild(itemHeader);
+  itemText.appendChild(sendOfferButton);
+  itemText.appendChild(itemDescription);
+  itemText.appendChild(itemByUser);
+  itemText.appendChild(itemPostedOn);
+  
+  // TEXT
+  itemHeader.innerHTML = itemName;
+  itemDescription.innerHTML = description;
+  itemPostedOn.innerHTML = date;
+
+}
+

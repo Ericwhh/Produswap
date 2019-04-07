@@ -63,8 +63,6 @@
   align-items: space-between;
 }
 .wrapper .item {
-  width: 49%;
-  height: 150px;
   margin: 0.5%;
   background: #ddd;
   transition: width 0.2s ease;
@@ -76,8 +74,8 @@
   flex-direction: row;
 }
 .grid .item {
-  width: 48%;
-  height: 340px;
+  width: 45%;
+  height: 320px;
 
 }
 .listView {
@@ -86,7 +84,7 @@
 }
 .list .item {
   width: 99%;
-  height: 150px;
+  height: 130px;
 }
 
 
@@ -158,87 +156,7 @@
 
 
 
-/* Layout for a listing */
 
-.itemImage {
-    height: 100%;
-    width: 100%;
-}
-.itemImageWrapper {
-    height: calc(150px - 28px);
-    width: calc(150px - 28px);
-    display: inline-block;
-    background-color: white;
-    text-align: center;
-    clip-path: inset(0 0 0 0);
-    border: 2px solid #4CAF50; 
-}
-
-.itemHeader {
-    display: block;
-    font-size: 18pt;
-    margin: 0;
-    float: left;
-    width: calc(100% - 100px);
-    overflow: hidden;
-    line-height: 1.35em;
-    height: 1.35em;
-}
-.itemDescription {
-    display: block;
-    float: left;
-    width: 100%;
-    height: 3.45em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.15em;
-    margin: 0;
-}
-.sendOfferButton {
-    float: right;
-    width: 76px;
-    padding: 0px 12px;
-    height: 1.35em;
-    background-color: #4CAF50;
-    line-height: 1.35em;
-    border-radius: 5px;
-    box-shadow: 5px 2px #608C28;  
-    cursor: pointer;
-    color: white;
-}
-.sendOfferButton:hover {
-    opacity: 0.9;
-}
-
-.item {
-    color: black;
-}
-
-.itemText {
-    float: right;
-    width: calc(100% - 150px + 24px - 12px);
-    font-size: 16pt;
-}
-
-.itemPadding {
-    height: calc(100% - 24px);
-    width: calc(100% - 24px);  
-    margin: 12px;
-}
-
-.itemByUser {
-    float: left;
-    font-size: 12pt;
-    color: rgb(112, 112, 112);
-    font-style: italic;
-}
-
-.itemPostedOn {
-    float: right;
-    font-size: 12pt;
-    color: rgb(112, 112, 112);
-    font-style: italic;
-}
 /*-Pop-Up Form (Post)------------------------------------------------------------------*/
 
 #postForm input[type=text], #postForm textarea {
