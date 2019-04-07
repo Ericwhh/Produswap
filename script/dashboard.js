@@ -65,7 +65,7 @@ function deleteButton(key){
   firebase.database().ref("users/" + currUser + "/posts/" + key).remove();
   alert("Your post has been deleted!");
 }
-
 function setButtonProperty(text, button){
   button.innerHTML = "Delete";
+  $(button).css("background-color", "red");
 }

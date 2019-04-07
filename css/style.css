@@ -167,12 +167,11 @@ background: #804315;
     background-color: #4CAF50;
     line-height: 1.35em;
     border-radius: 5px;
-    box-shadow: 5px 2px #608C28;  
     cursor: pointer;
     color: white;
 }
 .sendOfferButton:hover {
-    opacity: 0.9;
+    opacity: 0.5;
 }
 
 .item {
