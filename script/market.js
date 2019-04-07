@@ -46,6 +46,7 @@ function displayPost(uniquePostID, type, name){
       type == 1 && parse.category == "Fruit" || 
       type == 2 && parse.category == "Vegetable") &&  
     (parse.itemName.toUpperCase().indexOf(name.toUpperCase()) >= 0)){
+
       addPostToPageListing("postList", uniquePostID, parse.itemName, parse.category, parse.description,
         parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
     }

@@ -85,7 +85,6 @@ function displayPost(uniquePostID, htmlID){
     var parse = JSON.parse(stringify);
     if (htmlID == "tradeBox"){
       if (parse.status != "complete"){
-        console.log(parse.itemName);
         addPostWithDelete(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
         parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
       }
@@ -95,15 +94,17 @@ function displayPost(uniquePostID, htmlID){
       parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
     }
     else if (htmlID == "receivedBox"){
-      console.log(parse.status);
-      if (parse.status == "declined" || parse.status == "complete"){
-        addPostWithStatus(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
-          parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
-        }
-      else {
-        addPostWithAccDec(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
-        parse.date, parse.email, parse.offerBy, parse.postedBy, parse.status, parse.imageLocation);
-      }
+      var statusRef = firebase.database().ref("users/" + parse.postedBy + "/offersReceived/" + snapshot.key);
+      statusRef.once('value', function(childSnapshot){
+        if (childSnapshot.val().status == "declined" || childSnapshot.val().status == "complete"){
+          addPostWithStatus(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
+            parse.date, parse.email, parse.postedBy, childSnapshot.val().status, parse.imageLocation);
+          }
+        else {
+          addPostWithAccDec(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
+          parse.date, parse.email, parse.offerBy, parse.postedBy, parse.status, parse.imageLocation);
+        }      
+      });
     }
   });
 }

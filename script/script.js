@@ -248,11 +248,6 @@ function warning(){
   },3000);
 }
 
-function available(item, status){
-  if (status != "available"){
-    item.style.display = "none";
-  }
-}
 
 function notCurrUserPost(postedBy, currUser, sendOfferButton){
   if (postedBy == currUser){
@@ -260,9 +255,7 @@ function notCurrUserPost(postedBy, currUser, sendOfferButton){
   }
 }
 
-function setButtonProperty(text, button, colour){
-  button.innerHTML = text;
-}
+
 
 var i = 0;
 // Creates DOM elements for a listing with the parameters as the content
@@ -271,7 +264,9 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   var topLevel = document.getElementById(idToPlaceIn);  
   var item = document.createElement('div');
   // If the post is not available to be swapped, do not display post
-  available(item, status);
+  if (status != "available"){
+    item.style.display = "none";
+  }
   item.className = "item";
   topLevel.appendChild(item);
   var itemImageWrapper = document.createElement('div');
@@ -297,20 +292,16 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   var itemPostedOn = document.createElement('div');
   itemPostedOn.className = "itemPostedOn";
   var sendOfferButton = document.createElement('div');
-  var statusLabel = document.createElement('div');
-  $(statusLabel).css("display", "none");
   // If the post is posted by the current user, do not display swap button
   notCurrUserPost(postedBy, currUser, sendOfferButton);
   sendOfferButton.className = "sendOfferButton";
-  statusLabel.className = "statusLabel";
   i++;
   let toAppendButtonID = "button" + i;
   sendOfferButton.id = toAppendButtonID;
   sendOfferButton.onclick = function(e){
     swapButton(postID, postedBy);
   };
-  statusLabel.innerHTML = status.toUpperCase();
-  setButtonProperty("Swap", sendOfferButton, "");
+  sendOfferButton.innerHTML = "Swap";
    
 
 
@@ -326,7 +317,6 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
 
   itemText.appendChild(itemHeader);
   itemText.appendChild(sendOfferButton);
-  itemText.appendChild(statusLabel);
   itemText.appendChild(itemDescription);
   itemText.appendChild(itemByUser);
   itemText.appendChild(itemPostedOn);
