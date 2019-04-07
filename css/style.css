@@ -167,7 +167,7 @@ background: #804315;
     line-height: 1.35em;
     color: white;
 }
-.sendOfferButton, .sendOfferButton2 {
+.sendOfferButton, .sendOfferButton2, .deleteButton {
     float: right;
     width: 76px;
     padding: 0px 12px;

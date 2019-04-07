@@ -70,4 +70,27 @@
     background: #ddd;
     transition: width 0.2s ease;
     box-shadow: inset 0px 0px 0px 5px #608C28;
-  }
+}
+
+.deleteButton, .declineButton, .acceptButton {
+    float: right;
+    width: 76px;
+    padding: 0px 12px;
+    height: 1.35em;
+    line-height: 1.35em;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white; 
+}
+.deleteButton, .declineButton {
+    background-color: rgb(170, 0, 0);
+}
+
+.acceptButton {
+    background-color: #4CAF50;   
+}
+
+.statusLabel {
+    color: rgb(70, 70, 70);
+}
+
