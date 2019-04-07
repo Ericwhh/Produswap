@@ -90,8 +90,11 @@ function displayPost(uniquePostID, htmlID){
       }
     }
     else if (htmlID == "sentBox"){
-      addPostWithStatus(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
-      parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
+      var statusRef = firebase.database().ref("users/" + parse.postedBy + "/offersReceived/" + snapshot.key);
+      statusRef.once('value', function(childSnapshot){
+        addPostWithStatus(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
+          parse.date, parse.email, parse.postedBy, childSnapshot.val().status, parse.imageLocation);
+      });
     }
     else if (htmlID == "receivedBox"){
       var statusRef = firebase.database().ref("users/" + parse.postedBy + "/offersReceived/" + snapshot.key);
