@@ -41,8 +41,6 @@ function displayPost(uniquePostID, type, name){
     var obj = snapshot.val();
     var stringify = JSON.stringify(obj);
     var parse = JSON.parse(stringify);
-    console.log(itemName.toUpperCase());
-    console.log(name.toUpperCase());
     if ((type == 0 || 
       type == 1 && parse.category == "Fruit" || 
       type == 2 && parse.category == "Vegetable") &&  
@@ -66,21 +64,34 @@ function display(type, name){
 
 
 function swapButton(key, postedBy){
+
+
   if (currUser != null){
-    firebase.database().ref('posts/' + key).update({
-      "status": "pending",
-      "offerBy": currUser
+    var statusRef = firebase.database().ref('posts/' + key + "/status");
+    statusRef.once("value", function(snapshot){
+      currStatus = snapshot.val();
+      console.log(currStatus);
+      if (currStatus == "available"){
+        firebase.database().ref('posts/' + key).update({
+          "status": "pending",
+          "offerBy": currUser
+        });
+        var sent = firebase.database().ref('users/' + currUser + "/offersSent/" + key).set({
+          status: "Pending"
+        });
+        var received = firebase.database().ref('users/' + postedBy + "/offersReceived/" + key).set({
+          status: "Pending"
+        });
+        alert("A swap request has been sent to the user!");
+      }
+      else {
+        alert("Not available");
+      }
     });
-    var sent = firebase.database().ref('users/' + currUser + "/offersSent/" + key).set({
-      status: "Pending"
-    });
-    var received = firebase.database().ref('users/' + postedBy + "/offersReceived/" + key).set({
-      status: "Pending"
-    });
-    alert("A swap request has been sent to the user!");
   } else {
     warning();
   }
+  
 }
 
 // Creates DOM elements for a listing with the parameters as the content

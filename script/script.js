@@ -22,7 +22,7 @@ const storage = firebase.storage()
 var postsRef = firebase.database().ref('posts');
 var usersRef = firebase.database().ref('users');
   
-//Store the upload image URL 
+//Store the uuploadedImagepload image URL 
 var uploadedImage;
 
 // Depends if user is logged in
