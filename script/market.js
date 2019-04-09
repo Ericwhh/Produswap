@@ -120,6 +120,8 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   // If the post is posted by the current user, do not display swap button
   notCurrUserPost(postedBy, currUser, sendOfferButton);
   sendOfferButton.className = "sendOfferButton";
+  
+  let toAppendButtonID = "button" 
   sendOfferButton.onclick = function(e){
     swapButton(postID, postedBy);
   };
