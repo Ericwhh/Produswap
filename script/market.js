@@ -41,7 +41,8 @@ function displayPost(uniquePostID, type, name){
     var obj = snapshot.val();
     var stringify = JSON.stringify(obj);
     var parse = JSON.parse(stringify);
-
+    console.log(itemName.toUpperCase());
+    console.log(name.toUpperCase());
     if ((type == 0 || 
       type == 1 && parse.category == "Fruit" || 
       type == 2 && parse.category == "Vegetable") &&  
@@ -119,9 +120,6 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   // If the post is posted by the current user, do not display swap button
   notCurrUserPost(postedBy, currUser, sendOfferButton);
   sendOfferButton.className = "sendOfferButton";
-  i++;
-  let toAppendButtonID = "button" + i;
-  sendOfferButton.id = toAppendButtonID;
   sendOfferButton.onclick = function(e){
     swapButton(postID, postedBy);
   };

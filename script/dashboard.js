@@ -98,6 +98,7 @@ function displayPost(uniquePostID, htmlID){
     }
     else if (htmlID == "receivedBox"){
       var statusRef = firebase.database().ref("users/" + parse.postedBy + "/offersReceived/" + snapshot.key);
+      var statusRef = firebase.database().ref("users/" + parse.postedBy + "/offersReceived/" + snapshot.key);
       statusRef.once('value', function(childSnapshot){
         if (childSnapshot.val().status == "declined" || childSnapshot.val().status == "complete"){
           addPostWithStatus(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
