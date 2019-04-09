@@ -97,18 +97,23 @@ function displayPost(uniquePostID, htmlID){
       });
     }
     else if (htmlID == "receivedBox"){
-      var statusRef = firebase.database().ref("users/" + parse.postedBy + "/offersReceived/" + snapshot.key);
-      var statusRef = firebase.database().ref("users/" + parse.postedBy + "/offersReceived/" + snapshot.key);
-      statusRef.once('value', function(childSnapshot){
-        if (childSnapshot.val().status == "declined" || childSnapshot.val().status == "complete"){
-          addPostWithStatus(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
-            parse.date, parse.email, parse.postedBy, childSnapshot.val().status, parse.imageLocation);
-          }
-        else {
-          addPostWithAccDec(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
-          parse.date, parse.email, parse.offerBy, parse.postedBy, parse.status, parse.imageLocation);
-        }      
+      var emailRef = firebase.database().ref("users/" + parse.offerBy + "/email");
+      var promise = emailRef.once('value', function(childSnapshot){
+        email = childSnapshot.val();
       });
+      promise.then(function(){
+        var statusRef = firebase.database().ref("users/" + parse.postedBy + "/offersReceived/" + snapshot.key);
+        statusRef.once('value', function(childSnapshot){
+          if (childSnapshot.val().status == "declined" || childSnapshot.val().status == "complete"){
+            addPostWithStatus(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
+              parse.date, email, parse.postedBy, childSnapshot.val().status, parse.imageLocation);
+            }
+          else {
+            addPostWithAccDec(htmlID, snapshot.key, parse.itemName, parse.category, parse.description,
+            parse.date, email, parse.offerBy, parse.postedBy, parse.status, parse.imageLocation);
+          }      
+        });
+      })
     }
   });
 }
@@ -276,7 +281,6 @@ function deleteButtonFn(key){
 }
 
 function acceptButtonFn(key, offerBy){
-  
   firebase.database().ref('posts/' + key).update({
     "status": "complete"
   });
@@ -286,6 +290,5 @@ function acceptButtonFn(key, offerBy){
   firebase.database().ref('users/' + offerBy + "/offersSent/" + key).update({
     "status": "complete"
   });
-  
   alert("Accepted!");
 }
