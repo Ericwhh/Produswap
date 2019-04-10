@@ -231,7 +231,7 @@ function addPostWithAccDec(idToPlaceIn, postID, itemName, category, description,
     acceptButtonFn(postID, offerBy);
   };
   declineButton.onclick = function(e){
-    declineButtonFn(postID, offerBy);
+    declineButtonFn(postID, offerBy, item);
   };
 
   itemText.appendChild(itemHeader);
@@ -248,7 +248,15 @@ function addPostWithAccDec(idToPlaceIn, postID, itemName, category, description,
   itemPostedOn.innerHTML = date;
 }
 
-function declineButtonFn(key, offerBy){
+// Used when click Accept or Decline. Changes buttons to the status parameter.
+function changeToStatus(element, status){
+  $(element).children().eq(1).children().eq(1).remove();
+  $(element).children().eq(1).children().eq(1).remove();
+  $(element).children().eq(1).children().eq(0).after('<div class="statusLabel">' + status + '</div>');
+  console.log(status);
+}
+
+function declineButtonFn(key, offerBy, element){
   firebase.database().ref('posts/' + key).update({
     "status": "available"
   });
@@ -258,7 +266,7 @@ function declineButtonFn(key, offerBy){
   firebase.database().ref('users/' + offerBy + "/offersSent/" + key).update({
     "status": "declined"
   });
-  alert("Declined!");
+  changeToStatus(element, "DECLINED");
 }
 
 function deleteButtonFn(key, element){
@@ -271,7 +279,6 @@ function deleteButtonFn(key, element){
     });
     $(element).remove();
   });
-  alert("Your post has been deleted!");
 }
 
 function acceptButtonFn(key, offerBy){
@@ -286,3 +293,4 @@ function acceptButtonFn(key, offerBy){
   });
   alert("Accepted!");
 }
+
