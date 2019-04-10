@@ -62,7 +62,7 @@ function display(type, name){
 }
 
 
-function swapButton(key, postedBy){
+function swapButton(key, postedBy, element){
 
 
   if (currUser != null){
@@ -81,6 +81,7 @@ function swapButton(key, postedBy){
         var received = firebase.database().ref('users/' + postedBy + "/offersReceived/" + key).set({
           status: "Pending"
         });
+        $(element).remove();
         alert("A swap request has been sent to the user!");
       }
       else {
@@ -129,7 +130,7 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   
   let toAppendButtonID = "button" 
   sendOfferButton.onclick = function(e){
-    swapButton(postID, postedBy);
+    swapButton(postID, postedBy, item);
   };
   sendOfferButton.innerHTML = "Swap";
    
