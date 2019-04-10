@@ -105,11 +105,15 @@
               <img src="images/search.png" id="searchIcon">
             </button>
             <div id="locationContainer">
-                <input type="checkbox" name="richLocation" value="Richmond"> Richmond<br>
-                <input type="checkbox" class="downLocation" value="Downtown Vancouver"> Downtown Vancouver<br>
-                <input type="checkbox" class="northLocation" value="North Vancouver"> North Vancouver<br>
-                <input type="checkbox" class="eastLocation" value="East Vancouver"> East Vancouver<br>
-                <input type="checkbox" class="westLocation" value="West Vancouver"> West Vancouver
+                <select id="selectMenu" name="type">
+                <option value="0" id="allSelect">Richmond</option>
+                <option value="1" id="fruitSelect">Downtown Vancouver</option>
+                <option value="2" id="vegetableSelect">North Vancouver</option>
+                <option value="3" id="allSelect">East Vancouver</option>
+                <option value="4" id="fruitSelect">West Vancouver</option>
+                <option value="5" id="vegetableSelect">Burnaby</option>
+                </select>
+                
             </div>
           </div>
         </form>

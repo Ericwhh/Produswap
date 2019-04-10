@@ -12,6 +12,7 @@
   left: 470px;
   padding: 1rem;
   float: left;
+  margin-left: 50px;
 }
 .buttons .listView {
   width: 25px;
@@ -51,22 +52,19 @@
 }
 
 .wrapper {
-  background-image: url("../images/woodenboard.jpg");
   background-size: 20% auto;
-  width: calc(100% - 100px);
+  width: 95%;
   padding: 1.5rem;
   margin: 0 auto;
-  box-shadow: 0px 20px 40px -20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: space-between;
 }
 .wrapper .item {
   margin: 0px;
   background: #ddd;
   transition: width 0.2s ease;
-  box-shadow: inset 0px 0px 0px 5px #608C28;
+  box-shadow: 0px 0px lightgrey;
+  margin-bottom: 10px;
 }
 
 .gridView {
@@ -92,7 +90,6 @@
 
 #searchAndFilterContainer {
     position: relative;
-    background-image: url("../images/woodenboard.jpg");
     background-size: auto 100%;
     float: left;
     height: 100px;
@@ -104,23 +101,27 @@
     margin-top: 33px;
     width: 65%;
     margin-left: 5%;
+    display: flex;
 }
 #searchBar {
-    margin-left: 0px;
+    margin-left: 10px;
     width: 65%;
     height: 30px;
     font-size: 13pt;
     outline: none;
-    border: 3px solid #79A83C;
+    border: 1px solid #79A83C;
     float: left;
+    
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 #searchButton {
     cursor: pointer;
     background-color: #79A83C;
-    border: 3px solid #79A83C;
+    border: 0px solid #79A83C;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    height: 38px;
+    height: 34px;
     outline: none;
     width: 40px;
     float: left;
@@ -131,152 +132,24 @@
     height: 22px;
 }
 #searchBar[type=text]{
-    padding-left: 10px;
+    padding-left: 20px;
 }
 
 
 #selectMenu {
-    border: 3px solid #79A83C;
-    border-radius: 5px 0px 0px 5px;
-    height: 38px;
+    border: 1px solid #79A83C;
+    height: 35px;
     font-size: 13pt;
-    border-right: 0px;
     float: left;
 }
-
 #locationContainer {
-    margin-top: 15px;
-    margin-right: 5%;
-    width: 20%;
+    display: inline;
     float: right;
-    text-align: center;
+    color: black;
 }
 
-
-
-
-
-
-/*-Pop-Up Form (Post)------------------------------------------------------------------*/
-
-#postForm input[type=text], #postForm textarea {
-    font-family: 'Titillium Web', sans-serif;
-}
-#postForm textarea {
-    resize: none;
-}
-.alert {
-  text-align: center;
-  padding:10px;
-  background: green;
-  color: #fff;
-  margin-bottom: 10px;
-  display: none;
-
-}
-.warning {
-    text-align: center;
-    padding:10px;
-    color: #fff;
-    margin-bottom: 10px;
-    display: none;
-    background: red;
-}
-
-#postForm {
-    font-size: 13pt;
-    display: none;
-    position: fixed;
-    width: 800px;
-    height: 70%;
-    background-image: url("../images/woodenboard.jpg");
-    background-size: 20% auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    padding: 20px 20px 60px 20px;
-    overflow: auto;
-    z-index: 2;
-}
-.radioPostForm {
-    height: 13px;
-    width: 13px;
-}
-
-#radioPostFormWrapper {
-    float: right;
-}
-
-#postForm label {
-    float: left;
-}
-#postForm {
-    font-size: 12pt;
-}
-#produceName {
-    padding: 4px 8px;
-    font-size: 12pt;
-    border-radius: 4px;
-    width: calc(100% - 22px);
-    height: 20px;
-    display: block;
-    float: left;
-    margin-bottom: 12px;
-}
-#produceDescription {
-    font-size: 12pt;
-    padding: 4px 8px;
-    border-radius: 4px;
-    width: calc(100% - 22px);
-    display: block;
-}
-#produceAdditionalInfo {
-    padding: 4px 8px;
-    font-size: 12pt;
-    border-radius: 4px;
-    width: calc(100% - 22px);
-    display: block;
-}
-
-#postFormTitle {
-    font-size: 24pt;
-}
-
-#formSubmit {
-    border: 2px solid rgb(168, 168, 168);
-    box-shadow: 0px;
-    padding: 14px 24px;
-    margin: auto 2%;
-    font-size: 13pt;
-    width: 30%;
-    border-radius: 4px;
-    margin-top: 24px;
-}
-
-#formSubmit:hover {
-    opacity: 0.9;
-    cursor: pointer;
-}
-
-#uploadWrapper {
-    float: right;
-    width: 180px;
-    height: calc(220px - 8px);
-    border: 4px solid rgb(168, 168, 168);
-    background-color: white;
-    border-radius: 4px;
-}
-
-#postFormInnerWrapper {
-    width: calc(80% - 48px);
-    float: left;
-    height: 260px;
-}
-
-#additionalInfoWrapper {
-    float: left;
-    width: 100%;
+#locationWrapper {
+    display: flex;
 }
 
 #firebasetest {
@@ -290,25 +163,8 @@
     transform: translate(-50%,-50%);
     text-align: center;
     border-radius: 10px;
-    border: 10px solid green;
+    border: 3px solid green;
     box-shadow: 0px 1px 5000px black;
     z-index: 3;
 }
-#cover2 {
-    position:fixed;
-    top:0;
-    left:0;
-    background:rgba(0,0,0,0.6);
-    width:100%;
-    height:100%;
-    display:none;
-}
-#cover {
-    position:fixed;
-    top:0;
-    left:0;
-    background:rgba(0,0,0,0.6);
-    width:100%;
-    height:100%;
-    display:none;
-}
+
