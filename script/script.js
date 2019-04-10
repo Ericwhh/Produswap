@@ -183,14 +183,14 @@ function submitPost(e){
   var date = currentDate.getFullYear() + "-" + dateF(currentDate.getMonth() + 1, 2) + "-" + dateF(currentDate.getDate(), 2);
   var category = $('input[name=radioPostForm]:checked', '#postForm').val();
   var description = getInputVal('produceDescription');
-  var additional = getInputVal('produceAdditionalInfo');
+  var location = getInputVal('locationMenu');
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // Calls function to save post to Firebase
       var emailName = user.email;
       var userID = user.uid;
-      savePost(name, date, category, description, additional, emailName, userID, uploadedImage);
+      savePost(name, date, category, description, location, emailName, userID, uploadedImage);
     }
   });
   // Show alert 
@@ -206,7 +206,7 @@ function submitPost(e){
 }
 
 // Saves post to firebase
-function savePost(name, date, category, description, additional, email, userID, imageURL) {
+function savePost(name, date, category, description, location, email, userID, imageURL) {
   var newPostRef = postsRef.push();
   var key = newPostRef.key;
   newPostRef.set({
@@ -214,7 +214,7 @@ function savePost(name, date, category, description, additional, email, userID, 
     date: date,
     category: category,
     description: description,
-    additional: additional,
+    location: location,
     email: email,
     status: "available",
     postedBy: userID,
@@ -229,7 +229,7 @@ function savePost(name, date, category, description, additional, email, userID, 
     indexTypeURL == 1 && category.toLowerCase() == "fruit" || 
     indexTypeURL == 2 && category.toLowerCase() == "vegetable") &&  
   (name.toLowerCase().indexOf(indexSearchURL.toLowerCase()) >= 0)) {
-    addPostToPageListing("postList", key, name, category, description, date, email, userID, "available", imageURL);
+    addPostToPageListing("postList", key, name, category, description, date, email, userID, "available", imageURL, location);
   }
 };
 

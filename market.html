@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Market</title>
+  
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/market.css">
@@ -42,9 +43,14 @@
         value="" onchange="getfile()"><br><br> 
       </div> 
 
-      <div id="additionalInfoWrapper">
-        <label>Additional Info:</label>
-        <textarea name="additionalInfo" rows="5" maxlength="250" placeholder="Any additional information you would like others to know?" id="produceAdditionalInfo"></textarea>
+      <div id="locationWrapper">
+        <select id="locationMenu" name="type" required>
+                <option value="Richmond" id="richmondSelect">Richmond</option>
+                <option value="North Vancouver" id="nvSelect">North Vancouver</option>
+                <option value="Downtown Vancouver" id="downtownSelect">Downtown Vancouver</option>
+                <option value="West Vancouver" id="wvSelect">West Vancouver</option>
+                <option value="East Vancouver" id="evSelect">East Vancouver</option>
+            </select>
       </div>
 
       <div>
@@ -87,9 +93,6 @@
 
     <div id="main">
       <div id="searchAndFilterContainer">
-        <div id="locationContainer">
-
-        </div>
         <form method="get">
           <div id="searchContainer">
             <select id="selectMenu" name="type">
@@ -101,6 +104,13 @@
             <button type="submit" id="searchButton">
               <img src="images/search.png" id="searchIcon">
             </button>
+            <div id="locationContainer">
+                <input type="radio" name="gender" value="Richmond"> Richmond<br>
+                <input type="radio" name="gender" value="Downtown Vancouve"> Downtown Vancouver<br>
+                <input type="radio" name="gender" value="North Vancouver"> North Vancouver<br>
+                <input type="radio" name="gender" value="East Vancouver"> East Vancouver<br>
+                <input type="radio" name="gender" value="West Vancouver"> West Vancouver
+            </div>
           </div>
         </form>
       </div>
@@ -117,14 +127,15 @@
 
         <div id="firebasetest"></div>
         <div id="cover"></div>
-        <div id="cover2"></div>    
+        <div id="cover2"></div>
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
         <script src="script/script.js"></script>
         <script src="script/market.js"></script>
-        <script type="text/javascript">
-        </script>
+        <script type="text/javascript"></script>
+        
       </div>
 
     </body>
