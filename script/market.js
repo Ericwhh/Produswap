@@ -246,4 +246,3 @@ privacyPolicyUrl: 'market.html'
 };
 ui.start('#firebasetest', uiConfig);  
 
-
