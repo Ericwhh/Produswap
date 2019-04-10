@@ -23,7 +23,7 @@
       <div id="postFormInnerWrapper">
         <div id="produceNameWrapper">
           <label>Produce Name:</label>
-          <input type="text" name="name" id="produceName" required="required" placeholder="Choose a descriptive name for your produce.">
+          <input type="text" name="name" id="produceName" placeholder="Choose a descriptive name for your produce." autofocus required>
         </div>
 
         <div id="radioPostFormWrapper">
@@ -45,11 +45,11 @@
 
       <div id="locationWrapper">
         <select id="locationMenu" name="type" required>
-                <option value="Richmond" id="richmondSelect">Richmond</option>
-                <option value="North Vancouver" id="nvSelect">North Vancouver</option>
-                <option value="Downtown Vancouver" id="downtownSelect">Downtown Vancouver</option>
-                <option value="West Vancouver" id="wvSelect">West Vancouver</option>
-                <option value="East Vancouver" id="evSelect">East Vancouver</option>
+                <option value="richmond" id="richmondSelect">Richmond</option>
+                <option value="northvan" id="nvSelect">North Vancouver</option>
+                <option value="downvan" id="downtownSelect">Downtown Vancouver</option>
+                <option value="westvan" id="wvSelect">West Vancouver</option>
+                <option value="eastvan" id="evSelect">East Vancouver</option>
             </select>
       </div>
 
@@ -105,11 +105,11 @@
               <img src="images/search.png" id="searchIcon">
             </button>
             <div id="locationContainer">
-                <input type="checkbox" name="richLocation" value="Richmond"> Richmond<br>
-                <input type="checkbox" class="downLocation" value="Downtown Vancouver"> Downtown Vancouver<br>
-                <input type="checkbox" class="northLocation" value="North Vancouver"> North Vancouver<br>
-                <input type="checkbox" class="eastLocation" value="East Vancouver"> East Vancouver<br>
-                <input type="checkbox" class="westLocation" value="West Vancouver"> West Vancouver
+                <input type="checkbox" id="richLocation" value="Richmond"> Richmond<br>
+                <input type="checkbox" id="downLocation" value="Downtown Vancouver"> Downtown Vancouver<br>
+                <input type="checkbox" id="northLocation" value="North Vancouver"> North Vancouver<br>
+                <input type="checkbox" id="eastLocation" value="East Vancouver"> East Vancouver<br>
+                <input type="checkbox" id="westLocation" value="West Vancouver"> West Vancouver
             </div>
           </div>
         </form>
