@@ -29,6 +29,7 @@ function rememberFilter(tagID, toRemember){
   }
 }
 
+
 var list;
 postsRef.once("value", function(snapshot){
   list=snapshot.val();
@@ -245,4 +246,7 @@ tosUrl: 'market.html',
 privacyPolicyUrl: 'market.html'
 };
 ui.start('#firebasetest', uiConfig);  
+
+
+
 

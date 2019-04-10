@@ -19,6 +19,7 @@ $("#tabReceived").click(function(e){
   requestDisplay();
 });
 
+document.getElementById('postForm').addEventListener('submit', submitPost);
 
 // Sets which tab to display
 function postedDisplay(){
@@ -37,15 +38,7 @@ function requestDisplay() {
   $("#receivedBox").css("display", "block");
 }
 
-//Sign out
-$("#loginButton").click(function(){
-    firebase.auth().signOut().then(function() {
-        location.replace("market.html");
-        console.log('Signed Out');
-    }, function(error) {
-        console.error('Sign Out Error', error);
-    });
-});
+
 
 var currUser;
 // Gets the posts that belong to the current user

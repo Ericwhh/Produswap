@@ -14,6 +14,49 @@
     </style>
 </head>
 <body>
+    <div id="postForm">
+    <h1 id="postFormTitle">Listing Details</h1>
+    <div class="alert">Your post has been submitted</div>
+    <form id="newPost">
+      <div id="postFormInnerWrapper">
+        <div id="produceNameWrapper">
+          <label>Produce Name:</label>
+          <input type="text" name="name" id="produceName" required="required" placeholder="Choose a descriptive name for your produce.">
+        </div>
+
+        <div id="radioPostFormWrapper">
+          <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
+          <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
+        </div>
+        <div>
+          <label>Produce Description:</label>
+          <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
+        </div>
+      </div>
+
+      <div id="uploadWrapper"></div>
+      <div>
+        <progress value="0" id="uploader" max="100">0%</progress>
+        <input id="photo"class="file"type="file" name="mainimage"
+        value="" onchange="getfile()"><br><br> 
+      </div> 
+
+      <div id="locationWrapper">
+        <select id="locationMenu" name="type" required>
+                <option value="Richmond" id="richmondSelect">Richmond</option>
+                <option value="North Vancouver" id="nvSelect">North Vancouver</option>
+                <option value="Downtown Vancouver" id="downtownSelect">Downtown Vancouver</option>
+                <option value="West Vancouver" id="wvSelect">West Vancouver</option>
+                <option value="East Vancouver" id="evSelect">East Vancouver</option>
+            </select>
+      </div>
+
+      <div>
+        <button type="submit" id="formSubmit" name="button">Submit</button>
+      </div>
+
+    </form>
+  </div>
         <div id="backgroundImage"></div>
         <nav id="navBar">
         <a href="market.html" class="homeButtonText">
@@ -64,6 +107,7 @@
         </div>
         
     </div>
+    <div id="cover2"></div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
