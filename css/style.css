@@ -43,7 +43,6 @@ body {
     margin: calc(24px - 6pt) 34px auto 0px;
     padding: 0px;
     font-weight: bold;
-    pointer-events: none;
     
 }
 /* Removes hyperlink color for menu buttons and turns to white. */
@@ -203,4 +202,12 @@ background: #804315;
     font-size: 12pt;
     color: rgb(112, 112, 112);
     font-style: italic;
+}
+
+.homeButtonText {
+   color: white; 
+}
+
+.homeButton:hover {
+    cursor: pointer;
 }
