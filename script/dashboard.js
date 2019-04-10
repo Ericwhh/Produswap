@@ -148,7 +148,7 @@ function addPostWithDelete(idToPlaceIn, postID, itemName, category, description,
   var deleteButton = document.createElement('div');
   deleteButton.className = "deleteButton";
   deleteButton.onclick = function(e){
-    deleteButtonFn(postID);
+    deleteButtonFn(postID, item);
   };
   itemText.appendChild(itemHeader);
   itemText.appendChild(deleteButton);
@@ -268,7 +268,7 @@ function declineButtonFn(key, offerBy){
   alert("Declined!");
 }
 
-function deleteButtonFn(key){
+function deleteButtonFn(key, element){
   firebase.database().ref("posts/" + key).remove();
   firebase.database().ref("users/" + currUser + "/posts/" + key).remove();
   usersRef.once("value", function(snapshot){
@@ -276,6 +276,7 @@ function deleteButtonFn(key){
       firebase.database().ref("users/" + childSnapshot.key + "/offersSent/" + key).remove();
       firebase.database().ref("users/" + childSnapshot.key + "/offersReceived/" + key).remove();
     });
+    $(element).remove();
   });
   alert("Your post has been deleted!");
 }
