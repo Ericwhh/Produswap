@@ -2,15 +2,18 @@
 document.getElementById('postForm').addEventListener('submit', submitPost);
 
 // Current URL
-const URL = window.location.href;
+var URL = window.location.href;
+var decodedURL = decodeURIComponent(URL.substring(window.location.href.lastIndexOf('/')));
+var decodedURL = decodedURL.replace(/\+/g, " ");
+
 // Index of where the type input (fruit / vegetable) is in the URL
-const indexType = URL.indexOf("type=");
+const indexType = decodedURL.indexOf("type=");
 // Index of where the search input is in the URL
-const indexSearch = URL.indexOf("search=");
+const indexSearch = decodedURL.indexOf("search=");
 // If index for type was found (exists), gets the input string from URL
-const indexTypeURL = indexType != - 1 ? URL.substring(indexType + 5, indexSearch - 1) : "";
+const indexTypeURL = indexType != - 1 ? decodedURL.substring(indexType + 5, indexSearch - 1) : "";
 // If index for search was found (exists), gets the input string from URL
-const indexSearchURL = indexSearch != - 1 ? URL.substring(indexSearch + 7) : "";
+const indexSearchURL = indexSearch != - 1 ? decodedURL.substring(indexSearch + 7) : "";
 // Displays filters back into dropdown and input field after a search
 if (indexType != -1){
   rememberFilter("#selectMenu", indexTypeURL);
@@ -28,7 +31,6 @@ function rememberFilter(tagID, toRemember){
     $(tagID).val(toRemember);
   }
 }
-
 
 var list;
 postsRef.once("value", function(snapshot){
@@ -246,7 +248,4 @@ tosUrl: 'market.html',
 privacyPolicyUrl: 'market.html'
 };
 ui.start('#firebasetest', uiConfig);  
-
-
-
 
