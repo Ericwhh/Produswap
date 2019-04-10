@@ -64,7 +64,7 @@
   align-items: space-between;
 }
 .wrapper .item {
-  margin: 0.5%;
+  margin: 0px;
   background: #ddd;
   transition: width 0.2s ease;
   box-shadow: inset 0px 0px 0px 5px #608C28;

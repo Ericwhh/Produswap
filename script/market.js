@@ -41,11 +41,10 @@ function displayPost(uniquePostID, type, name){
     var obj = snapshot.val();
     var stringify = JSON.stringify(obj);
     var parse = JSON.parse(stringify);
-    if ((type == 0 || 
+    if (parse.status == "available" && (type == 0 || 
       type == 1 && parse.category == "Fruit" || 
       type == 2 && parse.category == "Vegetable") &&  
     (parse.itemName.toUpperCase().indexOf(name.toUpperCase()) >= 0)){
-
       addPostToPageListing("postList", uniquePostID, parse.itemName, parse.category, parse.description,
         parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
     }
@@ -99,10 +98,6 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
     date, email, postedBy, status, imageURL){
   var topLevel = document.getElementById(idToPlaceIn);  
   var item = document.createElement('div');
-  // If the post is not available to be swapped, do not display post
-  if (status != "available"){
-    item.style.display = "none";
-  }
   item.className = "item";
   topLevel.appendChild(item);
   var itemImageWrapper = document.createElement('div');
