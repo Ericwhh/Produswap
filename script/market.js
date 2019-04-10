@@ -246,12 +246,3 @@ privacyPolicyUrl: 'market.html'
 };
 ui.start('#firebasetest', uiConfig);  
 
-//Sign out
-$("#loginButton").click(function(){
-    firebase.auth().signOut().then(function() {
-        location.replace("market.html");
-        console.log('Signed Out');
-    }, function(error) {
-        console.error('Sign Out Error', error);
-    });
-});
