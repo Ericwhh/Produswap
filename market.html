@@ -95,8 +95,8 @@
       <div id="searchAndFilterContainer">
         <form method="get">
           <div id="searchContainer">
-            <select id="selectMenu" name="type">
-              <option value="0" id="allSelect">All</option>
+            <select class="selectMenu" id="selectType" name="type">
+              <option value="0" id="allSelect">Type</option>
               <option value="1" id="fruitSelect">Fruit</option>
               <option value="2" id="vegetableSelect">Vegetable</option>
             </select>
@@ -105,13 +105,14 @@
               <img src="images/search.png" id="searchIcon">
             </button>
             <div id="locationContainer">
-                <select id="selectMenu" name="type">
-                <option value="0" id="allSelect">Richmond</option>
-                <option value="1" id="fruitSelect">Downtown Vancouver</option>
-                <option value="2" id="vegetableSelect">North Vancouver</option>
-                <option value="3" id="allSelect">East Vancouver</option>
-                <option value="4" id="fruitSelect">West Vancouver</option>
-                <option value="5" id="vegetableSelect">Burnaby</option>
+                <select class="selectMenu" id="selectLocation" name="location">
+                  <option value="all" id="all">All Locations</option>
+                  <option value="burnaby" id="burnaby">Burnaby</option>
+                  <option value="downvan" id="downvan">Downtown Vancouver</option>
+                  <option value="eastvan" id="eastvan">East Vancouver</option>
+                  <option value="northvan" id="northvan">North Vancouver</option>
+                  <option value="richmond" id="richmond">Richmond</option>
+                  <option value="westvan" id="westvan">West Vancouver</option>
                 </select>
             </div>
           </div>

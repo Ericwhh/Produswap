@@ -136,14 +136,15 @@
 }
 
 
-#selectMenu {
+.selectMenu {
     border: 1px solid #79A83C;
     height: 35px;
     font-size: 13pt;
     float: left;
 }
 #locationContainer {
-    display: inline;
+    display: block;
+    width: auto;
     float: right;
     color: black;
 }

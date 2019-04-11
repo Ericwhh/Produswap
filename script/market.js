@@ -2,7 +2,7 @@
 document.getElementById('postForm').addEventListener('submit', submitPost);
 
 // Current URL
-var URL = window.location.href;
+const URL = window.location.href;
 var decodedURL = decodeURIComponent(URL.substring(window.location.href.lastIndexOf('/')));
 var decodedURL = decodedURL.replace(/\+/g, " ");
 
@@ -10,24 +10,36 @@ var decodedURL = decodedURL.replace(/\+/g, " ");
 const indexType = decodedURL.indexOf("type=");
 // Index of where the search input is in the URL
 const indexSearch = decodedURL.indexOf("search=");
+// Index of where the location input is in the URL
+const indexLocation = decodedURL.indexOf("location=");
+
 // If index for type was found (exists), gets the input string from URL
 const indexTypeURL = indexType != - 1 ? decodedURL.substring(indexType + 5, indexSearch - 1) : "";
 // If index for search was found (exists), gets the input string from URL
-const indexSearchURL = indexSearch != - 1 ? decodedURL.substring(indexSearch + 7) : "";
+const indexSearchURL = indexSearch != - 1 ? decodedURL.substring(indexSearch + 7, indexLocation - 1) : "";
+// If index for location was found (exists), gets the input string from URL
+const indexLocationURL = indexSearch != - 1 ? decodedURL.substring(indexLocation + 9) : "";
+
 // Displays filters back into dropdown and input field after a search
 if (indexType != -1){
-  rememberFilter("#selectMenu", indexTypeURL);
+  rememberFilter("#selectType", indexTypeURL);
 }
 if (indexSearch != -1){
   rememberFilter("#searchBar", indexSearchURL);
 }
+if (indexLocation != -1){
+  console.log(indexLocation);
+ // }
+  rememberFilter("#selectLocation", indexLocationURL);
+}
 // Displays all the listings onto the page according to filters
-  display(indexTypeURL, indexSearchURL);
+  display(indexTypeURL, indexSearchURL, indexLocationURL);
 
 
 // Remembers the filter upon refresh.
 function rememberFilter(tagID, toRemember){
-  if (tagID == "#searchBar" || tagID == "#selectMenu"){
+  if (tagID == "#searchBar" || tagID == "#selectType" || tagID == "#selectLocation"){
+    console.log(tagID, toRemember);
     $(tagID).val(toRemember);
   }
 }
@@ -38,28 +50,32 @@ postsRef.once("value", function(snapshot){
 });
 
 // Displays the post with the ID.
-function displayPost(uniquePostID, type, name){
+function displayPost(uniquePostID, type, name, location){
   var currentPostRef = firebase.database().ref("posts/" + uniquePostID);
   currentPostRef.once("value", function(snapshot){
     var obj = snapshot.val();
     var stringify = JSON.stringify(obj);
     var parse = JSON.parse(stringify);
-    if (parse.status == "available" && (type == 0 || 
-      type == 1 && parse.category == "Fruit" || 
-      type == 2 && parse.category == "Vegetable") &&  
-    (parse.itemName.toUpperCase().indexOf(name.toUpperCase()) >= 0)){
+    var correctStatus = parse.status == "available";
+    var correctType = (type == 0 || 
+        type == 1 && parse.category == "Fruit" || 
+        type == 2 && parse.category == "Vegetable");
+    var correctSearch = parse.itemName.toUpperCase().indexOf(name.toUpperCase()) >= 0;
+    var correctLocation = true;
+    if (correctStatus && correctType && correctSearch){
       addPostToPageListing("postList", uniquePostID, parse.itemName, parse.category, parse.description,
         parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
     }
   });
 }
 
+
 // Displays the item listing. Will ignore item if it does not match with param filters.
-function display(type, name){
+function display(type, name, location){
 
     postsRef.once("value", function(snapshot){
       snapshot.forEach(function(childSnapshot){
-        displayPost(childSnapshot.key, type, name);
+        displayPost(childSnapshot.key, type, name, location);
       });   
   });    
 }
@@ -249,3 +265,14 @@ privacyPolicyUrl: 'market.html'
 };
 ui.start('#firebasetest', uiConfig);  
 
+$("#selectLocation").mousedown(function(e){
+
+  var select = this;
+  var scroll = select.scrollTop;
+
+  e.target.selected = !e.target.selected;
+
+  setTimeout(function(){select.scrollTop = scroll;}, 0);
+
+  $(select ).focus();
+}).mousemove(function(e){e.preventDefault()});
