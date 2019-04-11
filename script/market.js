@@ -72,8 +72,13 @@ function displayPost(uniquePostID, type, name, location) {
       type == 1 && parse.category == "Fruit" ||
       type == 2 && parse.category == "Vegetable");
     var correctSearch = parse.itemName.toUpperCase().indexOf(name.toUpperCase()) >= 0;
-    var correctLocation = true;
-    if (correctStatus && correctType && correctSearch) {
+    var correctLocation = (parse.location == "Burnaby" &&  location == "burnaby" ||
+    parse.location == "Downtown Vancouver" &&  location == "downvan" ||
+    parse.location == "East Vancouver" &&  location == "eastvan" ||
+    parse.location == "North Vancouver" &&  location == "northvan" ||
+    parse.location == "West Vancouver" &&  location == "westvan" ||
+    parse.location == "Richmond" &&  location == "richmond");
+    if (correctStatus && correctType && correctSearch && correctLocation) {
       addPostToPageListing("postList", uniquePostID, parse.itemName, parse.category, parse.description,
         parse.date, parse.email, parse.postedBy, parse.status, parse.imageLocation);
     }

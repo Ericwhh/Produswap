@@ -36,7 +36,7 @@
       </div>
 
       <div id="uploadWrapper">
-        <img id="prv">
+        <img src="images/defaultImage.png" id="prv">
       </div>
       <div>
         <progress value="0" id="uploader" max="100">0%</progress>
@@ -47,11 +47,12 @@
 
       <div id="locationWrapper">
         <select id="locationMenu" name="type" required>
-          <option value="Richmond" id="richmondSelect">Richmond</option>
-          <option value="North Vancouver" id="nvSelect">North Vancouver</option>
-          <option value="Downtown Vancouver" id="downtownSelect">Downtown Vancouver</option>
-          <option value="West Vancouver" id="wvSelect">West Vancouver</option>
+          <option value="Burnaby" id="bnSelect">Burnaby</option>
+          <option value="Downtown Vancouver" id="dtSelect">Downtown Vancouver</option>
           <option value="East Vancouver" id="evSelect">East Vancouver</option>
+          <option value="North Vancouver" id="nvSelect">North Vancouver</option>
+          <option value="Richmond" id="rmSelect">Richmond</option>
+          <option value="West Vancouver" id="wvSelect">West Vancouver</option>
         </select>
       </div>
 
@@ -64,32 +65,32 @@
 
   <div id="backgroundImage"></div>
   <nav id="navBar">
-    <span id="logo">Produswap</span>
-    <span id="navButtons">
-      <a href="market.html" id="marketButton" class="navButton" onclick="underline(this.id)">
-        <span class="menuWrapper">
-          <span id="marketButtonText" class="navButtonText">Market</span>
-        </span>
-      </a>
-      <a href="dashboard.html" id="dashboardButton" class="navButton" onclick="underline(this.id)">
-        <span class="menuWrapper">
-          <span id="dashboardButtonText" class="navButtonText">myDash</span>
-        </span>
-      </a>
-      <a id="postButton" class="navButton" onclick="underline(this.id)">
-        <span class="menuWrapper">
-          <span id="postButtonText" class="navButtonText">Post</span>
-        </span>
-      </a>
-
-      <span id="loginOrSignup">
-        <div class="navButton" id="loginButton" onclick="underline(this.id)">
-          <span class="menuWrapper">
-            <span id="loginButtonText" class="navButtonText">Log In</span>
-          </span>
-        </div>
+    <a href="index.html" class="homeButtonText">
+      <span id="logo" class="homeButton">Produswap</span>
+    </a>
+    <a href="index.html" id="marketButton" class="navButton" onclick="underline(this.id)">
+      <span class="menuWrapper">
+        <span id="marketButtonText" class="navButtonText">Market</span>
       </span>
+    </a>
+    <a href="dashboard.html" id="dashboardButton" class="navButton" onclick="underline(this.id)">
+      <span class="menuWrapper">
+        <span id="dashboardButtonText" class="navButtonText">myDash</span>
+      </span>
+    </a>
+    <a id="postButton" class="navButton" onclick="underline(this.id)">
+      <span class="menuWrapper">
+        <span id="postButtonText" class="navButtonText">Post</span>
+      </span>
+    </a>
 
+    <span id="loginOrSignup">
+      <div class="navButton" id="loginButton" onclick="underline(this.id)">
+        <span class="menuWrapper">
+          <span id="loginButtonText" class="navButtonText">Log In</span>
+        </span>
+      </div>
+    </span>
   </nav>
   <div id="main">
     <div id="welcomeHeader">
