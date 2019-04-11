@@ -70,16 +70,6 @@ body {
     cursor: pointer;
 }
 
-/* Moves profile icon to the right and changes display to none. */
-#navProfilePicture {
-    margin: 0;
-}
-#navProfilePicture:hover {
-    opacity: 0.8;
-}
-#navProfile {
-    float: right;
-}
 /* Moves login and signup button to the right. */
 #loginOrSignup {
     float: right;
