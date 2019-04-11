@@ -266,6 +266,7 @@ function declineButtonFn(key, offerBy, element) {
   firebase.database().ref('users/' + offerBy + "/offersSent/" + key).update({
     "status": "declined"
   });
+  document.getElementsByClassName(key)[0].remove();
   changeToStatus(element, "DECLINED");
 }
 
@@ -278,7 +279,7 @@ function deleteButtonFn(key) {
       firebase.database().ref("users/" + childSnapshot.key + "/offersSent/" + key).remove();
       firebase.database().ref("users/" + childSnapshot.key + "/offersReceived/" + key).remove();
     });
-    $("." + key).remove();
+    $("." + key + "[0]").remove();
   });
 }
 
@@ -293,7 +294,8 @@ function acceptButtonFn(key, offerBy, element) {
   firebase.database().ref('users/' + offerBy + "/offersSent/" + key).update({
     "status": "complete"
   });
-  changeToStatus(element, "ACCEPTED");
+  document.getElementsByClassName(key)[0].remove();
+  changeToStatus(element, "COMPLETE");
 }
 //clicking tabs on dashboard
 function clickTab(clickedtab) {
