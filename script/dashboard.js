@@ -228,7 +228,7 @@ function addPostWithAccDec(idToPlaceIn, postID, itemName, category, description,
   declineButton.className = "declineButton";
 
   acceptButton.onclick = function (e) {
-    acceptButtonFn(postID, offerBy);
+    acceptButtonFn(postID, offerBy, item);
   };
   declineButton.onclick = function (e) {
     declineButtonFn(postID, offerBy, item);
@@ -283,7 +283,7 @@ function deleteButtonFn(key) {
 }
 
 // Accepts the post with the specified unique key in firebase and updates user trees accordingly
-function acceptButtonFn(key, offerBy) {
+function acceptButtonFn(key, offerBy, element) {
   firebase.database().ref('posts/' + key).update({
     "status": "complete"
   });
