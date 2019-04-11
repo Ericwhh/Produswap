@@ -42,8 +42,6 @@ if (indexSearch != -1) {
   rememberFilter("#searchBar", indexSearchURL);
 }
 if (indexLocation != -1) {
-  console.log(indexLocation);
-  // }
   rememberFilter("#selectLocation", indexLocationURL);
 }
 // Displays all the listings onto the page according to filters
@@ -53,7 +51,6 @@ display(indexTypeURL, indexSearchURL, indexLocationURL);
 // Remembers the filter upon refresh.
 function rememberFilter(tagID, toRemember) {
   if (tagID == "#searchBar" || tagID == "#selectType" || tagID == "#selectLocation") {
-    console.log(tagID, toRemember);
     $(tagID).val(toRemember);
   }
 }

@@ -253,7 +253,6 @@ function changeToStatus(element, status) {
   $(element).children().eq(1).children().eq(1).remove();
   $(element).children().eq(1).children().eq(1).remove();
   $(element).children().eq(1).children().eq(0).after('<div class="statusLabel">' + status + '</div>');
-  console.log(status);
 }
 
 // Declines the post with the specified unique key in firebase and updates user trees accordingly
