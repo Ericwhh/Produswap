@@ -47,7 +47,7 @@ var currUser;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
       currUser = user.uid;
-      var currUserPostsRef = firebase.database().ref("users/" + user.uid + "/posts");
+      var currUserPostsRef = firebase.database().ref("users/" + currUser + "/posts");
       currUserPostsRef.once('value', function(snapshot){
         snapshot.forEach(function(childSnapshot){
           displayPost(childSnapshot.key, "tradeBox");
@@ -111,6 +111,7 @@ function displayPost(uniquePostID, htmlID){
   });
 }
 
+// Adds a post with a delete buttons to the specified ID (first parameter)
 function addPostWithDelete(idToPlaceIn, postID, itemName, category, description,
   date, email, postedBy, status, imageURL){
   var topLevel = document.getElementById(idToPlaceIn);  
@@ -141,7 +142,7 @@ function addPostWithDelete(idToPlaceIn, postID, itemName, category, description,
   var deleteButton = document.createElement('div');
   deleteButton.className = "deleteButton";
   deleteButton.onclick = function(e){
-    deleteButtonFn(postID, postID);
+    deleteButtonFn(postID);
   };
   itemText.appendChild(itemHeader);
   itemText.appendChild(deleteButton);
@@ -153,6 +154,7 @@ function addPostWithDelete(idToPlaceIn, postID, itemName, category, description,
   itemPostedOn.innerHTML = date;
 }
 
+// Adds a post with its status to the specified ID (first parameter)
 function addPostWithStatus(idToPlaceIn, postID, itemName, category, description,
   date, email, postedBy, status, imageURL){
   var topLevel = document.getElementById(idToPlaceIn);  
@@ -194,6 +196,7 @@ function addPostWithStatus(idToPlaceIn, postID, itemName, category, description,
   itemPostedOn.innerHTML = date;
 }
 
+// Adds a post with accept and declines buttons to the specified ID (first parameter)
 function addPostWithAccDec(idToPlaceIn, postID, itemName, category, description,
   date, email, offerBy, postedBy, status, imageURL){
   var topLevel = document.getElementById(idToPlaceIn);  
@@ -256,6 +259,7 @@ function changeToStatus(element, status){
   console.log(status);
 }
 
+// Declines the post with the specified unique key in firebase and updates user trees accordingly
 function declineButtonFn(key, offerBy, element){
   firebase.database().ref('posts/' + key).update({
     "status": "available"
@@ -269,7 +273,8 @@ function declineButtonFn(key, offerBy, element){
   changeToStatus(element, "DECLINED");
 }
 
-function deleteButtonFn(key, postIDClass){
+// Deletes the post with corresponding the unique key in firebase
+function deleteButtonFn(key){
   firebase.database().ref("posts/" + key).remove();
   firebase.database().ref("users/" + currUser + "/posts/" + key).remove();
   usersRef.once("value", function(snapshot){
@@ -277,10 +282,11 @@ function deleteButtonFn(key, postIDClass){
       firebase.database().ref("users/" + childSnapshot.key + "/offersSent/" + key).remove();
       firebase.database().ref("users/" + childSnapshot.key + "/offersReceived/" + key).remove();
     });
-    $("." + postIDClass).remove();
+    $("." + key).remove();
   });
 }
 
+// Accepts the post with the specified unique key in firebase and updates user trees accordingly
 function acceptButtonFn(key, offerBy){
   firebase.database().ref('posts/' + key).update({
     "status": "complete"
@@ -291,6 +297,5 @@ function acceptButtonFn(key, offerBy){
   firebase.database().ref('users/' + offerBy + "/offersSent/" + key).update({
     "status": "complete"
   });
-  alert("Accepted!");
 }
 
