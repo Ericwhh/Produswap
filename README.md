@@ -1,6 +1,16 @@
 # Produswap
 
 A local produce trading website project for trading produce of various kinds among a community.
+## Contents
+* css	- css folder containing all styling files for pages
+* demo_imgs	- demo images folder for demos
+* images - images folder containing images used for site
+* script- script folder containing all javascript files for pages
+* .gitignore - gitignore file
+* README.md	- ReadMe file
+* dashboard.html- Dasboard page
+* index.html	- index.html
+* market.html - Main landing page
 
 ## Deployment
 
