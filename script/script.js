@@ -157,6 +157,7 @@ function underline(clickedId){
       // print the image url 
       console.log(downloadURL); 
       document.getElementById('formSubmit').removeAttribute('disabled'); 
+    
       }); 
     }); 
   };
@@ -256,6 +257,11 @@ function notCurrUserPost(postedBy, currUser, sendOfferButton){
   }
 }
 
+// Takes file from upload 
+$("#photo").change(function() {
+  readURL(this);
+});
+
 //Image preiew for upload
 function readURL(input) {
 
@@ -270,9 +276,9 @@ function readURL(input) {
   }
 }
 
-$("#photo").change(function() {
-  readURL(this);
+
+//Clears image preview after creating post
+$("#formSubmit").click(function(e) {
+  $('#prv').attr('src', "");
 });
-
-
 
