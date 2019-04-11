@@ -70,7 +70,7 @@ function enableLogin() {
 function enableSignout() {
   $("#loginButtonText").click(function () {
     firebase.auth().signOut().then(function () {
-      location.replace("market.html");
+      location.replace("index.html");
     }, function (error) {
       console.error('Sign Out Error', error);
     });

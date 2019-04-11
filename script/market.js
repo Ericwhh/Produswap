@@ -264,8 +264,8 @@ var uiConfig = {
   signInOptions: [
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ],
-  tosUrl: 'market.html',
-  privacyPolicyUrl: 'market.html'
+  tosUrl: 'index.html',
+  privacyPolicyUrl: 'index.html'
 };
 ui.start('#loginUI', uiConfig);
 
