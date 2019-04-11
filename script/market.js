@@ -18,17 +18,19 @@ const URL = window.location.href;
 var decodedURL = decodeURIComponent(URL.substring(window.location.href.lastIndexOf('/')));
 var decodedURL = decodedURL.replace(/\+/g, " ");
 
-// Index of where the type input (fruit / vegetable) is in the URL
-const indexType = decodedURL.indexOf("type=");
+
 // Index of where the search input is in the URL
 const indexSearch = decodedURL.indexOf("search=");
+// Index of where the type input (fruit / vegetable) is in the URL
+const indexType = decodedURL.indexOf("type=");
 // Index of where the location input is in the URL
 const indexLocation = decodedURL.indexOf("location=");
 
-// If index for type was found (exists), gets the input string from URL
-const indexTypeURL = indexType != - 1 ? decodedURL.substring(indexType + 5, indexSearch - 1) : "";
+
 // If index for search was found (exists), gets the input string from URL
-const indexSearchURL = indexSearch != - 1 ? decodedURL.substring(indexSearch + 7, indexLocation - 1) : "";
+const indexSearchURL = indexSearch != - 1 ? decodedURL.substring(indexSearch + 7, indexType - 1) : "";
+// If index for type was found (exists), gets the input string from URL
+const indexTypeURL = indexType != - 1 ? decodedURL.substring(indexType + 5, indexLocation - 1) : "";
 // If index for location was found (exists), gets the input string from URL
 const indexLocationURL = indexSearch != - 1 ? decodedURL.substring(indexLocation + 9) : "";
 
@@ -81,10 +83,8 @@ function displayPost(uniquePostID, type, name, location) {
   });
 }
 
-
 // Displays the item listing. Will ignore item if it does not match with param filters.
 function display(type, name, location) {
-
   postsRef.once("value", function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
       displayPost(childSnapshot.key, type, name, location);
