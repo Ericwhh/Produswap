@@ -5,8 +5,8 @@ const storage = firebase.storage()
 var postsRef = firebase.database().ref('posts');
 var usersRef = firebase.database().ref('users');
 
-//Store the uuploadedImagepload image URL 
-var uploadedImage;
+//Store the uploadedImage image URL 
+var uploadedImage = "images/defaultImage.png";
 
 // Depends if user is logged in
 var currUser;
@@ -201,8 +201,8 @@ function savePost(name, date, category, description, location, email, userID, im
     post: key
   });
   var correctType = (indexTypeURL == 0 ||
-    indexTypeURL == 1 && category == "fruit" ||
-    indexTypeURL == 2 && category == "vegetable");
+    indexTypeURL == 1 && category == "Fruit" ||
+    indexTypeURL == 2 && category == "Vegetable");
   var correctSearch = name.toUpperCase().indexOf(indexSearchURL.toUpperCase()) >= 0;
   var correctLocation = (indexLocationURL == "all" || indexLocationURL == "" ||
     location == "Burnaby" && indexLocationURL == "burnaby" ||
