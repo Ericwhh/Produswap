@@ -125,6 +125,7 @@ function addPostWithDelete(idToPlaceIn, postID, itemName, category, description,
   itemImage.className = "itemImage";
 
   itemImage.src = imageURL;
+  uploadedImage = "images/defaultImage.png";
 
   itemImageWrapper.appendChild(itemImage);
   var itemHeader = document.createElement('h6');
@@ -167,6 +168,7 @@ function addPostWithStatus(idToPlaceIn, postID, itemName, category, description,
   itemImage.className = "itemImage";
 
   itemImage.src = imageURL;
+  uploadedImage = "images/defaultImage.png";
 
   itemImageWrapper.appendChild(itemImage);
   var itemHeader = document.createElement('h6');
@@ -208,6 +210,7 @@ function addPostWithAccDec(idToPlaceIn, postID, itemName, category, description,
   itemImage.className = "itemImage";
 
   itemImage.src = imageURL;
+  uploadedImage = "images/defaultImage.png";
 
   itemImageWrapper.appendChild(itemImage);
   var itemHeader = document.createElement('h6');
