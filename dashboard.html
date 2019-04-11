@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MyDashboard</title>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/dashboard.css">
   <style>
     #profileButton {
-        box-shadow: inset 0 -5px 0 white;
+      box-shadow: inset 0 -5px 0 white;
     }
-    </style>
+  </style>
 </head>
 <body>
-    <div id="postForm">
+  <div id="postForm">
     <h1 id="postFormTitle">Listing Details</h1>
     <div class="alert">Your post has been submitted</div>
     <form id="newPost">
@@ -23,7 +23,7 @@
           <label>Produce Name:</label>
           <input type="text" name="name" id="produceName" required="required" placeholder="Choose a descriptive name for your produce.">
         </div>
-
+        
         <div id="radioPostFormWrapper">
           <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
           <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
@@ -33,85 +33,85 @@
           <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
         </div>
       </div>
-
+      
       <div id="uploadWrapper"></div>
       <div>
         <progress value="0" id="uploader" max="100">0%</progress>
         <input id="photo"class="file"type="file" name="mainimage"
         value="" onchange="getfile()"><br><br> 
       </div> 
-
+      
       <div id="locationWrapper">
         <select id="locationMenu" name="type" required>
-                <option value="Richmond" id="richmondSelect">Richmond</option>
-                <option value="North Vancouver" id="nvSelect">North Vancouver</option>
-                <option value="Downtown Vancouver" id="downtownSelect">Downtown Vancouver</option>
-                <option value="West Vancouver" id="wvSelect">West Vancouver</option>
-                <option value="East Vancouver" id="evSelect">East Vancouver</option>
-            </select>
+          <option value="Richmond" id="richmondSelect">Richmond</option>
+          <option value="North Vancouver" id="nvSelect">North Vancouver</option>
+          <option value="Downtown Vancouver" id="downtownSelect">Downtown Vancouver</option>
+          <option value="West Vancouver" id="wvSelect">West Vancouver</option>
+          <option value="East Vancouver" id="evSelect">East Vancouver</option>
+        </select>
       </div>
-
+      
       <div>
         <button type="submit" id="formSubmit" name="button">Submit</button>
       </div>
-
+      
     </form>
   </div>
-        <div id="backgroundImage"></div>
-        <nav id="navBar">
-        <a href="market.html" class="homeButtonText">
-          <span id="logo" class="homeButton">Produswap</span>
-        </a>    
-            <a href="market.html" id="marketButton" class="navButton" onclick="underline(this.id)">
-              <span class="menuWrapper">
-                <span id="marketButtonText" class="navButtonText">Market</span>
-              </span>
-            </a>
-            <a href="dashboard.html" id="dashboardButton" class="navButton" onclick="underline(this.id)">
-              <span class="menuWrapper">
-                <span id="dashboardButtonText" class="navButtonText">myDash</span>
-              </span>
-            </a>
-            <a id="postButton" class="navButton" onclick="underline(this.id)">
-              <span class="menuWrapper">
-                <span id="postButtonText" class="navButtonText">Post</span>
-              </span>
-            </a>
-      
-            <span id="loginOrSignup">
-              <div class="navButton" id="loginButton" onclick="underline(this.id)">
-                <span class="menuWrapper">
-                  <span id="loginButtonText" class="navButtonText">Log In</span>
-                </span>
-              </div>  
-            </span>
-          </nav>
-        
-
+  <div id="backgroundImage"></div>
+  <nav id="navBar">
+    <a href="market.html" class="homeButtonText">
+      <span id="logo" class="homeButton">Produswap</span>
+    </a>    
+    <a href="market.html" id="marketButton" class="navButton" onclick="underline(this.id)">
+      <span class="menuWrapper">
+        <span id="marketButtonText" class="navButtonText">Market</span>
+      </span>
+    </a>
+    <a href="dashboard.html" id="dashboardButton" class="navButton" onclick="underline(this.id)">
+      <span class="menuWrapper">
+        <span id="dashboardButtonText" class="navButtonText">myDash</span>
+      </span>
+    </a>
+    <a id="postButton" class="navButton" onclick="underline(this.id)">
+      <span class="menuWrapper">
+        <span id="postButtonText" class="navButtonText">Post</span>
+      </span>
+    </a>
+    
+    <span id="loginOrSignup">
+      <div class="navButton" id="loginButton" onclick="underline(this.id)">
+        <span class="menuWrapper">
+          <span id="loginButtonText" class="navButtonText">Log In</span>
+        </span>
+      </div>  
+    </span>
+  </nav>
   
-
-    <div id="main">
-        <div id="userName">
-            <img id="navProfilePicture" src="images/profile.png" alt="Profile" width="68">
-            <h1 id="name"></h1>
-        </div>
-        <div id="trading">
-            <div id="tradeContainer">
-                <div id="tabPosted" class="tab" onclick="clickTab(this.id)" style="opacity: 1">Your Posts</div>
-                <div id="tabSent" class="tab" onclick="clickTab(this.id)" style="opacity: 0.5">Swap Offers</div>
-                <div id="tabReceived" class="tab" onclick="clickTab(this.id)" style="opacity: 0.5">Swap Requests</div>
-                <div id="tradeBox" class="dashboardBox"></div>
-                <div id="sentBox" class="dashboardBox"></div>
-                <div id="receivedBox" class="dashboardBox"></div>
-            </div>
-        </div>
-        
+  
+  
+  
+  <div id="main">
+    <div id="userName">
+      <img id="navProfilePicture" src="images/profile.png" alt="Profile" width="68">
+      <h1 id="name"></h1>
     </div>
-    <div id="cover2"></div>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-      <script src="script/script.js"></script>
-      <script src="script/dashboard.js"></script>     
-  </body>
+    <div id="trading">
+      <div id="tradeContainer">
+        <div id="tabPosted" class="tab" onclick="clickTab(this.id)" style="opacity: 1">Your Posts</div>
+        <div id="tabSent" class="tab" onclick="clickTab(this.id)" style="opacity: 0.5">Swap Offers</div>
+        <div id="tabReceived" class="tab" onclick="clickTab(this.id)" style="opacity: 0.5">Swap Requests</div>
+        <div id="tradeBox" class="dashboardBox"></div>
+        <div id="sentBox" class="dashboardBox"></div>
+        <div id="receivedBox" class="dashboardBox"></div>
+      </div>
+    </div>
+    
+  </div>
+  <div id="cover2"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+  <script src="script/script.js"></script>
+  <script src="script/dashboard.js"></script>     
+</body>
 </html>

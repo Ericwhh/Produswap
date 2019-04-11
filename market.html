@@ -25,7 +25,7 @@
           <label>Produce Name:</label>
           <input type="text" name="name" id="produceName" placeholder="Choose a descriptive name for your produce." autofocus required>
         </div>
-
+        
         <div id="radioPostFormWrapper">
           <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
           <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
@@ -35,34 +35,34 @@
           <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
         </div>
       </div>
-
+      
       <div id="uploadWrapper">
-      	<img id="prv">
+        <img id="prv">
       </div>
       <div>
         <progress value="0" id="uploader" max="100">0%</progress>
         <input id="photo"class="file"type="file" name="mainimage"
         value="" onchange="getfile()"><br><br> 
       </div> 
-
+      
       <div id="locationWrapper">
         <select id="locationMenu" name="type" required>
-                <option value="richmond" id="richmondSelect">Richmond</option>
-                <option value="northvan" id="nvSelect">North Vancouver</option>
-                <option value="downvan" id="downtownSelect">Downtown Vancouver</option>
-                <option value="westvan" id="wvSelect">West Vancouver</option>
-                <option value="eastvan" id="evSelect">East Vancouver</option>
-                <option value="burnaby" id="buSelect">Burnaby</option>
-            </select>
+          <option value="richmond" id="richmondSelect">Richmond</option>
+          <option value="northvan" id="northVanSelect">North Vancouver</option>
+          <option value="downvan" id="downtownSelect">Downtown Vancouver</option>
+          <option value="westvan" id="westVanSelect">West Vancouver</option>
+          <option value="eastvan" id="eastVanSelect">East Vancouver</option>
+          <option value="burnaby" id="burnabySelect">Burnaby</option>
+        </select>
       </div>
-
+      
       <div>
         <button type="submit" id="formSubmit" name="button">Submit</button>
       </div>
-
+      
     </form>
   </div>
-
+  
   <div id="backgroundImage"></div>
   <nav id="navBar">
     <span id="logo">Produswap</span>
@@ -82,7 +82,7 @@
           <span id="postButtonText" class="navButtonText">Post</span>
         </span>
       </a>
-
+      
       <span id="loginOrSignup">
         <div class="navButton" id="loginButton" onclick="underline(this.id)">
           <span class="menuWrapper">
@@ -90,13 +90,13 @@
           </span>
         </div>  
       </span>
-
+      
     </nav>
     <div id="main">
-        <div id="welcomeHeader">
-            <h1>Swap local. Eat healthy.</h1>
-            <h2>Trade fresh produce and be the difference in your community.</h2>
-        </div>
+      <div id="welcomeHeader">
+        <h1>Swap local. Eat healthy.</h1>
+        <h2>Trade fresh produce and be the difference in your community.</h2>
+      </div>
       <div id="searchAndFilterContainer">
         <form method="get">
           <div id="searchContainer">
@@ -105,35 +105,35 @@
               <img src="images/search.png" id="searchIcon">
             </button>
             <select class="selectMenu" id="selectType" name="type">
-                <option value="0" id="allSelect">Type</option>
-                <option value="1" id="fruitSelect">Fruit</option>
-                <option value="2" id="vegetableSelect">Vegetable</option>
-              </select>
+              <option value="0" id="allSelect">Type</option>
+              <option value="1" id="fruitSelect">Fruit</option>
+              <option value="2" id="vegetableSelect">Vegetable</option>
+            </select>
             <div id="locationContainer">
-                <select class="selectMenu" id="selectLocation" name="location">
-                  <option value="all" id="all">All Locations</option>
-                  <option value="burnaby" id="burnaby">Burnaby</option>
-                  <option value="downvan" id="downvan">Downtown Vancouver</option>
-                  <option value="eastvan" id="eastvan">East Vancouver</option>
-                  <option value="northvan" id="northvan">North Vancouver</option>
-                  <option value="richmond" id="richmond">Richmond</option>
-                  <option value="westvan" id="westvan">West Vancouver</option>
-                </select>
+              <select class="selectMenu" id="selectLocation" name="location">
+                <option value="all" id="all">All Locations</option>
+                <option value="burnaby" id="burnaby">Burnaby</option>
+                <option value="downvan" id="downvan">Downtown Vancouver</option>
+                <option value="eastvan" id="eastvan">East Vancouver</option>
+                <option value="northvan" id="northvan">North Vancouver</option>
+                <option value="richmond" id="richmond">Richmond</option>
+                <option value="westvan" id="westvan">West Vancouver</option>
+              </select>
             </div>
           </div>
         </form>
       </div>
-
+      
       <div class="buttons">
         <div class="listView"><span class="active"></span><span class="active"></span></div>
         <div class="gridView"><span class=""></span><span class=""></span><span class=""></span><span class=""></span></div>
       </div>
-
+      
       <div id="container">  
         <div class="wrapper list" id="postList">
         </div>
-
-
+        
+        
         <div id="loginUI"></div>
         <div id="cover"></div>
         <div id="cover2"></div>
