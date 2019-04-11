@@ -1,13 +1,8 @@
-var currUser;
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        currUser = user.uid;
-        $("#name").text(user.displayName);
-        console.log(user.displayName);
-    }
-});
+// Firebase reference to users and posts trees
 var usersRef = firebase.database().ref('users');
 var postsRef = firebase.database().ref('posts');
+
+// Click handler for which tab to display
 $("#tabPosted").click(function(e){
   postedDisplay();
 });
@@ -38,15 +33,17 @@ function requestDisplay() {
   $("#receivedBox").css("display", "block");
 }
 
-
-
+/* Sets global variable currUser and displays user's name on page. 
+Then, gets the posts that belong to the current user
+Gets the posts that the user has sent offers for
+Gets the posts that the user has received offers for
+*/
 var currUser;
-// Gets the posts that belong to the current user
-// Gets the posts that the user has sent offers for
-// Gets the posts that the user has received offers for
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
       currUser = user.uid;
+      $("#name").text(user.displayName);
+
       var currUserPostsRef = firebase.database().ref("users/" + currUser + "/posts");
       currUserPostsRef.once('value', function(snapshot){
         snapshot.forEach(function(childSnapshot){
