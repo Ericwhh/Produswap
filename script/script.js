@@ -1,8 +1,3 @@
-/*
-* ALL UNIVERSAL SCRIPT GOES HERE 
-* 
-*/
-
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyAGVERfhd2wvN9zZPGRALe_hVLT3W_P0mg",

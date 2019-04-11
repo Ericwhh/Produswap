@@ -14,6 +14,7 @@ document.getElementById('postForm').addEventListener('submit', submitPost);
 
 // Current URL
 const URL = window.location.href;
+// Decoded URL (from special characters)
 var decodedURL = decodeURIComponent(URL.substring(window.location.href.lastIndexOf('/')));
 var decodedURL = decodedURL.replace(/\+/g, " ");
 
@@ -90,7 +91,6 @@ function display(type, name, location) {
     });
   });
 }
-
 
 /* Swap button for the post
 If user is not signed in, displays warning.
@@ -271,19 +271,6 @@ var uiConfig = {
   privacyPolicyUrl: 'market.html'
 };
 ui.start('#loginUI', uiConfig);
-
-
-$("#selectLocation").mousedown(function (e) {
-
-  var select = this;
-  var scroll = select.scrollTop;
-
-  e.target.selected = !e.target.selected;
-
-  setTimeout(function () { select.scrollTop = scroll; }, 0);
-
-  $(select).focus();
-}).mousemove(function (e) { e.preventDefault() });
 
 //Pop up for posts
 $('#postButton').click(function () {
