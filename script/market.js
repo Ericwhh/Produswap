@@ -101,7 +101,6 @@ function swapButton(key, postedBy, element) {
     var statusRef = firebase.database().ref('posts/' + key + "/status");
     statusRef.once("value", function (snapshot) {
       currStatus = snapshot.val();
-      console.log(currStatus);
       if (currStatus == "available") {
         firebase.database().ref('posts/' + key).update({
           "status": "pending",
@@ -285,3 +284,14 @@ $("#selectLocation").mousedown(function (e) {
 
   $(select).focus();
 }).mousemove(function (e) { e.preventDefault() });
+
+//Pop up for posts
+$('#postButton').click(function () {
+  $('#postForm').fadeToggle();
+  $('#cover2').fadeToggle();
+});
+$("#cover2").click(function () {
+  $('#postForm').fadeToggle();
+  $('#cover2').fadeToggle();
+  underline("marketButton");
+})

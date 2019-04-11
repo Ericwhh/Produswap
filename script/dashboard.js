@@ -303,3 +303,13 @@ function clickTab(clickedtab) {
   document.getElementById(clickedtab).style.opacity = "1";
 }
 
+//Pop up for posts
+$('#postButton').click(function () {
+  $('#postForm').fadeToggle();
+  $('#cover2').fadeToggle();
+});
+$("#cover2").click(function () {
+  $('#postForm').fadeToggle();
+  $('#cover2').fadeToggle();
+  underline("dashboardButton");
+})

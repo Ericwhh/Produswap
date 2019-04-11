@@ -46,6 +46,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     $("#postButton").off("click");
     // Dashboard cannot be visited
     $("#dashboardButton").removeAttr("href");
+    // Prevents underline
+    $("#dashboardButton, #postButton").removeAttr("onclick");
     // Post button and dashboard button gives a user warning
     $("#postButton, #dashboardButton").click(warning);
   }
@@ -55,16 +57,6 @@ firebase.auth().onAuthStateChanged(function (user) {
     "display": "initial"
   });
 });
-
-//Pop up for posts
-$('#postButton').click(function () {
-  $('#postForm').fadeToggle();
-  $('#cover2').fadeToggle();
-});
-$("#cover2").click(function () {
-  $('#postForm').fadeToggle();
-  $('#cover2').fadeToggle();
-})
 
 // Enables login functionality (also removes signout functionality)
 function enableLogin() {
