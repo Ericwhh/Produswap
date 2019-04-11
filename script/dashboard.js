@@ -115,7 +115,7 @@ function addPostWithDelete(idToPlaceIn, postID, itemName, category, description,
   date, email, postedBy, status, imageURL){
   var topLevel = document.getElementById(idToPlaceIn);  
   var item = document.createElement('div');
-  item.className = "item";
+  item.className = "item " + postID;
   topLevel.appendChild(item);
   var itemImageWrapper = document.createElement('div');
   itemImageWrapper.className = "itemImageWrapper";
@@ -141,7 +141,7 @@ function addPostWithDelete(idToPlaceIn, postID, itemName, category, description,
   var deleteButton = document.createElement('div');
   deleteButton.className = "deleteButton";
   deleteButton.onclick = function(e){
-    deleteButtonFn(postID, item);
+    deleteButtonFn(postID, postID);
   };
   itemText.appendChild(itemHeader);
   itemText.appendChild(deleteButton);
@@ -157,7 +157,7 @@ function addPostWithStatus(idToPlaceIn, postID, itemName, category, description,
   date, email, postedBy, status, imageURL){
   var topLevel = document.getElementById(idToPlaceIn);  
   var item = document.createElement('div');
-  item.className = "item";
+  item.className = "item " + postID;
   topLevel.appendChild(item);
   var itemImageWrapper = document.createElement('div');
   itemImageWrapper.className = "itemImageWrapper";
@@ -198,7 +198,7 @@ function addPostWithAccDec(idToPlaceIn, postID, itemName, category, description,
   date, email, offerBy, postedBy, status, imageURL){
   var topLevel = document.getElementById(idToPlaceIn);  
   var item = document.createElement('div');
-  item.className = "item";
+  item.className = "item " + postID;
   topLevel.appendChild(item);
   var itemImageWrapper = document.createElement('div');
   itemImageWrapper.className = "itemImageWrapper";
@@ -269,7 +269,7 @@ function declineButtonFn(key, offerBy, element){
   changeToStatus(element, "DECLINED");
 }
 
-function deleteButtonFn(key, element){
+function deleteButtonFn(key, postIDClass){
   firebase.database().ref("posts/" + key).remove();
   firebase.database().ref("users/" + currUser + "/posts/" + key).remove();
   usersRef.once("value", function(snapshot){
@@ -277,7 +277,7 @@ function deleteButtonFn(key, element){
       firebase.database().ref("users/" + childSnapshot.key + "/offersSent/" + key).remove();
       firebase.database().ref("users/" + childSnapshot.key + "/offersReceived/" + key).remove();
     });
-    $(element).remove();
+    $("." + postIDClass).remove();
   });
 }
 
