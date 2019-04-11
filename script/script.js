@@ -75,11 +75,11 @@ else {
   function enableLogin(){
     //Pop up for login
     $('#loginButton').click(function() {
-        $('#firebasetest').fadeToggle();
+        $('#loginUI').fadeToggle();
         $('#cover').fadeToggle(); 
       });
     $("#cover").click(function(){
-        $('#firebasetest').fadeToggle();
+        $('#loginUI').fadeToggle();
         $('#cover').fadeToggle(); 
     })
   }

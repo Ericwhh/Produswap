@@ -260,7 +260,7 @@ signInOptions: [
 tosUrl: 'market.html',
 privacyPolicyUrl: 'market.html'
 };
-ui.start('#firebasetest', uiConfig); 
+ui.start('#loginUI', uiConfig); 
 
 
 $("#selectLocation").mousedown(function(e){

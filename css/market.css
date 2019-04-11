@@ -104,16 +104,13 @@
     display: flex;
 }
 #searchBar {
-    margin-left: 10px;
     width: 65%;
     height: 30px;
     font-size: 13pt;
     outline: none;
     border: 1px solid #79A83C;
     float: left;
-    
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-radius: 5px;
 }
 #searchButton {
     cursor: pointer;
@@ -138,6 +135,7 @@
 
 .selectMenu {
     border: 1px solid #79A83C;
+    border-radius: 5px;
     height: 35px;
     font-size: 13pt;
     float: left;
@@ -147,13 +145,15 @@
     width: auto;
     float: right;
     color: black;
+    margin-left: 10px;
+    
 }
 
 #locationWrapper {
     display: flex;
 }
 
-#firebasetest {
+#loginUI {
     display: none;
     font-size: 13pt;
     position: fixed;
