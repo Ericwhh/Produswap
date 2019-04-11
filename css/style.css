@@ -31,7 +31,6 @@ body {
     width: 80%;
     height: calc(100vh - 100px);
     margin: 0 auto;
-    padding: auto 4px;
 }
 /* Logo in text format. */
 #logo {
