@@ -263,7 +263,8 @@ signInOptions: [
 tosUrl: 'market.html',
 privacyPolicyUrl: 'market.html'
 };
-ui.start('#firebasetest', uiConfig);  
+ui.start('#firebasetest', uiConfig); 
+
 
 $("#selectLocation").mousedown(function(e){
 
