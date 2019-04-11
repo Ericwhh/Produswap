@@ -21,9 +21,9 @@ This project was deployed and hosted with the use of Google Firebase
 
 ## Authors
 
-* **Eric Huang** - [PurpleBooth](https://github.com/Ericwhh)
-* **Joshua Lore** - [PurpleBooth](https://github.com/Swoshua)
-* **Arka Roy** - [PurpleBooth](https://github.com/RoyArka)
+* **Eric Huang** - [Ericwhh](https://github.com/Ericwhh)
+* **Joshua Lore** - [Swoshua](https://github.com/Swoshua)
+* **Arka Roy** - [RoyArka](https://github.com/RoyArka)
 
 ## Acknowledgments
 
