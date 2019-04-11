@@ -89,6 +89,7 @@
 /*--------------------------------------------------------------------------*/
 
 #searchAndFilterContainer {
+    display: none;
     position: relative;
     background-size: auto 100%;
     float: left;
@@ -98,9 +99,8 @@
 }
 
 #searchContainer {
-    margin-top: 33px;
-    width: 65%;
-    margin-left: 5%;
+    width: 90%;
+    margin: 33px auto;
     display: flex;
 }
 #searchBar {
@@ -129,13 +129,12 @@
 }
 #searchIcon {
     filter: contrast(1000%);
-    width: 100%;
+    width: 22px;
     height: 22px;
 }
 #searchBar[type=text]{
     padding-left: 20px;
 }
-
 
 .selectMenu {
     border: 1px solid #79A83C;
