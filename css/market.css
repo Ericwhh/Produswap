@@ -149,10 +149,6 @@
     
 }
 
-#locationWrapper {
-    display: flex;
-}
-
 #loginUI {
     display: none;
     font-size: 13pt;

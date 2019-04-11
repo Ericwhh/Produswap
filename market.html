@@ -17,51 +17,50 @@
 <body>
   <div class="warning">Please login to continue!</div>
   <div id="postForm">
-    <h1 id="postFormTitle">Listing Details</h1>
-    <div class="alert">Your post has been submitted</div>
-    <form id="newPost">
-      <div id="postFormInnerWrapper">
-        <div id="produceNameWrapper">
-          <label>Produce Name:</label>
-          <input type="text" name="name" id="produceName" placeholder="Choose a descriptive name for your produce." autofocus required>
+      <h1 id="postFormTitle">Listing Details</h1>
+      <div class="alert">Your post has been submitted</div>
+      <form id="newPost">
+        <div id="postFormInnerWrapper">
+          <div id="produceNameWrapper">
+            <label>Produce Name:</label>
+            <input type="text" name="name" id="produceName" required="required" placeholder="Choose a descriptive name for your produce.">
+          </div>
+          
+          <div id="radioPostFormWrapper">
+            <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
+            <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
+          </div>
+          <div>
+            <label>Produce Description:</label>
+            <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
+          </div>
         </div>
         
-        <div id="radioPostFormWrapper">
-          <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
-          <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
+        <div id="uploadWrapper"> 
+          <img id="prv">
         </div>
         <div>
-          <label>Produce Description:</label>
-          <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
+          <progress value="0" id="uploader" max="100">0%</progress>
+          <input id="photo"class="file"type="file" name="mainimage"
+          value="" onchange="getfile()"><br><br> 
+        </div> 
+        
+        <div id="locationWrapper">
+          <select id="locationMenu" name="type" required>
+            <option value="Richmond" id="richmondSelect">Richmond</option>
+            <option value="North Vancouver" id="nvSelect">North Vancouver</option>
+            <option value="Downtown Vancouver" id="downtownSelect">Downtown Vancouver</option>
+            <option value="West Vancouver" id="wvSelect">West Vancouver</option>
+            <option value="East Vancouver" id="evSelect">East Vancouver</option>
+          </select>
         </div>
-      </div>
-      
-      <div id="uploadWrapper">
-        <img id="prv">
-      </div>
-      <div>
-        <progress value="0" id="uploader" max="100">0%</progress>
-        <input id="photo"class="file"type="file" name="mainimage"
-        value="" onchange="getfile()"><br><br> 
-      </div> 
-      
-      <div id="locationWrapper">
-        <select id="locationMenu" name="type" required>
-          <option value="richmond" id="richmondSelect">Richmond</option>
-          <option value="northvan" id="northVanSelect">North Vancouver</option>
-          <option value="downvan" id="downtownSelect">Downtown Vancouver</option>
-          <option value="westvan" id="westVanSelect">West Vancouver</option>
-          <option value="eastvan" id="eastVanSelect">East Vancouver</option>
-          <option value="burnaby" id="burnabySelect">Burnaby</option>
-        </select>
-      </div>
-      
-      <div>
-        <button type="submit" id="formSubmit" name="button">Submit</button>
-      </div>
-      
-    </form>
-  </div>
+        
+        <div>
+          <button type="submit" id="formSubmit" name="button">Submit</button>
+        </div>
+        
+      </form>
+    </div>
   
   <div id="backgroundImage"></div>
   <nav id="navBar">

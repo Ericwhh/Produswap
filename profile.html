@@ -54,41 +54,51 @@
     </nav>
     
     <div id="postForm">
-      <h1 id="postFormTitle">Listing Details</h1>
-      <div class="alert">Your post has been submitted</div>
-      <form id="newPost">
-        <div id="postFormInnerWrapper">
-          <div id="produceNameWrapper">
-            <label>Produce Name:</label>
-            <input type="text" name="name" id="produceName" required="required" placeholder="Choose a descriptive name for your produce.">
+        <h1 id="postFormTitle">Listing Details</h1>
+        <div class="alert">Your post has been submitted</div>
+        <form id="newPost">
+          <div id="postFormInnerWrapper">
+            <div id="produceNameWrapper">
+              <label>Produce Name:</label>
+              <input type="text" name="name" id="produceName" placeholder="Choose a descriptive name for your produce." autofocus required>
+            </div>
+            
+            <div id="radioPostFormWrapper">
+              <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
+              <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
+            </div>
+            <div>
+              <label>Produce Description:</label>
+              <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
+            </div>
           </div>
           
-          <div id="radioPostFormWrapper">
-            <input id="radioVeg" type="radio" class="radioPostForm" name="radioPostForm" value="Vegetable" required>Vegetable
-            <input id="radioFruit" type="radio" class="radioPostForm" name="radioPostForm" value="Fruit" required>Fruit
+          <div id="uploadWrapper">
+            <img id="prv">
           </div>
+          <div id="uploadButtonDiv">
+            <progress value="0" id="uploader" max="100">0%</progress>
+            <input id="photo"class="file"type="file" name="mainimage"
+            value="" onchange="getfile()"><br><br> 
+          </div> 
+          
+          <div id="locationWrapper">
+            <select id="locationMenu" name="type" required>
+              <option value="richmond" id="richmondSelect">Richmond</option>
+              <option value="northvan" id="northVanSelect">North Vancouver</option>
+              <option value="downvan" id="downtownSelect">Downtown Vancouver</option>
+              <option value="westvan" id="westVanSelect">West Vancouver</option>
+              <option value="eastvan" id="eastVanSelect">East Vancouver</option>
+              <option value="burnaby" id="burnabySelect">Burnaby</option>
+            </select>
+          </div>
+          
           <div>
-            <label>Produce Description:</label>
-            <textarea name="description" rows="5" maxlength="250" placeholder="Tell us more about what your produce is." id="produceDescription" required></textarea>
+            <button type="submit" id="formSubmit" name="button">Submit</button>
           </div>
-        </div>
-        
-        <div id="uploadWrapper"></div>
-        <div id="additionalInfoWrapper">
-          <label>Additional Info:</label>
-          <textarea name="additionalInfo" rows="5" maxlength="250" placeholder="Any additional information you would like others to know?" id="produceAdditionalInfo"></textarea>
-        </div>
-        <div>
-          <button type="submit" id="formSubmit">Submit</button>
-        </div>
-        
-        
-        <div id="dateWrapper">
-          <input type="date" name="date" id="date" required="required">
-        </div>
-        
-      </form>
-    </div>
+          
+        </form>
+      </div>
     
     <div id="main">
       <div id="profileTopContainer">      

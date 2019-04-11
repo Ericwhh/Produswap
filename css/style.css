@@ -209,7 +209,6 @@ body {
     cursor: pointer;
 }
 
-//////
 #postForm input[type=text], #postForm textarea {
     font-family: 'Titillium Web', sans-serif;
 }
@@ -269,7 +268,6 @@ body {
     font-size: 12pt;
     border-radius: 4px;
     width: calc(100% - 22px);
-    float: left;
 }
 
 #postFormTitle {
@@ -295,21 +293,25 @@ body {
 }
 
 #uploadWrapper {
+    margin-top: 20px;
     float: right;
     width: 180px;
-    height: 200px;
+    height: 210px;
     border: 0.5px solid rgb(168, 168, 168);
     background-color: white;
     border-radius: 4px;
 }
+#photo {
+    width: inherit;
+}
 #prv {
     width: 180px;
-    height: calc(220px - 8px);
+    height: 210px;
 }
 #postFormInnerWrapper {
     width: calc(80% - 48px);
     float: left;
-    height: 200px;
+    height: 260px;
 }
 
 #additionalInfoWrapper {
