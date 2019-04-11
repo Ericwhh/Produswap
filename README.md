@@ -9,8 +9,7 @@ A local produce trading website project for trading produce of various kinds amo
 * .gitignore - gitignore file
 * README.md	- ReadMe file
 * dashboard.html- Dasboard page
-* index.html	- index.html
-* market.html - Main landing page
+* index.html	- Main landing page
 
 ## Deployment
 
