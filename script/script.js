@@ -177,13 +177,16 @@ function submitPost(e) {
   }, 3000);
 
   // Clear form  
+  $('#prv').attr('src', "images/defaultImage.png");
   document.getElementById('newPost').reset();
 }
 
 // Saves post to firebase
 function savePost(name, date, category, description, location, email, userID, imageURL) {
+  
   var newPostRef = postsRef.push();
   var key = newPostRef.key;
+  console.log(newPostRef);
   newPostRef.set({
     itemName: name,
     date: date,
@@ -198,13 +201,24 @@ function savePost(name, date, category, description, location, email, userID, im
   var newUserRef = firebase.database().ref("users/" + currUser + "/posts/" + key).set({
     post: key
   });
-
+  var correctType = (indexTypeURL == 0 ||
+    indexTypeURL == 1 && category == "fruit" ||
+    indexTypeURL == 2 && category == "vegetable");
+  var correctSearch = name.toUpperCase().indexOf(indexSearchURL.toUpperCase()) >= 0;
+  var correctLocation = (indexLocationURL == "all" || indexLocationURL == "" ||
+    location == "Burnaby" && indexLocationURL == "burnaby" ||
+    location == "Downtown Vancouver" && indexLocationURL == "downvan" ||
+    location == "East Vancouver" && indexLocationURL == "eastvan" ||
+    location == "North Vancouver" && indexLocationURL == "northvan" ||
+    location == "West Vancouver" && indexLocationURL == "westvan" ||
+    location == "Richmond" && indexLocationURL == "richmond");
+  console.log("Type" + correctType);
+  console.log("sear" + correctSearch);
+  console.log("loc" + correctLocation);
   // If submitted post and search filter match up with submitted post, display to listing
-  if ((indexTypeURL == 0 ||
-    indexTypeURL == 1 && category.toLowerCase() == "fruit" ||
-    indexTypeURL == 2 && category.toLowerCase() == "vegetable") &&
-    (name.toLowerCase().indexOf(indexSearchURL.toLowerCase()) >= 0)) {
-    addPostToPageListing("postList", key, name, category, description, date, email, userID, "available", imageURL, location);
+  if (correctType && correctSearch && correctLocation) {
+    addPostToPageListing("postList", key, name, category, description,
+      date, email, userID, "available", imageURL, location);
   }
 };
 
@@ -249,9 +263,4 @@ function readURL(input) {
   }
 }
 
-
-//Clears image preview after creating post
-$("#formSubmit").click(function (e) {
-  $('#prv').attr('src', "");
-});
 

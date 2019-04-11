@@ -145,7 +145,6 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   itemImage.className = "itemImage";
 
   itemImage.src = imageURL;
-  uploadedImage = "images/defaultImage.png";
 
   itemImageWrapper.appendChild(itemImage);
   var itemHeader = document.createElement('h6');
