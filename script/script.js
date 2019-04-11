@@ -32,7 +32,7 @@ if (user) {
     //hides the welcoming quote
     $("#welcomeHeader").css("display", "none");
     //shows search bar
-    $("#searchAndFilterContainer").fadeToggle();
+    $("#searchAndFilterContainer").css("display", "block");
     // currUser equals the unique ID for the user
     currUser = user.uid;
     // Enables signout button
