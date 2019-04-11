@@ -1,3 +1,14 @@
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    //shows search bar
+    $("#searchAndFilterContainer").css("display", "block");
+  } else {
+    // shows the welcoming quote
+    $("#welcomeHeader").css("display", "block");
+  }
+});
+
+
 //Listen for post submit
 document.getElementById('postForm').addEventListener('submit', submitPost);
 

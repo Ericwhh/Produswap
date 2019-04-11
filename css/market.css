@@ -1,7 +1,7 @@
 #container {
   overflow-x: hidden; 
   overflow-y: scroll;
-  height: calc(100% - 20px - 16px - 100px - 70px);
+  height: calc(100% - 180px);
   width: 100%;
 }
 
@@ -95,7 +95,7 @@
     float: left;
     height: 100px;
     width: 98%;
-    margin: 1%;
+    margin: 20px 1% 1%;
 }
 
 #searchContainer {
@@ -170,5 +170,7 @@
 }
 
 #welcomeHeader {
+    display: none;
     text-align: center;
+    height: 120px;
 }

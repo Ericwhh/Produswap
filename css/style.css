@@ -29,7 +29,7 @@ body {
 /* Content area. */
 #main {
     width: 80%;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 100px);
     margin: 0 auto;
     padding: auto 4px;
 }
@@ -107,14 +107,12 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-background: #AA6A39; 
-display: none;
+background: #79A83C; 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-background: #804315; 
-display: none;
+background: #79A83C; 
 }
 
 /* Progress bar hidden*/
