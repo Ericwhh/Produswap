@@ -14,6 +14,7 @@ $("#tabReceived").click(function(e){
   requestDisplay();
 });
 
+// Listener for submit post form button
 document.getElementById('postForm').addEventListener('submit', submitPost);
 
 // Sets which tab to display
@@ -34,10 +35,9 @@ function requestDisplay() {
 }
 
 /* Sets global variable currUser and displays user's name on page. 
-Then, gets the posts that belong to the current user
-Gets the posts that the user has sent offers for
-Gets the posts that the user has received offers for
-*/
+Then, gets the posts that belong to the current user.
+Gets the posts that the user has sent offers for.
+Gets the posts that the user has received offers for. */
 var currUser;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {

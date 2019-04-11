@@ -81,9 +81,11 @@ function display(type, name, location){
 }
 
 
+/* Swap button for the post
+If user is not signed in, displays warning.
+Otherwise, if post is still available, updates 
+firebase accordingly. Else, display message to user. */
 function swapButton(key, postedBy, element){
-
-
   if (currUser != null){
     var statusRef = firebase.database().ref('posts/' + key + "/status");
     statusRef.once("value", function(snapshot){
@@ -104,7 +106,7 @@ function swapButton(key, postedBy, element){
         alert("A swap request has been sent to the user!");
       }
       else {
-        alert("Not available");
+        alert("Someone has already sent them a swap request, sorry!");
       }
     });
   } else {
@@ -129,7 +131,6 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   var itemImage = document.createElement('img');
   itemImage.className = "itemImage";
 
-  // Stock IMAGE
   itemImage.src = imageURL;
   uploadedImage = "images/defaultImage.png";
   
@@ -169,17 +170,13 @@ function addPostToPageListing(idToPlaceIn, postID, itemName, category, descripti
   itemText.appendChild(itemByUser);
   itemText.appendChild(itemPostedOn);
   
-  // TEXT
   itemHeader.innerHTML = itemName;
   itemDescription.innerHTML = description;
   itemPostedOn.innerHTML = date;
 
 }
 
-//////////////////////////////////////////////////
-//Marketplace.html 
-
-//Results list to Grid sort view 
+//Results List to Grid sort view 
 $(function() {
   function list() {
     $(".gridView span").removeClass("active");
