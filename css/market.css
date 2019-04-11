@@ -89,6 +89,7 @@
 /*--------------------------------------------------------------------------*/
 
 #searchAndFilterContainer {
+    display: none;
     position: relative;
     background-size: auto 100%;
     float: left;
@@ -169,3 +170,6 @@
     z-index: 3;
 }
 
+#welcomeHeader {
+    text-align: center;
+}
