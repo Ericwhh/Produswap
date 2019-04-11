@@ -295,4 +295,11 @@ function acceptButtonFn(key, offerBy){
     "status": "complete"
   });
 }
+//clicking tabs on dashboard
+function clickTab(clickedtab){
+    $("#tabPosted").css("opacity", "0.5");
+    $("#tabReceived").css("opacity", "0.5");
+    $("#tabSent").css("opacity", "0.5");
+    document.getElementById(clickedtab).style.opacity = "1";
+}
 

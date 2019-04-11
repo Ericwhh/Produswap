@@ -29,6 +29,10 @@ var uploadedImage;
 var currUser;
 firebase.auth().onAuthStateChanged(function(user) {
 if (user) {
+    //hides the welcoming quote
+    $("#welcomeHeader").css("display", "none");
+    //shows search bar
+    $("#searchAndFilterContainer").fadeToggle();
     // currUser equals the unique ID for the user
     currUser = user.uid;
     // Enables signout button
@@ -40,6 +44,7 @@ if (user) {
     });
 } 
 else {
+    
     // Enables login button
     enableLogin();
     // Disables post functionality
