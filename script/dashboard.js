@@ -293,6 +293,7 @@ function acceptButtonFn(key, offerBy) {
   firebase.database().ref('users/' + offerBy + "/offersSent/" + key).update({
     "status": "complete"
   });
+  changeToStatus(element, "ACCEPTED");
 }
 //clicking tabs on dashboard
 function clickTab(clickedtab) {
