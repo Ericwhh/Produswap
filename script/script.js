@@ -186,7 +186,6 @@ function savePost(name, date, category, description, location, email, userID, im
   
   var newPostRef = postsRef.push();
   var key = newPostRef.key;
-  console.log(newPostRef);
   newPostRef.set({
     itemName: name,
     date: date,
@@ -212,9 +211,6 @@ function savePost(name, date, category, description, location, email, userID, im
     location == "North Vancouver" && indexLocationURL == "northvan" ||
     location == "West Vancouver" && indexLocationURL == "westvan" ||
     location == "Richmond" && indexLocationURL == "richmond");
-  console.log("Type" + correctType);
-  console.log("sear" + correctSearch);
-  console.log("loc" + correctLocation);
   // If submitted post and search filter match up with submitted post, display to listing
   if (correctType && correctSearch && correctLocation) {
     addPostToPageListing("postList", key, name, category, description,
