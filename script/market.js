@@ -109,10 +109,10 @@ function swapButton(key, postedBy, element) {
           "status": "pending",
           "offerBy": currUser
         });
-        var sent = firebase.database().ref('users/' + currUser + "/offersSent/" + key).set({
+        firebase.database().ref('users/' + currUser + "/offersSent/" + key).set({
           status: "Pending"
         });
-        var received = firebase.database().ref('users/' + postedBy + "/offersReceived/" + key).set({
+        firebase.database().ref('users/' + postedBy + "/offersReceived/" + key).set({
           status: "Pending"
         });
         $(element).remove();

@@ -255,6 +255,19 @@ function changeToStatus(element, status) {
   $(element).children().eq(1).children().eq(0).after('<div class="statusLabel">' + status + '</div>');
 }
 
+// Deletes the post with corresponding the unique key in firebase
+function deleteButtonFn(key) {
+  firebase.database().ref("posts/" + key).remove();
+  firebase.database().ref("users/" + currUser + "/posts/" + key).remove();
+  usersRef.once("value", function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+      firebase.database().ref("users/" + childSnapshot.key + "/offersSent/" + key).remove();
+      firebase.database().ref("users/" + childSnapshot.key + "/offersReceived/" + key).remove();
+    });
+    $("." + key + "[0]").remove();
+  });
+}
+
 // Declines the post with the specified unique key in firebase and updates user trees accordingly
 function declineButtonFn(key, offerBy, element) {
   firebase.database().ref('posts/' + key).update({
@@ -268,19 +281,6 @@ function declineButtonFn(key, offerBy, element) {
   });
   document.getElementsByClassName(key)[0].remove();
   changeToStatus(element, "DECLINED");
-}
-
-// Deletes the post with corresponding the unique key in firebase
-function deleteButtonFn(key) {
-  firebase.database().ref("posts/" + key).remove();
-  firebase.database().ref("users/" + currUser + "/posts/" + key).remove();
-  usersRef.once("value", function (snapshot) {
-    snapshot.forEach(function (childSnapshot) {
-      firebase.database().ref("users/" + childSnapshot.key + "/offersSent/" + key).remove();
-      firebase.database().ref("users/" + childSnapshot.key + "/offersReceived/" + key).remove();
-    });
-    $("." + key + "[0]").remove();
-  });
 }
 
 // Accepts the post with the specified unique key in firebase and updates user trees accordingly

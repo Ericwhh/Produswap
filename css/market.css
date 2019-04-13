@@ -52,7 +52,7 @@
 }
 
 .wrapper {
-    width: 88%;
+    width: calc(100% - 3rem);
     padding: 1.5rem;
     margin: 0 auto;
     display: flex;
@@ -69,7 +69,7 @@
     flex-direction: row;
 }
 .grid .item {
-    width: 45%;
+    width: calc(50% - 24px);
     height: 320px;
     
 }
@@ -78,7 +78,7 @@
     flex-direction: column;
 }
 .list .item {
-    width: 99%;
+    width: 100%;
     height: 130px;
 }
 
